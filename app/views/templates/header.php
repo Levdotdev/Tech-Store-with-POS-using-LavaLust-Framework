@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>LavaLust UI</title>
-	<link rel="icon" type="image/png" href="<?=base_url();?>public/img/favicon.ico"/>
+	<link rel="icon" type="image/x-icon" href="<?= base_url();?>public/resources/logo.jpg">
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
