@@ -47,6 +47,7 @@ class Lauth {
 	public function __construct() {
 		$this->LAVA =& lava_instance();
 		$this->LAVA->call->database();
+		$this->LAVA->db->raw("SET time_zone = '+08:00'");
 		$this->LAVA->call->library('session');
 	}
 

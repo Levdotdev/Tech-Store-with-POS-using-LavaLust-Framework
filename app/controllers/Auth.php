@@ -15,6 +15,7 @@ class Auth extends Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->CrudModel->raw("SET time_zone = '+08:00'");
         if(segment(2) != 'logout') {
             $id = $this->lauth->get_user_id();
             if(logged_in() && $this->lauth->get_role($id) == "admin") {
