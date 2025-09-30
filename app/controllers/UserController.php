@@ -17,6 +17,9 @@ class UserController extends Controller {
             if(logged_in() && $this->lauth->get_role($id) == "admin") {
                 redirect('home');
             }
+            else if(!logged_in()){
+                redirect('auth/login');
+            }
         }
     }
 

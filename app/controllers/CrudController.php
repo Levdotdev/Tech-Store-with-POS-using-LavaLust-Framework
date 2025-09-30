@@ -17,6 +17,9 @@ class CrudController extends Controller {
             if(logged_in() && $this->lauth->get_role($id) == "user") {
                 redirect('home-user');
             }
+            else if(!logged_in()){
+                redirect('auth/login');
+            }
         }
     }
 
