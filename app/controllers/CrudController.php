@@ -12,21 +12,21 @@ class CrudController extends Controller {
         parent::__construct();
         $this->call->database();
         $this->call->model('CrudModel');
-        $this->check_verification();
+        if(segment(2) != 'logout') {
+            $id = $this->lauth->get_user_id();
+            if($this->lauth->is_user_verified($id) == 0){
+                if($this->lauth->set_logged_out()) {
+                    redirect('auth/login');
+                }
+            }
+            else if(logged_in() && $this->lauth->get_role($id) == "user") {
+                redirect('home-user');
+            }
+            else if(!logged_in()){
+                redirect('auth/login');
+            }
+        }
     }
-
-    public function check_verification() {
-    $id = $this->lauth->get_user_id();
-    if ($this->lauth->is_user_verified($id) == 0) {
-        $this->lauth->set_logged_out();
-        set_flash_alert('danger', 'Please verify your account first.');
-        redirect('auth/login');
-    } else if (!logged_in()) {
-        redirect('auth/login');
-    } else if ($this->lauth->get_role($id) == "user") {
-        redirect('home-user');
-    }
-}
 
     public function index(){
         $page = 1;
