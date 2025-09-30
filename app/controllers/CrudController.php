@@ -12,7 +12,7 @@ class CrudController extends Controller {
         parent::__construct();
         $this->call->database();
         $this->call->model('CrudModel');
-        check_verification();
+        $this->check_verification();
     }
 
     public function check_verification() {
