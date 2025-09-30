@@ -47,7 +47,6 @@ class Lauth {
 	public function __construct() {
 		$this->LAVA =& lava_instance();
 		$this->LAVA->call->database();
-		$this->LAVA->db->raw("SET time_zone = '+08:00'");
 		$this->LAVA->call->library('session');
 	}
 
@@ -258,7 +257,7 @@ class Lauth {
 		$this->LAVA->db
 				->table('users')
 				->where('id', $id)
-				->where_null('email_verified_at')
+				->where_not_null('email_verified_at')
 				->get();
 	return $this->LAVA->db->row_count();
 	}

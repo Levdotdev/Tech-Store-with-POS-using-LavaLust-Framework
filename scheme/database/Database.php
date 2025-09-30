@@ -240,6 +240,8 @@ class Database {
 
         try {
             $this->db = new PDO($dsn, $username, $password, $options);
+            $stmt = $this->db->prepare("SET time_zone = '+08:00';");
+            $stmt->execute();
              $this->driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);
         } catch (Exception $e) {
             throw new PDOException($e->getMessage());
