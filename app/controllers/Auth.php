@@ -169,9 +169,11 @@ class Auth extends Controller {
                                 redirect('auth/login');
 							} else {
 								set_flash_alert('danger', config_item('SQLError'));
+                                redirect('auth/set-new-password/?token='.$token);
 							}
 						} else {
 							set_flash_alert('danger', $this->form_validation->errors());
+                            redirect('auth/set-new-password/?token='.$token);
 						}
 			} else {
 				set_flash_alert('danger', 'Reset token is missing.');
