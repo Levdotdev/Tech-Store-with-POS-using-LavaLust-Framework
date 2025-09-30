@@ -12,6 +12,15 @@ class CrudController extends Controller {
         parent::__construct();
         $this->call->database();
         $this->call->model('CrudModel');
+        if(segment(2) != 'logout') {
+            $id = $this->lauth->get_user_id();
+            if(logged_in() && $this->lauth->get_role($id) == "admin") {
+                redirect('home');
+            }
+            else if(logged_in() && $this->lauth->get_role($id) == "user") {
+                redirect('home-user');
+            }
+        }
     }
 
     public function index(){
