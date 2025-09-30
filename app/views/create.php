@@ -11,7 +11,7 @@
     <h1>Insert Character</h1>
     <div class="login-box">
     <form action="<?=site_url('create'); ?>" method="post" enctype="multipart/form-data">
-        <input type="file" name="fileToUpload" id="fileToUpload" size="20" />
+        <input type="file" name="fileToUpload" id="fileToUpload" size="20" required/>
         <input type="text" name="name" id="name" placeholder="Character Name" required><br><br>
         <label for="class" style="color:white;">Class</label>
         <select name="class" id="class" required>
