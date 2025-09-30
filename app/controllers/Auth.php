@@ -165,6 +165,7 @@ class Auth extends Controller {
 						if($this->form_validation->run()) {
 							if($this->lauth->reset_password_now($token, $password)) {
 								set_flash_alert('success', 'Password was successfully updated.');
+                                $token = "";
 							} else {
 								set_flash_alert('danger', config_item('SQLError'));
 							}
@@ -174,7 +175,7 @@ class Auth extends Controller {
 			} else {
 				set_flash_alert('danger', 'Reset token is missing.');
 			}
-    	redirect('auth/set-new-password/?token=0');
+    	redirect('auth/set-new-password/?token='.$token);
         } else {
              $token = $_GET['token'] ?? '';
             if(! $this->lauth->get_reset_password_token($token) && (! empty($token) || ! isset($token))) {
