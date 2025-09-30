@@ -16,6 +16,7 @@ class CrudModel extends Model {
     public function __construct()
     {
         parent::__construct();
+        $this->db->query("SET time_zone = '+08:00'");
     }
 
     public function page_home($q, $records_per_page = null, $page = null) {

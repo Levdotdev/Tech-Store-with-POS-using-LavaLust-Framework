@@ -253,11 +253,11 @@ class Lauth {
 		}
 	}
 
-	public function is_user_verified($email) {
+	public function is_user_verified($id) {
 		$this->LAVA->db
 				->table('users')
-				->where('email', $email)
-				->where_not_null('email_verified_at')
+				->where('id', $id)
+				->where_null('email_verified_at')
 				->get();
 	return $this->LAVA->db->row_count();
 	}
@@ -305,7 +305,7 @@ class Lauth {
 				->update($data);
 	}
 
-	public function verify($token) {
+	/*public function verify($token) {
 		return $this->LAVA->db
 						->table('users')
 						->select('id')
@@ -329,7 +329,7 @@ class Lauth {
 						->where('email', $email)
 						->where_null('email_verified_at')
 						->get();	
-	}
+	}*/
 }
 
 ?>
