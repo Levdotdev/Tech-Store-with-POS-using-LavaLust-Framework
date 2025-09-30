@@ -14,7 +14,7 @@ class CrudController extends Controller {
         $this->call->model('CrudModel');
         if(segment(2) != 'logout') {
             $id = $this->lauth->get_user_id();
-            if($this->lauth->is_user_verified($id) == 0){
+            if(logged_in() && $this->lauth->is_user_verified($id) == 0){
                 set_flash_alert('danger', 'Please verify your account first.');
                 redirect('auth/login');
             }

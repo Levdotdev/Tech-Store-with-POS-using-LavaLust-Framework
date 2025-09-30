@@ -233,6 +233,11 @@ class Lauth {
 	}
 	
 	public function reset_password($email) {
+
+		$res = $this->LAVA->db->table('password_reset')
+						->where('email', $email)
+						->delete();
+						
 		$row = $this->LAVA->db
 						->table('users')
 						->where('email', $email)
@@ -330,6 +335,12 @@ class Lauth {
 						->where_null('email_verified_at')
 						->get();	
 	}*/
+
+	public function delete_unverified(){
+		$res = $this->LAVA->db->table('users')
+						->where_null('email_verified_at')
+						->delete();
+	}
 }
 
 ?>
