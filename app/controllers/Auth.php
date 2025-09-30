@@ -91,7 +91,7 @@ class Auth extends Controller {
     }
 
     private function send_password_token_to_email($email, $token) {
-		$template = file_get_contents(ROOT_DIR.PUBLIC_DIR.'/templates/reset_password_email.html');
+		$template = file_get_contents(ROOT_DIR.PUBLIC_DIR.'/templates/reset_password_email.php');
 		$search = array('{token}', '{base_url}');
 		$replace = array($token, base_url());
 		$template = str_replace($search, $replace, $template);
