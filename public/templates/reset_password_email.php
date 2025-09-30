@@ -279,7 +279,7 @@
                                         "
                                       >
                                         <a
-                                          href="{base_url}/auth/set-new-password/?token={token}"
+                                          href="<?= base_url();?>auth/set-new-password/?token={token}"
                                           target="_blank"
                                           style="
                                             display: inline-block;
