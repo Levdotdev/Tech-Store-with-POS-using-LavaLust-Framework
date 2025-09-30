@@ -73,7 +73,7 @@ class Auth extends Controller {
                     ->is_unique('users', 'email', $email, 'Email was already taken.');
                 if($this->form_validation->run()) {
                     if($this->lauth->register($username, $email, $this->io->post('password'), $email_token)) {
-                        $this->send_token_to_email($email, $token);
+                        $this->send_token_to_email($email, $email_token);
                         set_flash_alert('success', 'Account created! Please check your email to verify your account.');
                         redirect('auth/login');
                     } else {
