@@ -106,6 +106,10 @@ class CrudController extends Controller {
 			->encrypt_name();
 
             if(!empty($_FILES["fileToUpload"]["name"]) && $this->upload->do_upload()){
+                if(!empty($char['pic']) && file_exists('uploads/'.$char['pic'])){
+                    unlink('uploads/'.$char['pic']);
+                }
+                
                 $pic = $this->upload->get_filename();
             } else{
                 $pic = $char['pic'];
@@ -127,6 +131,13 @@ class CrudController extends Controller {
 
     function delete($id){
         if($this->lauth->get_role(get_user_id()) == "admin") {
+            $char = $this->CrudModel->find($id);
+
+            if($char){
+                if(!empty($char['pic']) && file_exists('uploads/'.$char['pic'])){
+                    unlink('uploads/'.$char['pic']);
+                }
+            }
             $this->CrudModel->delete($id);
             redirect('trash');
         }
