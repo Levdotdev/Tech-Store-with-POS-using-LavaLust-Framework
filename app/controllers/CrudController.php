@@ -164,11 +164,13 @@ class CrudController extends Controller {
     }
 
     function restore($id){
-        $cond = $this->lauth->get_role($id);
-        echo $cond;
-        if($cond == "admin") {
+        if($this->lauth->get_role($id) == "admin") {
             $this->CrudModel->restore($id);
             redirect('trash');
         }
+    }
+
+    function show(){
+        echo $this->lauth->get_role($id) == "admin";
     }
 }
