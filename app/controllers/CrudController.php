@@ -19,7 +19,7 @@ class CrudController extends Controller {
                     redirect('auth/login');
                 }
             }
-            else if(logged_in() && $this->lauth->get_role(get_user_id()) == "user") {
+            else if(logged_in() && $this->lauth->get_role($id) == "user") {
                 redirect('home-user');
             }
             else if(!logged_in()){
@@ -68,8 +68,8 @@ class CrudController extends Controller {
 			->max_size(5)
 			//->min_size(1)
 			->set_dir('uploads')
-			->allowed_extensions(array('png', 'jpg'))
-			->allowed_mimes(array('image/png', 'image/jpeg'))
+			->allowed_extensions(array('png', 'jpg', 'gif'))
+			->allowed_mimes(array('image/png', 'image/jpeg', 'image/gif'))
 			->is_image()
 			->encrypt_name();
 
@@ -90,7 +90,7 @@ class CrudController extends Controller {
 
     public function update($id)
     {
-        $data['char'] = $this->CrudModel->find($id);
+        $char = $this->CrudModel->find($id);
         if($this->io->method() == 'post'){
             $name = $this->io->post('name');
             $class = $this->io->post('class');
@@ -100,22 +100,27 @@ class CrudController extends Controller {
 			->max_size(5)
 			//->min_size(1)
 			->set_dir('uploads')
-			->allowed_extensions(array('png', 'jpg'))
-			->allowed_mimes(array('image/png', 'image/jpeg'))
+			->allowed_extensions(array('png', 'jpg', 'gif'))
+			->allowed_mimes(array('image/png', 'image/jpeg', 'image/gif'))
 			->is_image()
 			->encrypt_name();
 
-            if($this->upload->do_upload()){
-                $data = [
+            if(!empty($_FILES["fileToUpload"]["name"]) && $this->upload->do_upload()){
+                $pic = $this->upload->get_filename();
+            } else{
+                $pic = $char['pic'];
+            }
+
+            $data = [
                 'name' => $name,
                 'class' => $class,
-                'pic' => $this->upload->get_filename()
+                'pic' => $pic
             ];
-                $this->CrudModel->update($id, $data);
-                redirect();
-            }
+            $this->CrudModel->update($id, $data);
+            redirect();
         }
         else{
+            $data['char'] = $char;
             $this->call->view('update', $data);
         }
     }

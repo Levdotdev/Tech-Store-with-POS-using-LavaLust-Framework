@@ -11,7 +11,8 @@
     <h1>Update Character</h1>
     <div class="login-box">
     <form action="<?=site_url('update/'.$char['id']);?>" method="post" enctype="multipart/form-data">
-        <input type="file" name="fileToUpload" id="fileToUpload" size="20" />
+        <img id="preview" src="<?=base_url().'uploads/'.$char['pic'];?>" alt="Current Pic" width="120"><br>
+        <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" title="(Optional) Keep empty to retain current picture" size="20" />
         <input type="text" name="name" id="name" placeholder="Character Name" value="<?=html_escape($char['name']);?>" required><br><br>
         <label for="class" style="color:white;">Class</label>
         <select name="class" id="class" required>
@@ -40,6 +41,14 @@
         if (event.key === "Enter") {
             document.getElementById("class").focus();
             event.preventDefault(); 
+        }
+    });
+
+        document.getElementById("fileToUpload").addEventListener("change", function(e){
+        const preview = document.getElementById("preview");
+        const file = e.target.files[0];
+        if(file){
+            preview.src = URL.createObjectURL(file);
         }
     });
     </script>
