@@ -45,7 +45,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 $router->get('/', 'Auth::index');
 $router->get('/home', 'CrudController::index');
-$router->get('/show/{19}', 'CrudController::show');
+$router->get('/show/{id}', 'CrudController::show');
 $router->get('/trash', 'CrudController::trash');
 $router->get('/home-user', 'UserController::index');
 $router->get('/trash-user', 'UserController::trash');
