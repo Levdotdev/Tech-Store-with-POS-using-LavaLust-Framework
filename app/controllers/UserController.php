@@ -19,7 +19,7 @@ class UserController extends Controller {
                     redirect('auth/login');
                 }
             }
-            else if(logged_in() && $this->lauth->get_role($id) == "admin") {
+            else if(logged_in() && $this->lauth->get_role(get_user_id()) == "admin") {
                 redirect('home');
             }
             else if(!logged_in()){

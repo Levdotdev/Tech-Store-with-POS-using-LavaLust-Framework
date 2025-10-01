@@ -19,7 +19,7 @@ class CrudController extends Controller {
                     redirect('auth/login');
                 }
             }
-            else if(logged_in() && $this->lauth->get_role($id) == "user") {
+            else if(logged_in() && $this->lauth->get_role(get_user_id()) == "user") {
                 redirect('home-user');
             }
             else if(!logged_in()){
@@ -121,14 +121,14 @@ class CrudController extends Controller {
     }
 
     function delete($id){
-        if($this->lauth->get_role($id) == "admin") {
+        if($this->lauth->get_role(get_user_id()) == "admin") {
             $this->CrudModel->delete($id);
             redirect('trash');
         }
     }
 
     function soft_delete($id){
-        if($this->lauth->get_role($id) == "admin") {
+        if($this->lauth->get_role(get_user_id()) == "admin") {
             $this->CrudModel->soft_delete($id);
             redirect();
         }
@@ -164,7 +164,7 @@ class CrudController extends Controller {
     }
 
     function restore($id){
-        if($this->lauth->get_role($id) == "admin") {
+        if($this->lauth->get_role(get_user_id()) == "admin") {
             $this->CrudModel->restore($id);
             redirect('trash');
         }
