@@ -121,17 +121,13 @@ class CrudController extends Controller {
     }
 
     function delete($id){
-        if($this->lauth->get_role($id) == "admin") {
             $this->CrudModel->delete($id);
             redirect('trash');
-        }
     }
 
     function soft_delete($id){
-        if($this->lauth->get_role($id) == "admin") {
             $this->CrudModel->soft_delete($id);
             redirect();
-        }
     }
 
     function trash(){
@@ -164,9 +160,7 @@ class CrudController extends Controller {
     }
 
     function restore($id){
-        if($this->lauth->get_role($id) == "admin") {
             $this->CrudModel->restore($id);
             redirect('trash');
-        }
     }
 }
