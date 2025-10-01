@@ -21,7 +21,7 @@
         <input class="form-control me-2" name="q" type="text" placeholder="Search" value="<?=html_escape($q);?>">
         <button type="submit" class="btn btn-primary" type="button">Search</button>
 	</form>
-    <h1 style="color: yellow;">Welcome Admin <?=html_escape(get_role(get_user_id()));?>!</h1>
+    <h1 style="color: yellow;">Welcome Admin <?=html_escape(get_username(get_user_id()));?>!</h1>
     <table>
         <thead>
             <tr>
