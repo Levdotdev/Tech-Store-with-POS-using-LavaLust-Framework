@@ -1,19 +1,24 @@
+/* BASE STYLES */
 h1 {
     margin-bottom: 20px;
     color: #222;
 }
 
-/* WRAPPER for scroll + margin */
+/* WRAPPER for scroll + margin fix */
 .table-container {
-    margin: 0 20px 20px 20px; /* adds left/right/bottom margin */
-    overflow-x: auto;         /* enables horizontal scroll */
-    border-radius: 12px;
+    margin: 0 auto 20px auto;     /* centers table, adds bottom margin */
+    padding: 0 10px;              /* inner space without breaking layout */
+    overflow-x: auto;             /* enables scroll */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; /* smooth scroll for iOS */
+    width: 100%;                  /* prevent body overflow */
+    box-sizing: border-box;
 }
 
 /* TABLE DESIGN */
 table {
     width: 100%;
-    min-width: 700px; /* ensures consistent column layout */
+    min-width: 700px;             /* allows scroll on smaller screens */
     border-collapse: collapse;
     background: #fff;
     border-radius: 12px;
@@ -54,7 +59,7 @@ td img {
     border-radius: 8px;
 }
 
-/* BUTTON STYLING */
+/* BUTTONS */
 .btn {
     display: inline-block;
     padding: 8px 14px;
@@ -90,7 +95,7 @@ td img {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin: 0 10px 20px 10px;
 }
 
 .characters-header h1 {
@@ -118,10 +123,10 @@ td img {
     width: 200px;
 }
 
-/* RESPONSIVE FIX */
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .table-container {
-        margin: 0 10px 20px 10px;
+        padding: 0 5px;           /* tighter padding */
     }
 
     table {
