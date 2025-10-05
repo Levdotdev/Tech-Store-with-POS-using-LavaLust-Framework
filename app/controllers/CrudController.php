@@ -14,16 +14,16 @@ class CrudController extends Controller {
         $this->call->model('CrudModel');
         if(segment(2) != 'logout') {
             $id = $this->lauth->get_user_id();
-            if($this->lauth->is_user_verified($id) == 0){
+            if(!logged_in()){
+                redirect('auth/login');
+            }
+            else if($this->lauth->is_user_verified($id) == 0){
                 if($this->lauth->set_logged_out()) {
                     redirect('auth/login');
                 }
             }
             else if(logged_in() && $this->lauth->get_role($id) == "user") {
                 redirect('home-user');
-            }
-            else if(!logged_in()){
-                redirect('auth/login');
             }
         }
     }
