@@ -43,7 +43,7 @@ include APP_DIR.'views/templates/header.php';
         <td><?= $char['class']; ?></td>
         <td>
           <a href="<?= site_url('restore/'.$char['id']); ?>" class="btn btn-update">Restore</a>
-          <a href="<?= site_url('delete/'.$char['id']); ?>" class="btn btn-delete">Trash</a>
+          <a href="<?= site_url('delete/'.$char['id']); ?>" class="btn btn-delete">Delete</a>
         </td>
       </tr>
       <?php endforeach; ?>

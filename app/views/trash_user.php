@@ -13,7 +13,7 @@ include APP_DIR.'views/templates/header.php';
     <h1>Genshin Trash Bin</h1>
 
     <div class="header-actions">
-        <form action="<?=site_url('trash');?>" method="get" class="search-form">
+        <form action="<?=site_url('trash-user');?>" method="get" class="search-form">
             <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
             <input class="form-control" name="q" type="text" placeholder="Search">
             <button type="submit" class="btn btn-primary">Search</button>

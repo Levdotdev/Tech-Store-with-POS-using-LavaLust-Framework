@@ -13,7 +13,7 @@ include APP_DIR.'views/templates/header.php';
     <h1>Genshin Characters</h1>
 
     <div class="header-actions">
-        <form action="<?=site_url('home');?>" method="get" class="search-form">
+        <form action="<?=site_url('home-user');?>" method="get" class="search-form">
             <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
             <input class="form-control" name="q" type="text" placeholder="Search">
             <button type="submit" class="btn btn-primary">Search</button>
