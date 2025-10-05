@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?= base_url();?>public/css/home.css">
 </head>
 <body class="form" style="background-image: url('<?= base_url();?>public/resources/jenshin.gif'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
-    <h1>Insert Character</h1>
+    <h1>Add Character</h1>
     <div class="login-box">
     <form action="<?=site_url('create'); ?>" method="post" enctype="multipart/form-data">
         <img id="preview" width="120"><br>
@@ -24,7 +24,7 @@
             <option value="Electro">Electro</option>
             <option value="Dendro">Dendro</option>
         </select><br><br>
-        <input type="submit" value="Insert"></button>
+        <input type="submit" value="Add"></button>
     </form>
 </div><br>
 

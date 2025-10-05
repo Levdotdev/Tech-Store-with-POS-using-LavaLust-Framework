@@ -16,17 +16,16 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
-                <?php if(! logged_in()): ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=site_url('auth/login');?>">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=site_url('auth/register');?>">Register</a>
-                </li>
+                <?php if (get_role(get_user_id()) == "admin"): ?>
+                    <li class="nav-item">
+                        <a href="<?= site_url('trash'); ?>" class="nav-link">Trash</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a href="<?= site_url('trash-user'); ?>" class="nav-link">Trash</a>
+                    </li>
                 <?php endif; ?>
-                <li class="nav-item">
-                    <a href="<?= site_url('trash'); ?>" class="nav-link">Trash</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="<?=site_url('auth/logout');?>">Logout</a>
                 </li>
