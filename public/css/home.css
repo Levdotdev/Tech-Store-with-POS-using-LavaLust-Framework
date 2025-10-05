@@ -3,12 +3,13 @@ h1 {
     color: #222;
 }
 
+/* TABLE DESIGN */
 table {
-    margin-left: 20px;
+    width: 100%;
+    max-width: 100%;
     margin-right: 20px;
     margin-bottom: 20px;
     border-collapse: collapse;
-    width: 85%;
     background: #fff;
     border-radius: 12px;
     overflow: hidden;
@@ -24,9 +25,13 @@ thead {
 th, td {
     padding: 14px 18px;
     text-align: center;
+    vertical-align: middle;
     font-size: 15px;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap; /* keeps buttons inline */
 }
 
+/* Alternate row color + hover */
 tbody tr:nth-child(even) {
     background: #f9f9f9;
 }
@@ -35,6 +40,17 @@ tbody tr:hover {
     background: #eef6ff;
 }
 
+/* IMAGE FIX */
+td img {
+    display: block;          /* removes bottom gap */
+    margin: 0 auto;          /* centers horizontally */
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* BUTTON DESIGN */
 .btn {
     display: inline-block;
     padding: 8px 14px;
@@ -52,60 +68,21 @@ tbody tr:hover {
     transform: scale(1.05);
 }
 
+/* Button colors */
 .btn-update { background: #28a745; }
 .btn-delete { background: #dc3545; }
 .btn-trash  { background: #ff9800; }
 .btn-create { background: #007bff; }
 .btn-bin    { background: #6c757d; }
 
+/* Hover fix */
 .btn-create:hover { background: #007bff; color: white}
 .btn-bin:hover    { background: #6c757d; color: white}
 .btn-update:hover  { background: #28a745; color: white}
 .btn-delete:hover  { background: #dc3545; color: white}
 .btn-trash:hover   { background: #ff9800; color: white}
 
-h1 {
-  margin-bottom: 20px;
-  font-size: 32px;
-  font-weight: bold;
-  color: #ffd369;
-  text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
-}
-
-.login-box {
-  background: rgba(0, 0, 0, 0.45);
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
-  padding: 40px;
-  width: 320px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-  text-align: center;
-}
-
-.login-box input {
-  width: 300px;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 999px;
-  outline: none;
-  background: rgba(255, 255, 255, 0.85)
-}
-
-.login-box input[type="submit"] {
-  width: 325px;
-  background: #ff9800;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: 0.3s;
-}
-
-.login-box input[type="submit"]:hover {
-  background: #e68900;
-}
-
+/* HEADER AREA */
 .characters-header {
     display: flex;
     justify-content: space-between;
@@ -137,4 +114,22 @@ h1 {
 
 .search-form .form-control {
     width: 200px;
+}
+
+/* RESPONSIVE FIX */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+        width: 95%;
+        margin-left: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    td img {
+        height: 50px;
+        width: 50px;
+    }
 }
