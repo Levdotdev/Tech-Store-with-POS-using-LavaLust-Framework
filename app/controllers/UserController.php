@@ -45,10 +45,10 @@ class UserController extends Controller {
         $data['all'] = $all['records'];
         $total_rows = $all['total_rows'];
         $this->pagination->set_options([
-            'first_link'     => '⏮ First',
-            'last_link'      => 'Last ⏭',
-            'next_link'      => 'Next →',
-            'prev_link'      => '← Prev',
+            'first_link'     => 'First',
+            'last_link'      => 'Last',
+            'next_link'      => '→',
+            'prev_link'      => '←',
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
@@ -74,10 +74,10 @@ class UserController extends Controller {
         $data['all'] = $all['records'];
         $total_rows = $all['total_rows'];
         $this->pagination->set_options([
-            'first_link'     => '⏮ First',
-            'last_link'      => 'Last ⏭',
-            'next_link'      => 'Next →',
-            'prev_link'      => '← Prev',
+            'first_link'     => 'First',
+            'last_link'      => 'Last',
+            'next_link'      => '→',
+            'prev_link'      => '←',
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
