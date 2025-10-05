@@ -211,3 +211,19 @@ td img {
         width: 45px;
     }
 }
+
+.form { 
+    font-family: "Segoe UI", Tahoma, sans-serif; 
+    background: #f4f6f9; color: #333; 
+    text-align: center; 
+    margin: 0; 
+    padding: 20px; 
+    margin: 0; 
+    padding: 0; 
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    background-size: cover; 
+}

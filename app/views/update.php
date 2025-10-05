@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="<?= base_url();?>public/resources/logo.jpg">
     <link rel="stylesheet" href="<?= base_url();?>public/css/home.css">
 </head>
-<body style="background-image: url('<?= base_url();?>public/resources/jenshin.gif'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+<body class="form" style="background-image: url('<?= base_url();?>public/resources/jenshin.gif'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
     <h1>Update Character</h1>
     <div class="login-box">
     <form action="<?=site_url('update/'.$char['id']);?>" method="post" enctype="multipart/form-data">
