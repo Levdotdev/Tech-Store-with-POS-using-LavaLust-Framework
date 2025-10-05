@@ -1,4 +1,87 @@
-/* TABLE WRAPPER */
+h1 {
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 2px;
+    font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+.btn-update { background: #28a745; }
+.btn-delete { background: #dc3545; }
+.btn-trash  { background: #ff9800; }
+.btn-create { background: #007bff; }
+.btn-bin    { background: #6c757d; }
+
+.btn-create:hover { background: #007bff; color: white}
+.btn-bin:hover    { background: #6c757d; color: white}
+.btn-update:hover  { background: #28a745; color: white}
+.btn-delete:hover  { background: #dc3545; color: white}
+.btn-trash:hover   { background: #ff9800; color: white}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffd369;
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+}
+
+.login-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  padding: 40px;
+  width: 320px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.login-box input {
+  width: 300px;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 999px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.85)
+}
+
+.login-box input[type="submit"] {
+  width: 325px;
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: 0.3s;
+}
+
+.login-box input[type="submit"]:hover {
+  background: #e68900;
+}
+
+.characters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
 .table-container {
     margin: 0 auto 20px auto;
     padding: 0 10px;
@@ -9,7 +92,6 @@
     box-sizing: border-box;
 }
 
-/* TABLE DESIGN */
 table {
     width: 100%;
     min-width: 700px;
@@ -43,17 +125,15 @@ tbody tr:hover {
     background: #eef6ff;
 }
 
-/* IMAGE — responsive fix */
 td img {
     display: block;
     margin: 0 auto;
-    height: clamp(40px, 5vw, 55px); /* scales with screen size */
+    height: clamp(40px, 5vw, 55px);
     width: clamp(40px, 5vw, 55px);
     object-fit: cover;
     border-radius: 8px;
 }
 
-/* BUTTONS */
 .btn {
     display: inline-block;
     padding: 8px 14px;
@@ -83,7 +163,6 @@ td img {
 .btn-delete:hover { background: #dc3545; color: white; }
 .btn-trash:hover  { background: #ff9800; color: white; }
 
-/* HEADER */
 .characters-header {
     display: flex;
     justify-content: space-between;
@@ -117,7 +196,6 @@ td img {
     width: 200px;
 }
 
-/* RESPONSIVE TUNING */
 @media (max-width: 768px) {
     table {
         font-size: 14px;
