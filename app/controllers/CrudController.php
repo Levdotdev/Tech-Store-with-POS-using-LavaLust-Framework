@@ -47,8 +47,8 @@ class CrudController extends Controller {
         $this->pagination->set_options([
             'first_link'     => '⏮First',
             'last_link'      => 'Last⏭',
-            'next_link'      => 'Next→',
-            'prev_link'      => '←Prev',
+            'next_link'      => '→',
+            'prev_link'      => '←',
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
