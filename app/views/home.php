@@ -23,31 +23,35 @@ include APP_DIR.'views/templates/header.php';
     </div>
 </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Image</th>
-                <th>Character</th>
-                <th>Element</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach(html_escape($all) as $char): ?>
-                <tr>
-                    <td><?= $char['id']; ?></td>
-                    <td style="display:flex; justify-content:center; align-items:center;"><img src="<?=base_url().'uploads/'.$char['pic'];?>" height="60" width="60" alt="<?=$char['name'];?>"></td>
-                    <td><?= $char['name']; ?></td>
-                    <td><?= $char['class']; ?></td>
-                    <td>
-                        <a href="<?= site_url('update/'.$char['id']); ?>" class="btn btn-update">Update</a>
-                        <a href="<?= site_url('soft-delete/'.$char['id']); ?>" class="btn btn-trash">Trash</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+    <div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Character</th>
+        <th>Element</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach(html_escape($all) as $char): ?>
+      <tr>
+        <td><?= $char['id']; ?></td>
+        <td>
+          <img src="<?= base_url().'uploads/'.$char['pic']; ?>" alt="<?= $char['name']; ?>">
+        </td>
+        <td><?= $char['name']; ?></td>
+        <td><?= $char['class']; ?></td>
+        <td>
+          <a href="<?= site_url('update/'.$char['id']); ?>" class="btn btn-update">Update</a>
+          <a href="<?= site_url('soft-delete/'.$char['id']); ?>" class="btn btn-trash">Trash</a>
+        </td>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
 
     <?php
 	echo $page;?>

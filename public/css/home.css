@@ -3,12 +3,17 @@ h1 {
     color: #222;
 }
 
+/* WRAPPER for scroll + margin */
+.table-container {
+    margin: 0 20px 20px 20px; /* adds left/right/bottom margin */
+    overflow-x: auto;         /* enables horizontal scroll */
+    border-radius: 12px;
+}
+
 /* TABLE DESIGN */
 table {
     width: 100%;
-    max-width: 100%;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    min-width: 700px; /* ensures consistent column layout */
     border-collapse: collapse;
     background: #fff;
     border-radius: 12px;
@@ -28,10 +33,9 @@ th, td {
     vertical-align: middle;
     font-size: 15px;
     border-bottom: 1px solid #eee;
-    white-space: nowrap; /* keeps buttons inline */
+    white-space: nowrap;
 }
 
-/* Alternate row color + hover */
 tbody tr:nth-child(even) {
     background: #f9f9f9;
 }
@@ -42,15 +46,15 @@ tbody tr:hover {
 
 /* IMAGE FIX */
 td img {
-    display: block;          /* removes bottom gap */
-    margin: 0 auto;          /* centers horizontally */
+    display: block;
+    margin: 0 auto;
     height: 60px;
     width: 60px;
     object-fit: cover;
     border-radius: 8px;
 }
 
-/* BUTTON DESIGN */
+/* BUTTON STYLING */
 .btn {
     display: inline-block;
     padding: 8px 14px;
@@ -68,21 +72,19 @@ td img {
     transform: scale(1.05);
 }
 
-/* Button colors */
 .btn-update { background: #28a745; }
 .btn-delete { background: #dc3545; }
 .btn-trash  { background: #ff9800; }
 .btn-create { background: #007bff; }
 .btn-bin    { background: #6c757d; }
 
-/* Hover fix */
-.btn-create:hover { background: #007bff; color: white}
-.btn-bin:hover    { background: #6c757d; color: white}
-.btn-update:hover  { background: #28a745; color: white}
-.btn-delete:hover  { background: #dc3545; color: white}
-.btn-trash:hover   { background: #ff9800; color: white}
+.btn-create:hover { background: #007bff; color: white; }
+.btn-bin:hover    { background: #6c757d; color: white; }
+.btn-update:hover { background: #28a745; color: white; }
+.btn-delete:hover { background: #dc3545; color: white; }
+.btn-trash:hover  { background: #ff9800; color: white; }
 
-/* HEADER AREA */
+/* HEADER */
 .characters-header {
     display: flex;
     justify-content: space-between;
@@ -118,10 +120,13 @@ td img {
 
 /* RESPONSIVE FIX */
 @media (max-width: 768px) {
+    .table-container {
+        margin: 0 10px 20px 10px;
+    }
+
     table {
         font-size: 14px;
-        width: 95%;
-        margin-left: 20px;
+        min-width: 600px;
     }
 
     th, td {
