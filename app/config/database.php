@@ -64,11 +64,11 @@ $database['main'] = array(
     'username'	=> getenv("DB_USER"),
     'password'	=> getenv("DB_PASS"),
     'database'	=> getenv("DB_NAME"),*/
-    'hostname'	=> 'sql303.infinityfree.com',
+    'hostname'	=> 'sql302.infinityfree.com',
     'port'		=> '3306',
-    'username'	=> 'if0_40027586',
-    'password'	=> '7wPwijnBP16dv6',
-    'database'	=> 'if0_40027586_db',
+    'username'	=> 'if0_40224182',
+    'password'	=> 'AvFfNZ4BVJ',
+    'database'	=> 'if0_40224182_store',
     'charset'	=> 'utf8mb4',
     'dbprefix'	=> '',
     // Optional for SQLite
