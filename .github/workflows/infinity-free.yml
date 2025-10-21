@@ -1,4 +1,4 @@
-name: 🚀 Deploy to webdev-britolancekianne.page.gd
+name: 🚀 Deploy to l-and-d-tech-store.gamer.gd
 
 on:
   workflow_dispatch: # Uncomment below to deploy on push instead
@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    name: 🎉 Deploy to webdev-britolancekianne.page.gd
+    name: 🎉 Deploy to l-and-d-tech-store.gamer.gd
     runs-on: ubuntu-latest
 
     steps:
@@ -22,5 +22,3 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /htdocs/ # Replace with your correct path
-          retries: 3
-          retryDelay: 10
