@@ -11,6 +11,7 @@ class CrudController extends Controller {
     {
         parent::__construct();
         $this->call->database();
+        $this->call->model('CrudModel');
         $this->call->model('ProductModel');
         if(segment(2) != 'logout') {
             $id = $this->lauth->get_user_id();
