@@ -12,7 +12,7 @@
     <link href="<?=base_url();?>public/css/main.css" rel="stylesheet">
     <link href="<?=base_url();?>public/css/style.css" rel="stylesheet">
 </head>
-<body style="background-image: url('<?= base_url();?>public/resources/jenshin.gif'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+<body style="background-image: url('<?= base_url();?>public/resources/bg.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
     <?php
     include APP_DIR.'views/templates/nav_auth.php';
     ?>
