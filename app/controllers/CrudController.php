@@ -42,7 +42,7 @@ class CrudController extends Controller {
 
         $records_per_page = 5;
 
-        $all = $this->CrudModel->product($q, $records_per_page, $page);
+        $all = $this->ProductModel->product($q, $records_per_page, $page);
         $data['all'] = $all['records'];
         $total_rows = $all['total_rows'];
         $this->pagination->set_options([
