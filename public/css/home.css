@@ -750,14 +750,14 @@ h2 {
 
  .modal-content {
   border: none;
-  background: rgb(255, 255, 255);
+  background: linear-gradient(135deg, #effffa, #effffa);
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .modal-header {
-  background: black;
+  background: linear-gradient(135deg, #003218, #003218);
   padding: 20px;
   border: none;
   color: white;
