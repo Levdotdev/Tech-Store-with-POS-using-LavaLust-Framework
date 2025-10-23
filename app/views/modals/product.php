@@ -1,5 +1,4 @@
-<div class="modal fade" id="addProduct4806503874034
-" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="addProduct" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
