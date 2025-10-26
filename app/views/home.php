@@ -115,7 +115,7 @@
             <div id="products" class="content-section">
                 <h2>Product Management</h2>
                 <div class="toolbar">
-                    <button class="action-btn primary-btn" data-bs-toggle="modal" data-bs-target="#addProduct"><i class="fas fa-plus-circle"></i> Add Product</button>
+                    <button class="action-btn primary-btn" onclick="openAddProductModal()"><i class="fas fa-plus-circle"></i> Add Product</button>
                     <div class="search-box">
                         <i class="fas fa-search search-icon"></i>
                         <input type="text" placeholder="Search Products...">
