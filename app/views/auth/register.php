@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TechStore</title>
+    <title>Register - GENSHIN CRUD</title>
     <link rel="icon" type="image/x-icon" href="<?= base_url();?>public/resources/logo.jpg">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
