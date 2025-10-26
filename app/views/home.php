@@ -432,6 +432,7 @@
     <?php
       include APP_DIR.'views/modals/product.php';
     ?>
+    <div id="toast-container"></div>
     <script src="<?= base_url();?>public/js/script.js"></script>
 </body>
 </html>

@@ -1,5 +1,4 @@
-<div id="toast-container"></div>
-<div class="modal">
+<div id="modal">
   <audio id="notifSound" src="<?= base_url();?>public/resources/notif.mp3" preload="auto"></audio>
 
   <!-- Add Product Card -->
