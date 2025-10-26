@@ -748,7 +748,7 @@ h2 {
 
   /* login modal */
 
-  .modal{
+  #modal{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -757,7 +757,7 @@ h2 {
     background: rgba(0,0,0,0.5);
     z-index: 9999;
   }
-  
+
   .input-wrapper {
       position: relative;
     }
