@@ -60,7 +60,6 @@
             <i class="fas fa-barcode input-icon" aria-hidden="true"></i>
           </div>
         </div>
-      </form>
     </div>
 
     <!-- Footer -->
@@ -71,6 +70,7 @@
       <button type="submit" form="addProductForm" id="saveProductBtn" class="btn primary">
         <i class="fas fa-save" style="margin-right:10px"></i> Save Product
       </button>
+      </form>
     </div>
   </div>
 </div>
