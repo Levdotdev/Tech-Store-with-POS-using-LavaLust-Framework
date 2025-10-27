@@ -50,6 +50,27 @@ body {
     line-height: 1.5;
 }
 
+a {
+  text-decoration: none; /* Removes underline */
+  color: inherit;        /* Uses the text color from parent (not blue) */
+}
+
+a li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+/* Hover state for the entire clickable area */
+a li:hover {
+  background: var(--clr-hover-bg);
+}
+
+
 /* ---------------------------------- */
 /* 2. Sidebar (Navigation) */
 /* ---------------------------------- */
