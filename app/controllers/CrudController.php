@@ -84,7 +84,7 @@ class CrudController extends Controller {
         $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
         $this->pagination->initialize($total_rows, $records_per_page, $page,'admin/products/?q='.$q);
         $data['page'] = $this->pagination->paginate();
-        $this->call->view('products', $data);
+        $this->call->view('admin/products', $data);
     }
 
     public function create()
