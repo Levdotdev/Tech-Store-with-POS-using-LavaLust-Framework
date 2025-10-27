@@ -19,7 +19,7 @@
     <div class="ap-body">
       <div id="modal-alert-container" aria-live="polite"></div>
 
-      <form id="addProductForm" action="<?=site_url('create'); ?>" autocomplete="off">
+      <form id="addProductForm" method="post" action="<?=site_url('create'); ?>" autocomplete="off">
         <div class="form-row">
           <label for="product_name">Product Name</label>
           <div class="input-wrapper">
