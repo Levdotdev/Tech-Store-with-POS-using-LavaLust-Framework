@@ -193,3 +193,15 @@ function closeAddProductModal() {
   window.showToast = createToast;
   window.showModalAlert = showModalAlert;
 })();
+
+document.getElementById("product_id").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+  }
+});
+
+document.getElementById("unit_price").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+  }
+});

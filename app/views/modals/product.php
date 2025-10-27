@@ -56,7 +56,7 @@
         <div class="form-row">
           <label for="product_id">Barcode</label>
           <div class="input-wrapper">
-            <input id="product_id" name="product_id" class="form-input-field" placeholder="Scan unique product code" oninput="this.form.submit()">
+            <input id="product_id" name="product_id" class="form-input-field" placeholder="Scan unique product code">
             <i class="fas fa-barcode input-icon" aria-hidden="true"></i>
           </div>
         </div>
