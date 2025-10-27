@@ -158,7 +158,6 @@ function closeAddProductModal() {
   // Form submission (demo: shows toast + closes modal)
   if(form){
     form.addEventListener('submit', function(e){
-      e.preventDefault();
       // Basic validation (already required attributes will help)
       const name = (form.product_name?.value || '').trim();
       if(!name){
