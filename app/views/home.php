@@ -21,12 +21,12 @@
     <nav class="main-menu">
         <ul>
         <li class="active" data-section="dashboard"><i class="fas fa-chart-line"></i> <span>Dashboard</span></li>
-        <li>
-            <a href="<?= site_url('products'); ?>" class="nav-link">
+        <a href="<?= site_url('admin/products'); ?>">
+            <li>
                 <i class="fas fa-box-open"></i>
                 <span>Products</span>
-            </a>
-        </li>
+            </li>
+        </a>
         <li data-section="inventory"><i class="fas fa-boxes"></i> <span>Inventory</span></li>
         <li data-section="users"><i class="fas fa-users"></i> <span>Users</span></li>
         <li data-section="transactions"><i class="fas fa-receipt"></i> <span>Transactions</span></li>

@@ -14,10 +14,8 @@
         <ul>
         <li data-section="dashboard"><i class="fas fa-chart-line"></i> <span>Dashboard</span></li>
         <li class="active">
-            <a href="<?= site_url('products'); ?>" class="nav-link">
                 <i class="fas fa-box-open"></i>
                 <span>Products</span>
-            </a>
         </li>
         <li data-section="inventory"><i class="fas fa-boxes"></i> <span>Inventory</span></li>
         <li data-section="users"><i class="fas fa-users"></i> <span>Users</span></li>
