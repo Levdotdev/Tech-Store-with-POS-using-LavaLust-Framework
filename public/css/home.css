@@ -751,7 +751,7 @@ h2 {
 #addProductOverlay {
   position: fixed;
   inset: 0;
-  background: var(--overlay-bg);
+  background: #000; /* Solid black background */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -760,24 +760,25 @@ h2 {
   pointer-events: none;
   transition: opacity 220ms ease;
 }
+
 #addProductOverlay.open {
   opacity: 1;
   pointer-events: auto;
 }
 
-
 /* Card */
 .add-product-card {
   width: 100%;
   max-width: 760px;
-  background: var(--modal-bg);
+  background: var(--clr-card-bg); /* solid white in light mode, dark in dark mode */
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid var(--modal-border);
+  border: 1px solid var(--clr-border);
   box-shadow: 0 20px 40px rgba(0,0,0,0.12);
   transform: translateY(12px);
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
+
 #addProductOverlay.open .add-product-card {
   transform: translateY(0);
 }
