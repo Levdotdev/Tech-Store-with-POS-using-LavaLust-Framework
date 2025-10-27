@@ -70,8 +70,8 @@
       <button type="submit" form="addProductForm" id="saveProductBtn" class="btn primary">
         <i class="fas fa-save" style="margin-right:10px"></i> Save Product
       </button>
-      </form>
     </div>
+    </form>
   </div>
 </div>
 
