@@ -85,7 +85,7 @@ class Auth extends Controller {
                     redirect('auth/register');
                 }
         } else {
-            $this->call->view('auth/register');
+            $this->call->view('auth/login');
         }
         
     }

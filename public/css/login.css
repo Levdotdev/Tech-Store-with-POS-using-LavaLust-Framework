@@ -146,7 +146,7 @@ body {
 }
 
 .close-btn:hover {
-    color: #000;
+    color: #aaa;
     transform: rotate(90deg);
 }
 
