@@ -93,36 +93,20 @@ class CrudController extends Controller {
     {
         $char = $this->ProductModel->find($id);
         if($this->io->method() == 'post'){
-            $name = $this->io->post('name');
-            $class = $this->io->post('class');
+            $id = $this->io->post('product_id');
+            $name = $this->io->post('product_name');
+            $category = $this->io->post('category');
+            $price = $this->io->post('unit_price');
 
-            $this->call->library('upload', $_FILES["fileToUpload"]);
-		    $this->upload
-			->max_size(5)
-			//->min_size(1)
-			->set_dir('uploads')
-			->allowed_extensions(array('png', 'jpg', 'gif'))
-			->allowed_mimes(array('image/png', 'image/jpeg', 'image/gif'))
-			->is_image()
-			->encrypt_name();
-
-            if(!empty($_FILES["fileToUpload"]["name"]) && $this->upload->do_upload()){
-                $pic = $this->upload->get_filename();
-            } else{
-                $pic = $char['pic'];
-            }
-
-            $data = [
+                $data = [
+                'id' => $id,
                 'name' => $name,
-                'class' => $class,
-                'pic' => $pic
-            ];
-            $this->CrudModel->update($id, $data);
-            redirect();
-        }
-        else{
-            $data['char'] = $char;
-            $this->call->view('update', $data);
+                'category' => $category,
+                'price' => $price
+                ];
+
+                $this->ProductModel->update($data);
+                redirect();
         }
     }
 
@@ -194,9 +178,6 @@ class CrudController extends Controller {
 
                 $this->ProductModel->insert($data);
                 redirect();
-        }
-        else{
-            $this->call->view('create');
         }
     }
 }

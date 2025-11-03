@@ -13,7 +13,7 @@
     <aside id="sidebar">
     <div class="logo-section">
         <div class="logo-left">
-        <i class="fas fa-microchip"></i>
+        <i class="fas fa-laptop-code"></i>
         <span>TechStore</span>
         </div>
     </div>
