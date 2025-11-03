@@ -63,11 +63,11 @@
                     <h1>Login</h1>
                     <div class="input-group">
                         <i class="fas fa-user-shield"></i>
-                        <input type="text" placeholder="Email or Username" />
+                        <input type="text" name="email" placeholder="Email or Username" />
                     </div>
                     <div class="input-group">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" />
+                        <input type="password" name="password" placeholder="Password" />
                     </div>
                     <a href="<?=site_url('auth/password-reset');?>">Forgot your password?</a>
                     <button class="btn">Login</button>
