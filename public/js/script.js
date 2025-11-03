@@ -89,3 +89,118 @@ function confirmDelete() {
         handleCrudAction("DELETE");
     }
 }
+
+function openAddProductModal() {
+  const overlay = document.getElementById('addProductOverlay');
+  if (!overlay) return;
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden','false');
+  // trap focus (simple)
+  setTimeout(() => {
+    const first = overlay.querySelector('input,select,button,textarea');
+    if (first) first.focus();
+  }, 50);
+}
+function closeAddProductModal() {
+  const overlay = document.getElementById('addProductOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden','true');
+}
+
+/* Toast & modal alert system */
+(function(){
+  const form = document.getElementById('addProductForm');
+  const modalAlertContainer = document.getElementById('modal-alert-container');
+  const toastContainer = document.getElementById('toast-container');
+  const notifSound = document.getElementById('notifSound');
+
+  function playSound(){
+    if(!notifSound) return;
+    try{ notifSound.currentTime = 0; notifSound.play(); }catch(e){}
+  }
+
+  function showModalAlert(message, type='info') {
+    const div = document.createElement('div');
+    div.className = 'modal-alert ' + (type === 'success' ? 'alert-success' : (type==='error' ? 'alert-error' : 'alert-info'));
+    const icon = type==='success' ? 'fa-check-circle' : (type==='error' ? 'fa-times-circle' : 'fa-info-circle');
+    div.innerHTML = `<i class="fas ${icon}" style="font-size:18px"></i><div>${message}</div>`;
+    modalAlertContainer.innerHTML = '';
+    modalAlertContainer.appendChild(div);
+    playSound();
+    setTimeout(()=>{ if(modalAlertContainer.contains(div)) modalAlertContainer.removeChild(div); }, 4500);
+  }
+
+  function createToast(message, type='info') {
+    playSound();
+    const toast = document.createElement('div');
+    toast.className = 'toast ' + (type==='success' ? 'toast-success' : (type==='error' ? 'toast-error' : 'toast-info'));
+    toast.innerHTML = `
+      <div class="left"><i class="fas ${type==='success' ? 'fa-check-circle' : (type==='error' ? 'fa-times-circle' : 'fa-info-circle')}" style="font-size:18px"></i><div>${message}</div></div>
+      <button class="close-toast" aria-label="Close">&times;</button>
+    `;
+    toastContainer.appendChild(toast);
+    const remove = ()=>{
+      if(!toast.parentElement) return;
+      toast.style.transition = 'opacity .2s, transform .2s';
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(-8px)';
+      setTimeout(()=> toast.remove(), 220);
+    };
+    toast.querySelector('.close-toast').addEventListener('click', remove);
+    // auto remove
+    setTimeout(()=> {
+      toast.style.animation = 'none';
+      remove();
+    }, 4200);
+  }
+
+  // Form submission (demo: shows toast + closes modal)
+  if(form){
+    form.addEventListener('submit', function(e){
+      // Basic validation (already required attributes will help)
+      const name = (form.product_name?.value || '').trim();
+      if(!name){
+        showModalAlert('Please provide a product name.', 'error');
+        return;
+      }
+      // Simulate save success
+      closeAddProductModal();
+      createToast('Product successfully added!', 'success');
+      // reset form
+      form.reset();
+    });
+  }
+
+  // close on overlay click (but not when clicking card)
+  const overlay = document.getElementById('addProductOverlay');
+  if(overlay){
+    overlay.addEventListener('click', function(e){
+      if(e.target === overlay) closeAddProductModal();
+    });
+  }
+
+  // keyboard ESC to close
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      const overlay = document.getElementById('addProductOverlay');
+      if(overlay && overlay.classList.contains('open')) closeAddProductModal();
+    }
+  });
+
+  // expose utilities (optional)
+  window.showToast = createToast;
+  window.showModalAlert = showModalAlert;
+})();
+
+document.getElementById("product_id").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+  }
+});
+
+document.getElementById("unit_price").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+  }
+});

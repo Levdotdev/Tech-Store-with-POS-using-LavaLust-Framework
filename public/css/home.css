@@ -748,152 +748,240 @@ h2 {
 
   /* login modal */
 
- .modal-content {
-  border: none;
-  background: linear-gradient(135deg, #effffa, #effffa);
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.modal-header {
-  background: linear-gradient(135deg, #003218, #003218);
-  padding: 20px;
-  border: none;
-  color: white;
-}
-
-.modal-title {
-  font-weight: 600;
-}
-
-.modal-body {
-  padding: 30px;
-}
-
-.btn-close {
-  filter: brightness(0) invert(1);
-}
-
-.form-control {
-  padding: 12px 15px;
-  border-radius: 10px;
-  border: 2px solid #eee;
-  transition: all 0.3s ease;
-}
-
-.form-control:focus {
-  border-color: #0062cc;
-  box-shadow: none;
-}
-
-.form-label{
-  color: black;
-}
-
-.input-group-text {
-  border: none;
-  background: transparent;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 4;
-  color: #666;
-}
-
-.input-group {
-  position: relative;
-}
-
-.btn-login {
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #003218, #003218);
-  border: none;
-  border-radius: 10px;
-  font-weight: 500;
-  width: 100%;
-  transition: all 0.3s ease;
-}
-
-.btn-login:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 98, 204, 0.3);
-}
-
-.social-login {
+/* ---------------------------- */
+/*  Modal Overlay (Solid)       */
+/* ---------------------------- */
+#addProductOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,10,0.45);
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.btn-social {
-  flex: 1;
-  padding: 12px;
-  border-radius: 10px;
-  border: 2px solid #eee;
-  background: white;
-  transition: all 0.3s ease;
-}
-
-.btn-social:hover {
-  background: #f8f9fa;
-  transform: translateY(-2px);
-}
-
-.btn-social i {
-  margin-right: 10px;
-}
-
-.divider {
-  text-align: center;
-  margin: 20px 0;
-  position: relative;
-}
-
-.divider::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 45%;
-  height: 1px;
-  background: #eee;
-}
-
-.divider::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 45%;
-  height: 1px;
-  background: #eee;
-}
-
-.divider span {
-  background: white;
-  padding: 0 10px;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.form-check {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 15px 0;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+#addProductOverlay.open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.password-toggle {
-  cursor: pointer;
+/* ---------------------------- */
+/*  Modal Card                  */
+/* ---------------------------- */
+.add-product-card {
+  width: 100%;
+  max-width: 760px;
+  background: var(--clr-card-bg); /* solid, matches theme */
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--clr-border);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  transform: translateY(12px);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+#addProductOverlay.open .add-product-card {
+  transform: translateY(0);
 }
 
-.register-link {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 0.9rem;
+/* ---------------------------- */
+/*  Header                      */
+/* ---------------------------- */
+.ap-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 20px 22px;
+  background: var(--clr-background);
+  border-bottom: 1px solid var(--clr-border);
 }
-.content-section {
-  scroll-margin-top: 200px;
+.ap-header .left {
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+.ap-badge {
+  width:40px; height:40px; border-radius:10px;
+  background: var(--clr-primary);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--clr-secondary);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+.ap-title h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  margin:0;
+  color: var(--clr-primary);
+  letter-spacing: -0.5px;
+  font-weight: 800;
+}
+.ap-title p {
+  margin:2px 0 0; font-size:13px; color:var(--clr-text-secondary);
+}
+
+/* ---------------------------- */
+/*  Close Button                */
+/* ---------------------------- */
+.ap-close {
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  color: var(--clr-text-secondary);
+  cursor:pointer;
+  padding:6px;
+  border-radius:8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ap-close:hover { 
+  color: var(--clr-danger);
+  background: var(--clr-hover-bg);
+}
+
+/* ---------------------------- */
+/*  Body                        */
+/* ---------------------------- */
+.ap-body { padding: 22px; }
+.form-row { margin-bottom: 16px; }
+.form-row label {
+  display:block; font-size:13px; font-weight:600; margin-bottom:8px; color:var(--clr-text-main);
+}
+
+/* ---------------------------- */
+/*  Input & Select Fields       */
+/* ---------------------------- */
+.input-wrapper { position: relative; }
+.input-icon {
+  position:absolute; left:12px; top:50%; transform:translateY(-50%);
+  color: var(--clr-text-secondary);
+  pointer-events:none; font-size:14px;
+}
+.form-input-field, .form-select-field {
+  width:100%;
+  padding: 12px 14px 12px 40px;
+  border-radius: 10px;
+  border: 1px solid var(--clr-border);
+  background: var(--clr-background);
+  font-size: 14px;
+  color: var(--clr-text-main);
+  transition: box-shadow .15s ease, border-color .15s ease, background .15s ease;
+}
+.form-select-field { appearance: none; padding-right:40px; }
+
+/* Dropdown arrow */
+.input-wrapper .chev {
+  position:absolute; right:12px; top:50%; transform:translateY(-50%);
+  color: var(--clr-text-secondary);
+  pointer-events:none;
+}
+
+/* Focus State */
+.form-input-field:focus, .form-select-field:focus {
+  outline: none;
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 3px var(--clr-active-bg);
+  background: var(--clr-card-bg);
+}
+
+/* ---------------------------- */
+/*  Dropdown Menu Colors        */
+/* ---------------------------- */
+.form-select-field option {
+  background-color: var(--clr-card-bg);
+  color: var(--clr-text-main);
+}
+body.dark-mode .form-select-field option {
+  background-color: #1e1e1e;
+  color: #e8e8e8;
+}
+
+/* ---------------------------- */
+/*  Footer & Buttons            */
+/* ---------------------------- */
+.ap-footer {
+  display:flex;
+  gap:12px;
+  padding: 16px 22px;
+  border-top: 1px solid var(--clr-border);
+  background: var(--clr-background);
+  justify-content: flex-end;
+}
+.btn {
+  padding: 10px 14px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  transition: background .2s ease, color .2s ease, border .2s ease;
+}
+
+/* Cancel button */
+.btn.ghost {
+  background: var(--clr-hover-bg);
+  color: var(--clr-text-main);
+  border: 1px solid var(--clr-border);
+}
+.btn.ghost:hover {
+  background: var(--clr-active-bg);
+  color: var(--clr-primary);
+}
+
+/* Submit button */
+.btn.primary {
+  background: var(--clr-primary);
+  color: var(--clr-secondary);
+  border: 1px solid var(--clr-primary);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+}
+.btn.primary:hover {
+  background: var(--clr-text-secondary);
+  border-color: var(--clr-text-secondary);
+  color: var(--clr-secondary);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+.btn:active { transform: translateY(1px); }
+
+/* ---------------------------- */
+/*  Alerts (unchanged style)    */
+/* ---------------------------- */
+.modal-alert {
+  display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; font-weight:600;
+  margin-bottom:12px; font-size:14px;
+}
+.alert-success { background: rgba(5,150,105,0.08); color: var(--clr-success); border: 1px solid rgba(5,150,105,0.14); }
+.alert-error { background: rgba(239,68,68,0.08); color: var(--clr-danger); border: 1px solid rgba(239,68,68,0.12); }
+.alert-info { background: #E6F0FF; color: #1E3A8A; border: 1px solid #CFE0FF; }
+
+/* Toast container */
+#toast-container {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  display:flex; flex-direction:column; gap:10px;
+  z-index: 3000;
+}
+.toast {
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  min-width: 280px;
+  padding:10px 12px; border-radius:10px; color:#fff; font-weight:700;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  position:relative; overflow:hidden;
+}
+.toast .left { display:flex; gap:10px; align-items:center; }
+.toast .close-toast { background:transparent; border:none; color:rgba(255,255,255,0.95); font-size:18px; cursor:pointer; }
+.toast::after {
+  content:""; position:absolute; left:0; bottom:0; height:4px; width:100%; background:currentColor; opacity:.22;
+  transform-origin:left; animation:toastFuse 4s linear forwards;
+}
+.toast-success { background: #10B981; border-left:4px solid #059669; }
+.toast-error { background: #EF4444; border-left:4px solid #C53030; }
+.toast-info { background: #2563EB; border-left:4px solid #1E40AF; }
+
+@keyframes toastFuse { from{transform:scaleX(1)} to{transform:scaleX(0)} }
+
+/* Responsiveness */
+@media (max-width: 760px) {
+  .add-product-card { margin: 18px; width: calc(100% - 36px); }
+  #toast-container { left:50%; transform:translateX(-50%); right:auto; top:auto; bottom:18px; width:90%; }
+  .toast { width:100%; min-width:unset; }
 }
