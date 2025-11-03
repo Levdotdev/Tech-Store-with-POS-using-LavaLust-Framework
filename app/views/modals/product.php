@@ -60,7 +60,6 @@
             <i class="fas fa-barcode input-icon" aria-hidden="true"></i>
           </div>
         </div>
-      </form>
     </div>
 
     <!-- Footer -->
@@ -68,10 +67,11 @@
       <button type="button" class="btn ghost" onclick="closeAddProductModal()">
         <i class="fas fa-times-circle" style="margin-right:8px"></i> Cancel
       </button>
-      <button type="submit" form="addProductForm" id="saveProductBtn" class="btn primary" oninput="this.form.submit()">
+      <button type="submit" form="addProductForm" id="saveProductBtn" class="btn primary">
         <i class="fas fa-save" style="margin-right:10px"></i> Save Product
       </button>
     </div>
+    </form>
   </div>
 </div>
 
