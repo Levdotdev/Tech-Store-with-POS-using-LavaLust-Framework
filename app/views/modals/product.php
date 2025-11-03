@@ -56,7 +56,7 @@
         <div class="form-row">
           <label for="product_id">Barcode</label>
           <div class="input-wrapper">
-            <input id="product_id" name="product_id" class="form-input-field" placeholder="Scan unique product code" oninput="this.form.submit()">
+            <input id="product_id" name="product_id" class="form-input-field" placeholder="Scan unique product code">
             <i class="fas fa-barcode input-icon" aria-hidden="true"></i>
           </div>
         </div>
@@ -68,7 +68,7 @@
       <button type="button" class="btn ghost" onclick="closeAddProductModal()">
         <i class="fas fa-times-circle" style="margin-right:8px"></i> Cancel
       </button>
-      <button type="submit" form="addProductForm" id="saveProductBtn" class="btn primary">
+      <button type="submit" form="addProductForm" id="saveProductBtn" class="btn primary" oninput="this.form.submit()">
         <i class="fas fa-save" style="margin-right:10px"></i> Save Product
       </button>
     </div>
