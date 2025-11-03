@@ -33,12 +33,12 @@
           <div class="input-wrapper">
             <select id="category" name="category" class="form-select-field" required>
               <option value="" disabled selected>Select a product category</option>
-              <option value="Keyboard">Keyboard</option>
-              <option value="Mouse">Mouse</option>
-              <option value="Controller">Controller</option>
-              <option value="Speaker">Speaker</option>
-              <option value="Mousepad">Mousepad</option>
-              <option value="Headphone">Headphone</option>
+              <option>Keyboard</option>
+              <option>Mouse</option>
+              <option>Controller</option>
+              <option>Speaker</option>
+              <option>Mousepad</option>
+              <option>Headphone</option>
             </select>
             <i class="fas fa-layer-group input-icon" aria-hidden="true"></i>
             <i class="fas fa-chevron-down chev" aria-hidden="true"></i>
