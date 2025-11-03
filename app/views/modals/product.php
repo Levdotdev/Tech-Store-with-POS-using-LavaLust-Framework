@@ -1,56 +1,80 @@
-<div class="modal fade" id="addProduct" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title font-bold text-2xl">ADD NEW PRODUCT</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <form method="post" action="<?=site_url('create'); ?>" enctype="multipart/form-data" style="background-color:transparent; border:0;">
-
-          <!-- Product Name -->
-          <div class="mb-3">
-            <label class="form-label">Product Name</label>
-            <div class="input-group">
-              <input type="text" name="product_name" id="product_name" class="form-control" placeholder="Enter product name" required>
-              <span class="input-group-text"><i class="fas fa-tag"></i></span>
-            </div>
-          </div>
-
-          <!-- Category -->
-          <div class="mb-3">
-            <label class="form-label">Category</label>
-            <div class="input-group">
-              <select name="category" id="category" class="form-select" required>
-                <option value="" disabled selected>Select category</option>
-                <option value="Keyboard">Keyboard</option>
-                <option value="Mouse">Mouse</option>
-                <option value="Controller">Controller</option>
-                <option value="Speaker">Speaker</option>
-                <option value="Mousepad"></option>
-                <option value="Headphone"></option>
-              </select>
-              <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-            </div>
-          </div>
-
-          <!-- Unit Price -->
-          <div class="mb-3">
-            <label class="form-label">Unit Price (₱)</label>
-            <div class="input-group">
-              <input type="number" name="unit_price" id="unit_price" class="form-control" step="0.01" placeholder="Enter unit price" required>
-              <span class="input-group-text"><i class="fas fa-peso-sign"></i></span>
-            </div>
-          </div>
-
-        <div class="form-group">
-            <label for="product_id">Barcode</label>
-            <input type="text" name="product_id" id="product_id" autofocus autocomplete="off" class="form-control" oninput="this.form.submit()">
+<!-- Add Product Modal (hidden by default) -->
+<div id="addProductOverlay" aria-hidden="true" class="">
+  <div class="add-product-card" role="dialog" aria-modal="true" aria-labelledby="ap-title">
+    <!-- Header -->
+    <div class="ap-header">
+      <div class="left">
+        <div class="ap-badge"><i class="fas fa-boxes"></i></div>
+        <div class="ap-title">
+          <h2 id="ap-title">Add New Product</h2>
+          <p>Product details & unique identification.</p>
         </div>
-        </form>
       </div>
+      <div>
+        <button class="ap-close" aria-label="Close" onclick="closeAddProductModal()">&times;</button>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="ap-body">
+      <div id="modal-alert-container" aria-live="polite"></div>
+
+      <form id="addProductForm" method="post" action="<?=site_url('create'); ?>" autocomplete="off">
+        <div class="form-row">
+          <label for="product_name">Product Name</label>
+          <div class="input-wrapper">
+            <input id="product_name" name="product_name" class="form-input-field" placeholder="Enter product name" required>
+            <i class="fas fa-tag input-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="category">Category</label>
+          <div class="input-wrapper">
+            <select id="category" name="category" class="form-select-field" required>
+              <option value="" disabled selected>Select a product category</option>
+              <option>Keyboard</option>
+              <option>Mouse</option>
+              <option>Controller</option>
+              <option>Speaker</option>
+              <option>Mousepad</option>
+              <option>Headphone</option>
+            </select>
+            <i class="fas fa-layer-group input-icon" aria-hidden="true"></i>
+            <i class="fas fa-chevron-down chev" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="unit_price">Unit Price (PHP)</label>
+          <div class="input-wrapper">
+            <input id="unit_price" name="unit_price" type="number" step="0.01" min="0.01" class="form-input-field" placeholder="0.00" required>
+            <i class="fas fa-peso-sign input-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="product_id">Barcode</label>
+          <div class="input-wrapper">
+            <input id="product_id" name="product_id" class="form-input-field" placeholder="Scan unique product code" oninput="this.form.submit()">
+            <i class="fas fa-barcode input-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="ap-footer">
+      <button type="button" class="btn ghost" onclick="closeAddProductModal()">
+        <i class="fas fa-times-circle" style="margin-right:8px"></i> Cancel
+      </button>
+      <button type="submit" form="addProductForm" id="saveProductBtn" class="btn primary">
+        <i class="fas fa-save" style="margin-right:10px"></i> Save Product
+      </button>
     </div>
   </div>
 </div>
+
+<!-- Toast container + audio (use your base_url resource) -->
+<div id="toast-container" aria-live="polite"></div>
+<audio id="notifSound" src="<?= base_url();?>public/resources/notif.mp3" preload="auto"></audio>
