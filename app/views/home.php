@@ -33,7 +33,7 @@
         <ul>
         <li data-section="settings"><i class="fas fa-cog"></i> <span>Settings</span></li>
         <li>
-            <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button>
+            <a href="<?=site_url('auth/logout');?>" id="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
         </li>
         </ul>
     </div>
