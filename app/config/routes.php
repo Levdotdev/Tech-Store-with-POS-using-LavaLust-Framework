@@ -42,10 +42,10 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 |
 */
+
 $router->get('', 'Admin/ProductController::index');
 
 $router->group('/product', function() use ($router){
-    $router->get('/home', 'Admin/ProductController::index');
     $router->get('/trash', 'Admin/ProductController::trash');
     $router->match('/create', 'Admin/ProductController::product', ['GET', 'POST']);
     $router->match('/upload', 'Admin/ProductController::upload', ['GET', 'POST']);
