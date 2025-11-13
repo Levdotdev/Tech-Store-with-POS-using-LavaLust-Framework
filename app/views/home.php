@@ -413,5 +413,6 @@
       include APP_DIR.'views/modals/product.php';
     ?>
     <script src="<?= base_url();?>public/js/script.js"></script>
+    <script src="<?= base_url();?>public/js/jquery-3.7.1.min.js"></script>
 </body>
 </html>
