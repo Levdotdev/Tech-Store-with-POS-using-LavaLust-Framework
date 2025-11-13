@@ -2,15 +2,16 @@
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 /**
- * Controller: ProductController
+ * Controller: CrudController
  * 
  * Automatically generated via CLI.
  */
-class ProductController extends Controller {
+class CrudController extends Controller {
     public function __construct()
     {
         parent::__construct();
         $this->call->database();
+        $this->call->model('CrudModel');
         $this->call->model('ProductModel');
         if(segment(2) != 'logout') {
             $id = $this->lauth->get_user_id();
@@ -52,29 +53,39 @@ class ProductController extends Controller {
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'home/?q='.$q);
         $data['page'] = $this->pagination->paginate();
         $this->call->view('home', $data);
     }
 
-    public function product()
+    public function create()
     {
         if($this->io->method() == 'post'){
-            $id = $this->io->post('product_id');
-            $name = $this->io->post('product_name');
-            $category = $this->io->post('category');
-            $price = $this->io->post('unit_price');
+            $name = $this->io->post('name');
+            $class = $this->io->post('class');
 
-            
+            $this->call->library('upload', $_FILES["fileToUpload"]);
+		    $this->upload
+			->max_size(5)
+			//->min_size(1)
+			->set_dir('uploads')
+			->allowed_extensions(array('png', 'jpg', 'gif'))
+			->allowed_mimes(array('image/png', 'image/jpeg', 'image/gif'))
+			->is_image()
+			->encrypt_name();
+
+            if($this->upload->do_upload()){
                 $data = [
-                'id' => $id,
                 'name' => $name,
-                'category' => $category,
-                'price' => $price
-                ];
-
-                $this->ProductModel->insert($data);
+                'class' => $class,
+                'pic' => $this->upload->get_filename()
+            ];
+                $this->CrudModel->insert($data);
                 redirect();
+            }
+        }
+        else{
+            $this->call->view('create');
         }
     }
 
@@ -101,7 +112,7 @@ class ProductController extends Controller {
 
     function delete($id){
         if($this->lauth->get_role(get_user_id()) == "admin") {
-            $this->ProductModel->delete($id);
+            $this->CrudModel->delete($id);
             redirect('trash');
         }
     }
@@ -126,7 +137,7 @@ class ProductController extends Controller {
 
         $records_per_page = 5;
 
-        $all = $this->ProductModel->page_trash($q, $records_per_page, $page);
+        $all = $this->CrudModel->page_trash($q, $records_per_page, $page);
         $data['all'] = $all['records'];
         $total_rows = $all['total_rows'];
         $this->pagination->set_options([
@@ -144,8 +155,29 @@ class ProductController extends Controller {
 
     function restore($id){
         if($this->lauth->get_role(get_user_id()) == "admin") {
-            $this->ProductModel->restore($id);
+            $this->CrudModel->restore($id);
             redirect('trash');
+        }
+    }
+
+    public function product()
+    {
+        if($this->io->method() == 'post'){
+            $id = $this->io->post('product_id');
+            $name = $this->io->post('product_name');
+            $category = $this->io->post('category');
+            $price = $this->io->post('unit_price');
+
+            
+                $data = [
+                'id' => $id,
+                'name' => $name,
+                'category' => $category,
+                'price' => $price
+                ];
+
+                $this->ProductModel->insert($data);
+                redirect();
         }
     }
 }

@@ -43,27 +43,23 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('/', 'ProductController::index');
-
-$router->group('/product', function() use ($router){
-    $router->get('/trash', 'ProductController::trash');
-    $router->match('/create', 'ProductController::product', ['GET', 'POST']);
-    $router->match('/upload', 'ProductController::upload', ['GET', 'POST']);
-    $router->match('/update/{id}', 'ProductController::update', ['GET', 'POST']);
-    $router->match('/delete/{id}', 'ProductController::delete', ['GET', 'POST']);
-    $router->match('/restore/{id}', 'ProductController::restore', ['GET', 'POST']);
-    $router->match('/soft-delete/{id}', 'ProductController::soft_delete', ['GET', 'POST']);
-});
+$router->get('/', 'Auth::index');
+$router->get('/home', 'CrudController::index');
+$router->get('/trash', 'CrudController::trash');
+$router->get('/home-user', 'UserController::index');
+$router->get('/trash-user', 'UserController::trash');
+$router->match('/create', 'CrudController::product', ['GET', 'POST']);
+$router->match('/upload', 'CrudController::upload', ['GET', 'POST']);
+$router->match('/update/{id}', 'CrudController::update', ['GET', 'POST']);
+$router->match('/delete/{id}', 'CrudController::delete', ['GET', 'POST']);
+$router->match('/restore/{id}', 'CrudController::restore', ['GET', 'POST']);
+$router->match('/soft-delete/{id}', 'CrudController::soft_delete', ['GET', 'POST']);
 
 $router->group('/auth', function() use ($router){
+    $router->match('/register', 'Auth::register', ['POST', 'GET']);
     $router->match('/verify-email', 'Auth::verify_email', ['POST', 'GET']);
     $router->match('/login', 'Auth::login', ['POST', 'GET']);
     $router->get('/logout', 'Auth::logout');
     $router->match('/password-reset', 'Auth::password_reset', ['POST', 'GET']);
     $router->match('/set-new-password', 'Auth::set_new_password', ['POST', 'GET']);
-});
-
-$router->group('/staff', function() use ($router){
-    $router->get('/home', 'UserController::index');
-    $router->get('/trash', 'UserController::trash');
 });

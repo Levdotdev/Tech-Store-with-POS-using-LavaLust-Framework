@@ -1,31 +1,41 @@
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', () => {
 
-  $('#show-login-btn').click(function() {
-    $('#modal-wrapper').removeClass('hidden');
-    $('#container').removeClass('right-panel-active');
-  });
+    const showLoginBtn = document.getElementById('show-login-btn');
+    const showRegisterBtn = document.getElementById('show-register-btn');
+    const modalWrapper = document.getElementById('modal-wrapper');
+    const closeBtn = document.getElementById('close-btn');
+    
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
 
-  $('#show-register-btn').click(function() {
-    $('#modal-wrapper').removeClass('hidden');
-    $('#container').addClass('right-panel-active');
-  });
+    
+    showLoginBtn.addEventListener('click', () => {
+        modalWrapper.classList.remove('hidden');
+        container.classList.remove('right-panel-active'); 
+    });
 
-  $('#close-btn').click(function() {
-    $('#modal-wrapper').addClass('hidden');
-  });
+    showRegisterBtn.addEventListener('click', () => {
+        modalWrapper.classList.remove('hidden');
+        container.classList.add('right-panel-active'); 
+    });
 
-  $('#modal-wrapper').click(function(e) {
-    if ($(e.target).is('#modal-wrapper')) {
-      $('#modal-wrapper').addClass('hidden');
-    }
-  });
+    closeBtn.addEventListener('click', () => {
+        modalWrapper.classList.add('hidden');
+    });
 
-  $('#signUp').click(function() {
-    $('#container').addClass('right-panel-active');
-  });
+    modalWrapper.addEventListener('click', (e) => {
+        if (e.target === modalWrapper) {
+            modalWrapper.classList.add('hidden');
+        }
+    });
 
-  $('#signIn').click(function() {
-    $('#container').removeClass('right-panel-active');
-  });
+    
+    signUpButton.addEventListener('click', () => {
+        container.classList.add('right-panel-active');
+    });
 
+    signInButton.addEventListener('click', () => {
+        container.classList.remove('right-panel-active');
+    });
 });

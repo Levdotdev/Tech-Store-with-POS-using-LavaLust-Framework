@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <link rel="stylesheet" href="<?= base_url();?>public/css/login.css">
-    <script src="<?= base_url();?>public/js/jquery-3.7.1.min.js"></script>
 </head>
 <body style="background-image: url('<?= base_url();?>public/resources/bg.jpg');">
 
