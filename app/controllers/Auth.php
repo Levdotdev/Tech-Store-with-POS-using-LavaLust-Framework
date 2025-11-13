@@ -18,7 +18,7 @@ class Auth extends Controller {
         if(segment(2) != 'logout') {
             $id = $this->lauth->get_user_id();
             if(logged_in() && $this->lauth->get_role($id) == "admin") {
-                redirect('admin');
+                redirect('');
             }
             else if(logged_in() && $this->lauth->get_role($id) == "user") {
                 redirect('home-user');
