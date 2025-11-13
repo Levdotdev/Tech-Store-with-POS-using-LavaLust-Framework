@@ -149,6 +149,7 @@
                         </tbody>
                     </table>
                 </div>
+                <?php echo $page;?>
             </div>
 
             <div id="inventory" class="content-section">
