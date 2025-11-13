@@ -43,17 +43,16 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('/', 'Auth::login');
-$router->get('/admin', 'Admin/ProductController::index');
+$router->get('/', 'ProductController::index');
 
 $router->group('/product', function() use ($router){
-    $router->get('/trash', 'Admin/ProductController::trash');
-    $router->match('/create', 'Admin/ProductController::product', ['GET', 'POST']);
-    $router->match('/upload', 'Admin/ProductController::upload', ['GET', 'POST']);
-    $router->match('/update/{id}', 'Admin/ProductController::update', ['GET', 'POST']);
-    $router->match('/delete/{id}', 'Admin/ProductController::delete', ['GET', 'POST']);
-    $router->match('/restore/{id}', 'Admin/ProductController::restore', ['GET', 'POST']);
-    $router->match('/soft-delete/{id}', 'Admin/ProductController::soft_delete', ['GET', 'POST']);
+    $router->get('/trash', 'ProductController::trash');
+    $router->match('/create', 'ProductController::product', ['GET', 'POST']);
+    $router->match('/upload', 'ProductController::upload', ['GET', 'POST']);
+    $router->match('/update/{id}', 'ProductController::update', ['GET', 'POST']);
+    $router->match('/delete/{id}', 'ProductController::delete', ['GET', 'POST']);
+    $router->match('/restore/{id}', 'ProductController::restore', ['GET', 'POST']);
+    $router->match('/soft-delete/{id}', 'ProductController::soft_delete', ['GET', 'POST']);
 });
 
 $router->group('/auth', function() use ($router){
