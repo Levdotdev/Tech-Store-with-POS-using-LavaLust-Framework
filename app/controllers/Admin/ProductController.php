@@ -52,7 +52,7 @@ class ProductController extends Controller {
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'home/?q='.$q);
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
         $data['page'] = $this->pagination->paginate();
         $this->call->view('home', $data);
     }

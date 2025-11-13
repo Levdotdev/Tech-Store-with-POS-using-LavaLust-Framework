@@ -43,7 +43,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('', 'Admin/ProductController::index');
+$router->get('', 'Auth::login');
 
 $router->group('/product', function() use ($router){
     $router->get('/trash', 'Admin/ProductController::trash');
