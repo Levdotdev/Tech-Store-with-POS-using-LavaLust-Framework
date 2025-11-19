@@ -347,7 +347,7 @@
         <script>
             const flashSuccess = "<?= $this->session->flashdata('message'); ?>";
             const flashError   = "<?= $this->session->flashdata('error'); ?>";
-<       /script>
+        </script>
 
     </script>
 </body>

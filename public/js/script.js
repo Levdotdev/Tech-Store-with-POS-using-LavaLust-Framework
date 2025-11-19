@@ -154,6 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.handleFormSubmit = function(modalId) {
         const btn = document.querySelector(`#${modalId} .primary-btn`) || document.querySelector(`#${modalId} .delete-btn`);
         const originalText = btn.innerHTML;
+        const form = document.querySelector(`#${modalId} form`);
         
         // Loading State
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
@@ -167,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
             closeModal(modalId);
             
             // Optional: Reset form inputs if exists
-            const form = document.querySelector(`#${modalId} form`);
             if(form) form.reset();
 
         }, 1000); // 1 second delay
