@@ -1,51 +1,31 @@
-<div id="product-add-modal" class="modal-overlay hidden">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Add Product</h2>
-            <button class="modal-close-btn" data-modal-id="product-add-modal">&times;</button>
-        </div>
-        <div class="modal-body">
-            <form id="product-add-form">
-                <div class="form-group">
-                    <label for="add-name">Product Name</label>
-                    <div class="input-group">
-                        <i class="fas fa-tag"></i>
-                        <input type="text" id="add-name" required>
+<div id="modal-add-product" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header"><h2>Add New Product</h2><button class="modal-close-btn" onclick="closeModal('modal-add-product')">&times;</button></div>
+            <div class="modal-body">
+                <form id="form-add-product">
+                    <div class="form-group">
+                        <label>Product Name <span style="color:var(--clr-danger)">*</span></label>
+                        <div class="input-group"><i class="fas fa-tag"></i><input type="text" required placeholder="e.g. Wireless Mouse"></div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="add-category">Category</label>
-                    <div class="input-group">
-                        <i class="fas fa-layer-group"></i>
-                        <input type="text" id="add-category" required>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <div class="input-group"><i class="fas fa-layer-group"></i><input type="text" placeholder="Electronics"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Unit Price (₱)</label>
+                            <div class="input-group"><i class="fas fa-peso-sign"></i><input type="number" required placeholder="0.00"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="add-price">Price</label>
-                    <div class="input-group">
-                        <i class="fas fa-peso-sign"></i>
-                        <input type="number" id="add-price" step="0.01" required>
+                    <div class="form-group">
+                        <label>Barcode (Optional)</label>
+                        <div class="input-group"><i class="fas fa-barcode"></i><input type="text" placeholder="Scan or type"></div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="add-stock">Stock</label>
-                    <div class="input-group">
-                        <i class="fas fa-boxes"></i>
-                        <input type="number" id="add-stock" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="add-barcode">Barcode</label>
-                    <div class="input-group">
-                        <i class="fas fa-barcode"></i>
-                        <input type="text" id="add-barcode">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button class="action-btn modal-cancel-btn" data-modal-id="product-add-modal">Cancel</button>
-            <button class="action-btn primary-btn" id="save-add-product-btn">Add Product</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="action-btn modal-cancel-btn" onclick="closeModal('modal-add-product')">Cancel</button>
+                <button class="action-btn primary-btn" onclick="handleFormSubmit('modal-add-product', 'Product added successfully!')">Save Product</button>
+            </div>
         </div>
     </div>
-</div>

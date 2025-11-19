@@ -1,8 +1,8 @@
-    <div id="settings-modal" class="modal-overlay hidden">
+<div id="settings-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Account Settings</h2>
-                <button class="modal-close-btn" data-modal-id="settings-modal">&times;</button>
+                <button class="modal-close-btn" onclick="closeModal('settings-modal')">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="account-settings-form">
@@ -10,7 +10,7 @@
                         <label for="username">Username</label>
                         <div class="input-group">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="username" value="Admin">
+                            <input type="text" id="username" value="Admin" readonly>
                         </div>
                     </div>
                     <div class="form-group">
@@ -48,10 +48,10 @@
                         </div>
                     </div>
                 </form>
-                </div>
+            </div>
             <div class="modal-footer">
-                <button class="action-btn modal-cancel-btn" data-modal-id="settings-modal">Cancel</button>
-                <button class="action-btn primary-btn" id="save-settings-btn">Save Changes</button>
+                <button class="action-btn modal-cancel-btn" onclick="closeModal('settings-modal')">Cancel</button>
+                <button class="action-btn primary-btn" id="save-settings-btn" onclick="handleFormSubmit('settings-modal', 'Account settings saved!')">Save Changes</button>
             </div>
         </div>
     </div>
