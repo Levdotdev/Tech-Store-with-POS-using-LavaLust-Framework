@@ -63,7 +63,7 @@
                             <li id="account-settings-btn">
                                 <i class="fas fa-cog"></i> <span>Account Settings</span>
                             </li>
-                            <li onclick="window.location.href='<?= site_url('auth/logout'); ?>'">
+                            <li id="logout-btn-trigger">
                                 <i class="fas fa-sign-out-alt"></i><span>Logout</span>
                             </li>
                         </ul>
