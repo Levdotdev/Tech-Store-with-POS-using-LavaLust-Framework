@@ -10,19 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const pageTitleElement = document.querySelector(".page-title");
     const themeIcon = themeToggle ? themeToggle.querySelector("i") : null;
 
-    // Buttons that may exist on page
-    const addProductBtn = document.getElementById("addProductBtn");
-    const importInventoryBtn = document.getElementById("importInventoryBtn");
     // table container - event delegation
     const productsTable = document.getElementById("products-table"); // optional container id; fallback to document
-
-    if (addProductBtn) {
-        // open add product modal instead of redirect
-        addProductBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            openModal(document.getElementById('product-add-modal'));
-        });
-    }
 
     if (importInventoryBtn) {
         importInventoryBtn.addEventListener("click", (e) => {
