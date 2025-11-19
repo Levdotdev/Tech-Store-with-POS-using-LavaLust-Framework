@@ -59,7 +59,7 @@ class _InventoryController extends Controller {
         }
     }
 
-    public function update($id)
+    public function update()
     {
         if($this->io->method() == 'post'){
             $id = $this->io->post('product_id');
