@@ -2,8 +2,8 @@
         <div class="modal-content">
             <div class="modal-header"><h2>Add New Product</h2><button class="modal-close-btn" onclick="closeModal('modal-add-product')">&times;</button></div>
             <div class="modal-body">
-                <form id="form-add-product">
-                    <div class="form-group" method="post" action="<?=site_url('create'); ?>" autocomplete="off">
+                <form id="form-add-product" method="post" action="<?=site_url('create'); ?>" autocomplete="off">
+                    <div class="form-group">
                         <label for="product_name">Product Name</label>
                         <div class="input-group"><i class="fas fa-tag"></i><input type="text" id="product_name" name="product_name" placeholder="Enter product name" required></div>
                     </div>
