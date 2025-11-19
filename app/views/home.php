@@ -196,10 +196,10 @@
                                     <td><?= $inventory['name']; ?></td>
                                     <td><?= $inventory['stock']; ?></td>
                                     <td>₱<?= $inventory['last_restock']; ?></td>
-                                    <?php if ($qty == 0): ?>
+                                    <?php if ($inventory['stock'] == 0): ?>
                                         <td><span class="status-badge error">Out of Stock</span></td>
 
-                                    <?php elseif ($qty >= 1 && $qty <= 4): ?>
+                                    <?php elseif ($inventory['stock'] >= 1 && $inventory['stock'] <= 4): ?>
                                         <td><span class="status-badge warning">Low Stock</span></td>
 
                                     <?php else: ?>
