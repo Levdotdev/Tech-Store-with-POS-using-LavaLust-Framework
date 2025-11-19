@@ -17,8 +17,8 @@
 
     <header id="pos-navbar">
         <div class="logo-area">
-            <img src="logolight.jpg" alt="Logo" class="pos-logo light-logo">
-            <img src="logodark.jpg" alt="Logo" class="pos-logo dark-logo">
+            <img src="<?= base_url();?>public/resources/logolight.jpg" alt="Logo" class="pos-logo light-logo">
+            <img src="<?= base_url();?>public/resources/logodark.jpg" alt="Logo" class="pos-logo dark-logo">
             <div>
                 <h1>TechStore POS</h1>
                 <span id="live-clock">--:-- --</span>
