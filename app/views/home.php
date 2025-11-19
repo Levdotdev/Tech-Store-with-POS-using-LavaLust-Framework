@@ -344,10 +344,6 @@
     ?>
 
     <script src="<?= base_url();?>public/js/script.js">
-        <script>
-            const flashSuccess = "<?= $this->session->flashdata('message'); ?>";
-            const flashError   = "<?= $this->session->flashdata('error'); ?>";
-        </script>
 
     </script>
 </body>
