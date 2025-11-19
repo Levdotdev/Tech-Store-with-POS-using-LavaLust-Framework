@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (targetSection) {
                 targetSection.classList.add("active");
 
-                const newTitle = targetSection.querySelector("h2")
-                    ? targetSection.querySelector("h2").textContent.trim()
+                const newTitle = targetSection.querySelector("h6")
+                    ? targetSection.querySelector("h6").textContent.trim()
                     : 'Dashboard';
                 pageTitleElement.textContent = newTitle;
             }

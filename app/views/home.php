@@ -121,6 +121,7 @@
                             <div style="height: 50%;" data-label="₱35k">Mon</div> <div style="height: 80%;" data-label="₱56k">Tue</div> <div style="height: 30%;" data-label="₱21k">Wed</div> <div style="height: 95%;" data-label="₱66k">Thu</div> <div style="height: 70%;" data-label="₱49k">Fri</div> <div style="height: 60%;" data-label="₱42k">Sat</div> <div style="height: 45%;" data-label="₱31k">Sun</div> </div>
                     </div>
                 </div>
+                <h6 style="visibility: hidden;">Dashboard Overview</h6>
             </div>
 
             <div id="products" class="content-section">
@@ -162,6 +163,7 @@
                         </tbody>
                     </table>
                 </div>
+                <h6 style="visibility: hidden;">Product Management</h6>
             </div>
 
             <div id="inventory" class="content-section">
@@ -214,6 +216,7 @@
                         </tbody>
                     </table>
                 </div>
+                <h6 style="visibility: hidden;">Inventory Management</h6>
             </div>
 
             <div id="users" class="content-section">
@@ -273,6 +276,7 @@
                         </tbody>
                     </table>
                 </div>
+                <h6 style="visibility: hidden;">Staff Management</h6>
             </div>
 
             <div id="transactions" class="content-section">
@@ -330,6 +334,7 @@
                         </tbody>
                     </table>
                 </div>
+                <h6 style="visibility: hidden;">Transaction Log</h6>
             </div>
 
             <div id="reports" class="content-section">
@@ -388,6 +393,7 @@
                         </table>
                     </div>
                 </div>
+                <h6 style="visibility: hidden;">Reports</h6>
             </div>
         </section>
     </main>
