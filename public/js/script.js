@@ -10,8 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const pageTitleElement = document.querySelector(".page-title");
     const themeIcon = themeToggle ? themeToggle.querySelector("i") : null;
 
+    // Buttons that may exist on page
+    const addProductBtn = document.getElementById("add-product-btn");
+    const importInventoryBtn = document.getElementById("import-inventory-btn");
     // table container - event delegation
     const productsTable = document.getElementById("products-table"); // optional container id; fallback to document
+
+    if (addProductBtn) {
+        // open add product modal instead of redirect
+        addProductBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openModal(document.getElementById('product-add-modal'));
+        });
+    }
 
     if (importInventoryBtn) {
         importInventoryBtn.addEventListener("click", (e) => {
@@ -223,8 +234,8 @@ document.addEventListener("DOMContentLoaded", () => {
     tableContainer.addEventListener('click', (e) => {
         const target = e.target;
         // allow clicks on button or an icon inside button
-        const inventoryBtn = target.closest('.open-update-inventory');
-        const productBtn = target.closest('.open-update-product');
+        const inventoryBtn = target.closest('.update-inventory-btn');
+        const productBtn = target.closest('.update-product-btn');
 
         if (inventoryBtn) {
             e.preventDefault();

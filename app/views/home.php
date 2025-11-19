@@ -122,10 +122,10 @@
 
             <div id="products" class="content-section">
                 <div class="toolbar">
-                <button class="action-btn primary-btn" id="addProductBtn">
+                <button class="action-btn primary-btn" id="add-product-btn">
                 <i class="fas fa-plus-circle"></i> Add Product
                 </button>
-                    <button class="action-btn" id="product-add-modal"><i class="fas fa-barcode"></i> Print Barcode</button>
+                    <button class="action-btn"><i class="fas fa-barcode"></i> Print Barcode</button>
                     <div class="search-box">
                         <i class="fas fa-search search-icon"></i>
                         <input type="text" placeholder="Search Products...">
@@ -151,7 +151,7 @@
                                     <td><?= $product['category']; ?></td>
                                     <td>₱<?= $product['price']; ?></td>
                                     <td>
-                                        <a id="product-update-modal" class="action-icon edit-btn"><i class="fas fa-pen"></i></a>
+                                        <a href="<?= site_url('update/'.$product['id']); ?>" class="action-icon edit-btn" title="Update Stock" id="update-inventory-btn"><i class="fas fa-pen"></i></a>
                                         <a href="<?= site_url('soft-delete/'.$product['id']); ?>" class="action-icon delete-btn"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
@@ -165,7 +165,7 @@
             <div id="inventory" class="content-section">
                 <div class="toolbar">
                     <button class="action-btn primary-btn"><i class="fas fa-truck-loading"></i> Record New Stock</button>
-                    <button class="action-btn" id="inventory-import-modal"><i class="fas fa-upload"></i> Import (CSV)</button>
+                    <button class="action-btn" id="import-inventory-btn"><i class="fas fa-upload"></i> Import (CSV)</button>
                     <button class="action-btn"><i class="fas fa-download"></i> Export Data</button>
                     <div class="search-box">
                         <i class="fas fa-filter search-icon"></i>
@@ -191,7 +191,7 @@
                                 <td>2025-10-15</td>
                                 <td>20</td>
                                 <td><span class="status-badge success">In Stock</span></td>
-                                <td><button class="action-icon view-btn" id="inventory-update-modal" title="View History"><i class="fas fa-history"></i></button></td>
+                                <td><button class="action-icon view-btn" title="Update Stock" id="update-inventory-btn"><i class="fas fa-history"></i></button></td>
                             </tr>
                             <tr>
                                 <td>Gaming Mouse G9</td>
@@ -199,7 +199,7 @@
                                 <td>2025-10-20</td>
                                 <td>10</td>
                                 <td><span class="status-badge warning">Low Stock</span></td>
-                                <td><button class="action-icon view-btn" id="inventory-update-modal" title="View History"><i class="fas fa-history"></i></button></td>
+                                <td><button class="action-icon view-btn" title="View History"><i class="fas fa-history"></i></button></td>
                             </tr>
                             <tr class="low-stock">
                                 <td>Power Adapter 65W</td>
@@ -207,7 +207,7 @@
                                 <td>2025-09-01</td>
                                 <td>10</td>
                                 <td><span class="status-badge critical">Critical!</span></td>
-                                <td><button class="action-icon view-btn" id="inventory-update-modal" title="View History"><i class="fas fa-history"></i></button></td>
+                                <td><button class="action-icon view-btn" title="View History"><i class="fas fa-history"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
