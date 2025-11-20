@@ -13,6 +13,7 @@ class _AdminController extends Controller {
         $this->call->database();
         $this->call->model('ProductModel');
         $this->call->model('StaffModel');
+        $this->call->model('TransactionModel');
         if(segment(2) != 'logout') {
             $id = $this->lauth->get_user_id();
             if(!logged_in()){
@@ -69,6 +70,21 @@ class _AdminController extends Controller {
         $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
         $this->pagination->initialize($total_rows, $records_per_page, $page,'home/?q='.$q);
         $data['page'] = $this->pagination->paginate();
+
+        $all = $this->TransactionModel->transactions($q, $records_per_page, $page);
+        $data['all'] = $all['records'];
+        $total_rows = $all['total_rows'];
+        $this->pagination->set_options([
+            'first_link'     => 'First',
+            'last_link'      => 'Last',
+            'next_link'      => '→',
+            'prev_link'      => '←',
+            'page_delimiter' => '&page='
+        ]);
+        $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'home/?q='.$q);
+        $data['page'] = $this->pagination->paginate();
+
         $this->call->view('home', $data);
     }
 }

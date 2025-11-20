@@ -203,6 +203,12 @@
         </div>
     </div>
 
+    <form id="transaction-form" action="<?= site_url('pos/transaction'); ?>" method="POST" style="display:none;">
+        <input type="hidden" name="total" id="total">
+        <input type="hidden" name="cashier" id="cashier">
+        <input type="hidden" name="items" id="items"> <!-- JSON string of items -->
+    </form>
+
     <script>
         let products = <?= json_encode($products); ?>;
     </script>

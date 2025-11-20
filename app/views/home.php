@@ -13,7 +13,7 @@
 </head>
 <body class="light-mode">
     <div id="toast-container"></div>
-    <audio id="notifSound" src="notif.mp3" preload="auto"></audio>
+    <audio id="notifSound" src="<?= base_url();?>public/resources/notif.mp3" preload="auto"></audio>
 
     <aside id="sidebar">
         <div class="logo-section">

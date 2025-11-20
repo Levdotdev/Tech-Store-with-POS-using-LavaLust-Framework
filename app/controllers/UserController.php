@@ -12,6 +12,7 @@ class UserController extends Controller {
         parent::__construct();
         $this->call->database();
         $this->call->model('ProductModel');
+        $this->call->model('TransactionModel');
         if(segment(2) != 'logout') {
             $id = $this->lauth->get_user_id();
             if(!logged_in()){
@@ -31,5 +32,28 @@ class UserController extends Controller {
     public function index(){
         $data['products'] = $this->ProductModel->stock();
         $this->call->view('home_user', $data);
+    }
+
+    public function transaction()
+    {
+        if($this->io->method() == 'post'){
+            $total = $this->io->post('total');
+            $name = $this->io->post('cashier');
+            
+                $data = [
+                'total' => $total,
+                'cashier' => $name
+                ];
+
+                $this->TransactionModel->insert($data);
+
+                /*if ($this->ProductModel->insert($data)) {
+                    $this->session->set_flashdata('message', 'Product inserted successfully!');
+                } else {
+                    $this->session->set_flashdata('error', 'Something went wrong.');
+                }*/
+
+                redirect();
+        }
     }
 }

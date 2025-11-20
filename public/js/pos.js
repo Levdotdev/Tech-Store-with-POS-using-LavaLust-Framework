@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (query) {
                 const directMatch = products.find(p => p.id === query);
                 if (directMatch) addToCart(directMatch.id);
-                else showToast("Simulation: In real app, this searches db.", "info");
+                else showToast("Item not found", "info");
             }
         }
     });
@@ -247,31 +247,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.processTransaction = function() {
-        closeModal('modal-payment');
+    // Close the payment modal
+    closeModal('modal-payment');
 
-        const recDate = new Date().toLocaleString();
-        document.getElementById('rec-date').innerText = recDate;
+    // Get current date and time for receipt
+    const recDate = new Date().toLocaleString();
+    document.getElementById('rec-date').innerText = recDate;
 
-        let itemsHtml = '';
-        let sub = 0;
-        cart.forEach(item => {
-            const t = item.price * item.qty;
-            sub += t;
-            itemsHtml += `<div class="flex-between"><span>${item.name} x${item.qty}</span><span>${t.toLocaleString()}</span></div>`;
-        });
-        const total = sub * 1.12;
-        const cash = parseFloat(document.getElementById('cash-received').value);
+    // Build receipt items HTML and calculate subtotal
+    let itemsHtml = '';
+    let subtotal = 0;
+    cart.forEach(item => {
+        const totalItem = item.price * item.qty;
+        subtotal += totalItem;
+        itemsHtml += `<div class="flex-between"><span>${item.name} x${item.qty}</span><span>${totalItem.toLocaleString()}</span></div>`;
+    });
 
-        document.getElementById('receipt-items').innerHTML = itemsHtml;
-        document.getElementById('rec-total').innerText = total.toLocaleString(undefined, {minimumFractionDigits:2});
-        document.getElementById('rec-cash').innerText = cash.toLocaleString(undefined, {minimumFractionDigits:2});
-        document.getElementById('rec-change').innerText = (cash - total).toLocaleString(undefined, {minimumFractionDigits:2});
+    // Calculate total with VAT
+    const total = subtotal * 1.12;
 
-        document.getElementById('modal-receipt').classList.remove('hidden');
+    // Get cash received from input
+    const cash = parseFloat(document.getElementById('cash-received').value) || 0;
+    const change = cash - total;
 
-        cart = [];
-        updateCartUI();
-    }
+    // Update receipt UI
+    document.getElementById('receipt-items').innerHTML = itemsHtml;
+    document.getElementById('rec-total').innerText = total.toLocaleString(undefined, { minimumFractionDigits: 2 });
+    document.getElementById('rec-cash').innerText = cash.toLocaleString(undefined, { minimumFractionDigits: 2 });
+    document.getElementById('rec-change').innerText = change.toLocaleString(undefined, { minimumFractionDigits: 2 });
+
+    // Show receipt modal
+    document.getElementById('modal-receipt').classList.remove('hidden');
+
+    // --- Populate hidden form for backend ---
+    document.getElementById('total').value = total.toFixed(2);
+    document.getElementById('cashier').value = 'cindy'; // replace with dynamic cashier if needed
+    document.getElementById('items').value = JSON.stringify(cart.map(item => ({
+        product_id: item.id,
+        qty: item.qty,
+        price: item.price.toFixed(2)
+    })));
+
+    // Submit hidden form to controller
+    document.getElementById('transaction-form').submit();
+
+    // Clear cart after transaction
+    cart = [];
+    updateCartUI();
+}
+
 
     // --- UTILITIES ---
     function updateClock() {
