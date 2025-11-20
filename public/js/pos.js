@@ -7,10 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnTimeIn = document.getElementById('btn-time-in');
     const statusIndicator = document.getElementById('status-indicator');
     
-    // --- 1. MOCK DATA ---
-    let products = []; // initially empty
-
-    // Auto icons based on category
+    // Auto-add icons
     const categoryIcons = {
         "Electronics": "fa-plug",
         "Keyboard": "fa-keyboard",
@@ -23,14 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
         "Accessories": "fa-box"
     };
 
-    // Assign default icon automatically
+    // Apply icons to PHP database products
     products = products.map(p => ({
         ...p,
         icon: categoryIcons[p.category] || "fa-box"
     }));
 
+    renderProducts("all");
 
-    renderProducts('all');
 
 
     let cart = [];
