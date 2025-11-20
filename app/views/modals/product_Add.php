@@ -16,8 +16,7 @@
                                     <option value="Electronics">Electronics</option>
                                     <option value="Keyboard">Keyboard</option>
                                     <option value="Mouse">Mouse</option>
-                                    <option value="Mousepad">Mousepad</option>
-                                    <option value="Gamepad">Gamepad</option>
+                                    <option value="Controller">Controller</option>
                                     <option value="Speaker">Speaker</option>
                                     <option value="Headset">Headset</option>
                                     <option value="Microphone">Microphone</option>

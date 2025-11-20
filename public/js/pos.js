@@ -9,14 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // --- 1. MOCK DATA ---
     const products = [
-        { id: '101', name: 'Smartwatch X30', price: 8999.00, category: 'Electronics', icon: 'fa-clock' },
-        { id: '102', name: 'Wireless Mouse G9', price: 1299.00, category: 'Peripherals', icon: 'fa-mouse' },
-        { id: '103', name: 'Mechanical Keyboard', price: 3450.00, category: 'Peripherals', icon: 'fa-keyboard' },
-        { id: '104', name: 'USB-C Hub 7-in-1', price: 1850.00, category: 'Accessories', icon: 'fa-usb' },
-        { id: '105', name: 'Monitor 24" IPS', price: 7500.00, category: 'Electronics', icon: 'fa-tv' },
-        { id: '106', name: 'Gaming Headset', price: 2200.00, category: 'Accessories', icon: 'fa-headset' },
-        { id: '107', name: 'Webcam 1080p', price: 1500.00, category: 'Peripherals', icon: 'fa-video' },
-        { id: '108', name: 'Laptop Stand', price: 850.00, category: 'Accessories', icon: 'fa-laptop' },
+        { id: '728725969005', name: 'Origami Mouse', price: 8999.00, category: 'Mouse', icon: 'fa-mouse' },
+        { id: '649275804502', name: 'Redragon Gloria Pro', price: 1299.00, category: 'Keyboard', icon: 'fa-keyboard' },
+        { id: 'KFF1T2358', name: 'VR Shinecon', price: 3450.00, category: 'Electronics', icon: 'fa-tv' },
+        { id: 'RDHA300-W22022500515', name: 'Redragon Scepter Pro', price: 1850.00, category: 'Accessories', icon: 'fa-settings' },
     ];
 
     let cart = [];
