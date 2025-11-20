@@ -29,7 +29,7 @@ class UserController extends Controller {
     }
 
     public function index(){
-        $products = $this->ProductModel->all();
-        $this->call->view('home_user', $products);
+        $data['products'] = $this->ProductModel->all();
+        $this->call->view('home_user', $data);
     }
 }

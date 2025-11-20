@@ -204,7 +204,7 @@
     </div>
 
     <script>
-        const products = <?= json_encode($products); ?>;
+        const products = <?= json_encode(html_escape($products)); ?>;
     </script>
 
     <script src="<?= base_url();?>public/js/pos.js"></script>
