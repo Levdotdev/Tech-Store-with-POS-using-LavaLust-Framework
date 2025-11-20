@@ -197,7 +197,7 @@
                                     <td><?= $inventory['stock']; ?></td>
                                     <td><?= $inventory['last_restock']; ?></td>
                                     <?php if ($inventory['stock'] == 0): ?>
-                                        <td><span class="status-badge error">Out of Stock</span></td>
+                                        <td><span class="status-badge critical">Out of Stock</span></td>
 
                                     <?php elseif ($inventory['stock'] >= 1 && $inventory['stock'] <= 4): ?>
                                         <td><span class="status-badge warning">Low Stock</span></td>

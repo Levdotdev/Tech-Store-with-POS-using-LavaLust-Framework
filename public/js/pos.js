@@ -37,14 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
             posContainer.classList.remove('locked');
             btnTimeIn.textContent = "Time Out";
             btnTimeIn.classList.replace('primary-btn', 'delete-btn');
-            btnTimeIn.onclick = function () {
-                showToast("Time Out Successful. Redirecting to Login Page", "info");
-                window.location.href = "https://l-and-d-tech-store.gamer.gd/auth/logout";
-            };
             statusIndicator.classList.replace('offline', 'online');
             statusIndicator.title = "Clocked In";
             showToast("Time In Successful. Terminal Unlocked.", "success");
             scanInput.focus();
+        } else {
+            btnTimeIn.onclick = function () {
+                showToast("Time Out Successful. Redirecting to Login Page", "info");
+                window.location.href = "https://l-and-d-tech-store.gamer.gd/auth/logout";
+            };
         }
     }
 

@@ -47,14 +47,14 @@
                 <div class="category-tabs">
                     <button class="cat-btn active" onclick="filterCategory('all')">All</button>
                     <button class="cat-btn" onclick="filterCategory('Electronics')">Electronics</button>
+                    <button class="cat-btn" onclick="filterCategory('Keyboard')">Keyboard</button>
+                    <button class="cat-btn" onclick="filterCategory('Mouse')">Mouse</button>
+                    <button class="cat-btn" onclick="filterCategory('Controller')">Controller</button>
+                    <button class="cat-btn" onclick="filterCategory('Speaker')">Speaker</button>
+                    <button class="cat-btn" onclick="filterCategory('Headset')">Headset</button>
+                    <button class="cat-btn" onclick="filterCategory('Microphone')">Microphone</button>
+                    <button class="cat-btn" onclick="filterCategory('Webcam')">Webcam</button>
                     <button class="cat-btn" onclick="filterCategory('Accessories')">Accessories</button>
-                    <button class="cat-btn" onclick="filterCategory('Peripherals')">Peripherals</button>
-                    <button class="cat-btn" onclick="filterCategory('Electronics')">Electronics</button>
-                    <button class="cat-btn" onclick="filterCategory('Accessories')">Accessories</button>
-                    <button class="cat-btn" onclick="filterCategory('Peripherals')">Peripherals</button>
-                    <button class="cat-btn" onclick="filterCategory('Electronics')">Electronics</button>
-                    <button class="cat-btn" onclick="filterCategory('Accessories')">Accessories</button>
-                    <button class="cat-btn" onclick="filterCategory('Peripherals')">Peripherals</button>
                 </div>
             </div>
 
