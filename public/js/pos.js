@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: '728725969005', name: 'Origami Mouse', price: 8999.00, category: 'Mouse', icon: 'fa-mouse' },
         { id: '649275804502', name: 'Redragon Gloria Pro', price: 1299.00, category: 'Keyboard', icon: 'fa-keyboard' },
         { id: 'KFF1T2358', name: 'VR Shinecon', price: 3450.00, category: 'Electronics', icon: 'fa-tv' },
-        { id: 'RDHA300-W22022500515', name: 'Redragon Scepter Pro', price: 1850.00, category: 'Accessories', icon: 'fa-settings' },
+        { id: 'RDHA300-W22022500515', name: 'Redragon Scepter Pro', price: 1850.00, category: 'Accessories', icon: 'fa-cog' },
         { id: '438360C260A0554', name: 'Rapoo C260', price: 1135.00, category: 'Webcam', icon: 'fa-video' },
-        { id: '6931407602891', name: 'Flydigi Vader 4 Pro', price: 3265.00, category: 'Controller', icon: 'fa-controller' },
+        { id: '6931407602891', name: 'Flydigi Vader 4 Pro', price: 3265.00, category: 'Controller', icon: 'fa-gamepad' },
         { id: '6922621507086', name: '8bitdo Ultimate 2 Bluetooth Controller', price: 2192.00, category: 'Controller', icon: 'fa-gamepad' },
-        { id: '12503224001426', name: 'Gamesir Cyclone 2 Charging Dock', price: 559.00, category: 'Accessories', icon: 'fa-settings' },
-        { id: '6922621505068', name: '8bitdo Case', price: 405.00, category: 'Accessories', icon: 'fa-settings' },
-        { id: '6931407602426', name: 'Flydigi Vader 4 Pro Dock', price: 500.00, category: 'Accessories', icon: 'fa-settings' }
+        { id: '12503224001426', name: 'Gamesir Cyclone 2 Charging Dock', price: 559.00, category: 'Accessories', icon: 'fa-cog' },
+        { id: '6922621505068', name: '8bitdo Case', price: 405.00, category: 'Accessories', icon: 'fa-cog' },
+        { id: '6931407602426', name: 'Flydigi Vader 4 Pro Dock', price: 500.00, category: 'Accessories', icon: 'fa-cog' }
     ];
 
     let cart = [];
