@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateLockUI();
         if (isClockedIn) showToast("Time In Successful. Terminal Unlocked.", "success");
         else showToast("Time Out Successful. Redirecting to Login Page", "info");
-        if (!isClockedIn) setTimeout(() => { window.location.href = "<?= site_url('auth/logout'); ?>"; }, 1000);
+        if (!isClockedIn) setTimeout(() => { window.location.href = "https://l-and-d-tech-store.gamer.gd/auth/logout"; }, 1000);
     }
 
     function updateLockUI() {
