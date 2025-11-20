@@ -243,8 +243,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.setExact = function() {
         const sub = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-        setCash((sub * 1.12).toFixed(2));
+        setCash(parseFloat((sub * 1.12).toFixed(2)));
     }
+
 
     window.processTransaction = function() {
     // Close the payment modal
