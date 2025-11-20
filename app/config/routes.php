@@ -58,7 +58,7 @@ $router->match('/update-stock', '_InventoryController::update', ['GET', 'POST'])
 $router->match('/user-delete/{id}', '_StaffController::soft_delete', ['GET', 'POST']);
 
 $router->get('/pos', 'UserController::index');
-$routes->get('/pos/products', 'UserController::getProducts');
+$router->get('/pos/products', 'UserController::getProducts');
 
 
 $router->group('/auth', function() use ($router){

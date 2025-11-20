@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadProductsFromDB() {
     try {
-        const res = await fetch("<?= base_url('pos'); ?>");
+        const res = await fetch("<?= base_url('pos/products'); ?>");
         products = await res.json();
 
         // If your DB doesn't store 'icon', assign default icons:
