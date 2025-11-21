@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= base_url();?>public/css/home.css">
 </head>
 <body class="light-mode">
+    <? var_dump($data); ?>
     <div id="toast-container"></div>
     <audio id="notifSound" src="<?= base_url();?>public/resources/notif.mp3" preload="auto"></audio>
 
