@@ -89,7 +89,7 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Products Sold</h3>
-                                <p class="stat-value"><?= $data['sold']['total']; ?></p>
+                                <p class="stat-value"><?= $data['sold']['sold']; ?></p>
                             </div>
                             <i class="fas fa-shopping-bag stat-icon"></i>
                         </div>
