@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="<?= base_url();?>public/css/home.css">
 </head>
 <body class="light-mode">
-    <?= var_dump($data); ?>
     <div id="toast-container"></div>
     <audio id="notifSound" src="<?= base_url();?>public/resources/notif.mp3" preload="auto"></audio>
 
@@ -100,7 +99,7 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Low Stock Items</h3>
-                                <p class="stat-value"><?= var_dump($data); ?></p>
+                                <p class="stat-value"><?= $data['low_stock']['total']; ?></p>
                             </div>
                             <i class="fas fa-exclamation-circle stat-icon"></i>
                         </div>
