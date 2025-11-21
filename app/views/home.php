@@ -89,7 +89,7 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Products Sold</h3>
-                                <p class="stat-value"><? $data['sold']['total']; ?></p>
+                                <p class="stat-value"><?= $data['sold']['total']; ?></p>
                             </div>
                             <i class="fas fa-shopping-bag stat-icon"></i>
                         </div>
@@ -99,7 +99,7 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Low Stock Items</h3>
-                                <p class="stat-value"><? $data['low_stock']; ?></p>
+                                <p class="stat-value"><?= $data['low_stock']; ?></p>
                             </div>
                             <i class="fas fa-exclamation-circle stat-icon"></i>
                         </div>
