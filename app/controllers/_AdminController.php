@@ -87,7 +87,7 @@ class _AdminController extends Controller {
 
         $data['sales'] = $this->db->table('transactions')->select_sum('total', 'total')->get();
         $data['sold'] = $this->db->table('products')->select_sum('sold', 'sold')->get();
-        $res = $this->db->raw('SELECT COUNT(stock) FROM products AS total FROM products WHERE stock < 5');
+        $res = $this->db->raw('SELECT COUNT(stock) AS total FROM products WHERE stock < 5');
         $data['low_stock'] = $res->fetch();
 
         $this->call->view('home', $data);
