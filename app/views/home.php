@@ -79,7 +79,9 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Total Sales</h3>
-                                <p class="stat-value">₱ <?= $sales[0]['total']; ?></p>
+                                    <?php foreach(html_escape($sales) as $sale): ?>
+                                        <p class="stat-value"><?= $sale['total']; ?></p>
+                                    <?php endforeach; ?>
                             </div>
                             <i class="fas fa-chart-line stat-icon"></i>
                         </div>
@@ -89,7 +91,9 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Products Sold</h3>
-                                <p class="stat-value"><?= $sold[0]['total']; ?></p>
+                                    <?php foreach(html_escape($sold) as $so): ?>
+                                        <p class="stat-value"><?= $so['total']; ?></p>
+                                    <?php endforeach; ?>
                             </div>
                             <i class="fas fa-shopping-bag stat-icon"></i>
                         </div>
@@ -99,7 +103,10 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Low Stock Items</h3>
-                                <p class="stat-value"><?= $low_stock[0]['products']; ?></p>
+                                    <?php foreach(html_escape($low_stock) as $stock): ?>
+                                        <p class="stat-value"><?= $low_stock['products']; ?></p>
+                                    <?php endforeach; ?>
+                                <p class="stat-value"><?= $low_stock; ?></p>
                             </div>
                             <i class="fas fa-exclamation-circle stat-icon"></i>
                         </div>
