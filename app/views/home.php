@@ -81,7 +81,7 @@
                             <div>
                                 <h3>Total Sales</h3>
                                     <?php foreach(html_escape($sales) as $sale): ?>
-                                        <p class="stat-value"><?= $sale['total']; ?></p>
+                                        <p class="stat-value"><? var_dump($data); ?></p>
                                     <?php endforeach; ?>
                             </div>
                             <i class="fas fa-chart-line stat-icon"></i>
@@ -93,7 +93,7 @@
                             <div>
                                 <h3>Products Sold</h3>
                                     <?php foreach(html_escape($sold) as $so): ?>
-                                        <p class="stat-value"><?= $so['total']; ?></p>
+                                        <p class="stat-value"><? var_dump($data); ?></p>
                                     <?php endforeach; ?>
                             </div>
                             <i class="fas fa-shopping-bag stat-icon"></i>
@@ -107,7 +107,7 @@
                                     <?php foreach(html_escape($low_stock) as $stock): ?>
                                         <p class="stat-value"><?= $low_stock['products']; ?></p>
                                     <?php endforeach; ?>
-                                <p class="stat-value"><?= $low_stock; ?></p>
+                                <p class="stat-value"><? var_dump($data); ?></p>
                             </div>
                             <i class="fas fa-exclamation-circle stat-icon"></i>
                         </div>
