@@ -79,7 +79,7 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Total Sales</h3>
-                                <p class="stat-value">₱ <?= $sales[0]; ?></p>
+                                <p class="stat-value">₱ <?= html_escape($sales); ?></p>
                             </div>
                             <i class="fas fa-chart-line stat-icon"></i>
                         </div>
@@ -89,7 +89,7 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Products Sold</h3>
-                                <p class="stat-value"><?= $sold[0]; ?></p>
+                                <p class="stat-value"><?= html_escape($sold); ?></p>
                             </div>
                             <i class="fas fa-shopping-bag stat-icon"></i>
                         </div>
@@ -99,7 +99,7 @@
                         <div class="stat-header">
                             <div>
                                 <h3>Low Stock Items</h3>
-                                <p class="stat-value"><?= $low_stock[0]; ?></p>
+                                <p class="stat-value"><?= html_escape($low_stock); ?></p>
                             </div>
                             <i class="fas fa-exclamation-circle stat-icon"></i>
                         </div>
