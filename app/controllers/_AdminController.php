@@ -101,7 +101,7 @@ class _AdminController extends Controller {
             $pass2 = $this->io->post('confirm-password');
 
             $this->lauth->reset_admin($password, $email, $pass, $pass2);
-            redirect();
+            redirect('');
         }
     }
 }

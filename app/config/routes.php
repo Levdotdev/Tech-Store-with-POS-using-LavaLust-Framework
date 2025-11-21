@@ -44,8 +44,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 */
 
 $router->get('/', '_AdminController::index');
-$router->get('/settings', '_AdminController::settings');
 $router->get('/trash', 'CrudController::trash');
+$router->match('/settings', '_AdminController::settings', ['GET', 'POST']);
 $router->match('/create', '_ProductController::product', ['GET', 'POST']);
 $router->match('/upload', '_ProductController::upload', ['GET', 'POST']);
 $router->match('/update/{id}', '_ProductController::update', ['GET', 'POST']);
