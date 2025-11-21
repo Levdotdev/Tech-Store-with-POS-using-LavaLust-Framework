@@ -379,7 +379,7 @@ class Lauth {
 					}
 
 				$p = array(
-					'password' => $this->passwordhash($password)
+					'password' => $this->passwordhash($pass)
 				);
 					if($pass == $pass2){
 						return  $this->LAVA->db
