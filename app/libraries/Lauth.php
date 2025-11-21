@@ -368,26 +368,20 @@ class Lauth {
     					->get();
 		if($row) {
 			if(password_verify($password, $row['password'])) {
-				$mail = array(
-					'email' => $email
-				);
-					if($email != ""){
-						return  $this->LAVA->db
-						->table('users')
-						->where('id', $this->get_user_id())
-						->update($mail);
-					}
+				$update = [];
+				if($email != "") {
+					$update['email'] = $email;
+				}
+				if($pass == $pass2) {
+					$update['password'] = password_hash($pass);
+				}
 
-				$p = array(
-					'password' => $this->passwordhash($pass)
-				);
-					if($pass == $pass2){
-						return  $this->LAVA->db
-						->table('users')
-						->where('user_id', $this->get_user_id())
-						->update($p);
-					}
-					set_logged_out();
+				if(!empty($update)){
+					return $this->LAVA->db
+							->table('users')
+							->where('id', get_user_id())
+							->update($update);
+				}
 			} else {
 				return false;
 			}
