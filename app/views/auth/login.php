@@ -82,13 +82,13 @@
                     <div class="overlay-panel overlay-left">
                         <h1>Hello, Techmate!</h1>
                         <p>Enter your personal details and start your journey with TechStore</p><hr>
-                        <h6>OR</h6>
+                        <p><b>OR</b></p>
                         <button class="btn ghost" id="signIn">Login</button>
                     </div>
                     <div class="overlay-panel overlay-right">
                         <h1>Welcome Back!</h1>
                         <p>To keep connected with us please login with your personal info</p><hr>
-                        <h6>OR</h6>
+                        <p><b>OR</b></p>
                         <button class="btn ghost" id="signUp">Register</button>
                     </div>
                 </div>
