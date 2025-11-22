@@ -59,11 +59,17 @@
             </div>
 
             <div class="form-container sign-in-container">
+                <?php flash_alert() ;?>
                 <form id="logForm" method="POST" action="<?=site_url('auth/login');?>">
+                    <?php csrf_field(); ?>
                     <h1>Login</h1>
                     <div class="input-group">
                         <i class="fas fa-user-shield"></i>
-                        <input type="text" name="email" placeholder="Email or Username" />
+                        <?php $LAVA =& lava_instance(); ?>
+                        <input id="email" type="email" class="form-control <?=$LAVA->session->flashdata('is_invalid');?>" name="email" value="" required autocomplete="email" autofocus>
+                        <span class="invalid-feedback" role="alert">
+                            <strong> <?php echo $LAVA->session->flashdata('err_message'); ?></strong>
+                        </span>
                     </div>
                     <div class="input-group">
                         <i class="fas fa-lock"></i>
@@ -77,13 +83,15 @@
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
-                        <h1>Welcome Back!</h1>
-                        <p>To keep connected with us please login with your personal info</p>
+                        <h1>Hello, Techmate!</h1>
+                        <p>Enter your personal details and start your journey with TechStore</p><hr>
+                        <h6>OR</h6>
                         <button class="btn ghost" id="signIn">Login</button>
                     </div>
                     <div class="overlay-panel overlay-right">
-                        <h1>Hello, Techmate!</h1>
-                        <p>Enter your personal details and start your journey with TechStore</p>
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p><hr>
+                        <h6>OR</h6>
                         <button class="btn ghost" id="signUp">Register</button>
                     </div>
                 </div>
