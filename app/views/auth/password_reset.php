@@ -27,11 +27,11 @@
                 <?php $LAVA =& lava_instance(); ?>
                 <input id="email" type="email" class="form-control <?=$LAVA->session->flashdata('alert');?>" name="email" placeholder="Email Address" required />
                 <span class="invalid-feedback" role="alert">
-                                            <strong>We can&#039;t find a user with that email address.</strong>
-                                        </span>
-                                        <span class="valid-feedback" role="alert">
-                                            <strong>Reset password link was sent to your email.</strong>
-                                        </span>
+                    <strong>We can&#039;t find a user with that email address.</strong>
+                </span>
+                <span class="valid-feedback" role="alert">
+                    <strong>Reset password link was sent to your email.</strong>
+                </span>
             </div>
 
             <p class="message hidden" id="message"></p>
@@ -39,42 +39,6 @@
             <button type="submit" class="btn">Send Password Reset Link</button>
         </form>
     </div>
-    <main class="py-4">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Reset Password</div>
-                        <div class="card-body">
-                            <form method="POST" action="<?=site_url('auth/password-reset');?>">
-                                <?php csrf_field(); ?>
-                                <div class="row mb-3">
-                                    <label for="email" class="col-md-4 col-form-label text-md-end">Email Address</label>
-                                    <div class="col-md-6">
-                                        <?php $LAVA =& lava_instance(); ?>
-                                        <input id="email" type="email" class="form-control <?=$LAVA->session->flashdata('alert');?>" name="email" required>
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>We can&#039;t find a user with that email address.</strong>
-                                        </span>
-                                        <span class="valid-feedback" role="alert">
-                                            <strong>Reset password link was sent to your email.</strong>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            Send Password Reset Link
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link href="<?=base_url();?>public/css/main.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="<?= base_url();?>public/css/login.css">
 </head>
 <body style="background-image: url('<?= base_url();?>public/resources/bg.jpg');">
