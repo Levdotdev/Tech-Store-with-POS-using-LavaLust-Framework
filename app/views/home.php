@@ -31,7 +31,8 @@
                 <li data-section="inventory"><i class="fas fa-boxes"></i> <span>Inventory</span></li>
                 <li data-section="users"><i class="fas fa-users"></i> <span>Users</span></li>
                 <li data-section="transactions"><i class="fas fa-receipt"></i> <span>Transactions</span></li>
-                <!--<li data-section="applicants"><i class="fas fa-id-card"></i> <span>Applicants</span></li>-->
+                <li data-section="reports"><i class="fas fa-id-card"></i> <span>Reports</span></li>
+                <li data-section="applicants"><i class="fas fa-id-card"></i> <span>Applicants</span></li>
             </ul>
         </nav>
     </aside>
@@ -83,7 +84,6 @@
                             </div>
                             <i class="fas fa-chart-line stat-icon"></i>
                         </div>
-                        <!--<span class="trend up"><i class="fas fa-arrow-up"></i> 12% vs yesterday</span>-->
                     </div>
                     <div class="stat-card">
                         <div class="stat-header">
@@ -93,7 +93,6 @@
                             </div>
                             <i class="fas fa-shopping-bag stat-icon"></i>
                         </div>
-                        <!--<span class="trend down"><i class="fas fa-arrow-down"></i> 3% vs yesterday</span>-->
                     </div>
                     <div class="stat-card inventory-alert">
                         <div class="stat-header">
@@ -120,11 +119,11 @@
                     <button class="action-btn primary-btn" onclick="openModal('modal-add-product')">
                         <i class="fas fa-plus-circle"></i> Add Product
                     </button>
-                    <!--<div class="search-box">
+                    <div class="search-box">
                         <i class="fas fa-search search-icon"></i>
                         <input type="text" placeholder="Search Products...">
                         <button class="action-btn search-btn">Search</button>
-                    </div>-->
+                    </div>
                 </div>
 
                 <div class="table-container">
@@ -148,6 +147,7 @@
                                     <td>
                                         <a href="<?= site_url('update/'.$product['id']); ?>" class="action-icon edit-btn" title="Update Stock" id="update-inventory-btn"><i class="fas fa-pen"></i></a>
                                         <a href="<?= site_url('soft-delete/'.$product['id']); ?>" title="Delete Product" class="action-icon delete-btn"><i class="fas fa-trash"></i></a>
+                                        <button title="Delete Product" class="action-icon delete-btn" onclick="openModal('modal-add-product')"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -159,13 +159,13 @@
             <div id="inventory" class="content-section">
                 <div class="toolbar">
                     <button class="action-btn primary-btn" onclick="openModal('modal-record-stock')"><i class="fas fa-truck-loading"></i> Record New Stock</button>
-                    <!--<button class="action-btn" onclick="openModal('modal-import-csv')"><i class="fas fa-upload"></i> Import (CSV)</button>
+                    <button class="action-btn" onclick="openModal('modal-import-csv')"><i class="fas fa-upload"></i> Import (CSV)</button>
                     <button class="action-btn" onclick="openModal('modal-export-confirm')"><i class="fas fa-download"></i> Export Data</button>
                     <div class="search-box">
                         <i class="fas fa-search search-icon"></i>
                         <input type="text" placeholder="Search Stock...">
                          <button class="action-btn search-btn">Search</button>
-                    </div>-->
+                    </div>
                 </div>
                 <div class="table-container">
                     <table class="data-table">
@@ -204,13 +204,13 @@
             </div>
 
             <div id="users" class="content-section">
-                <!--<div class="toolbar">
+                <div class="toolbar">
                     <div class="search-box">
                         <i class="fas fa-search search-icon"></i>
                         <input type="text" placeholder="Search Users...">
                          <button class="action-btn search-btn">Search</button>
                     </div>
-                </div>-->
+                </div>
                 <div class="table-container">
                     <table class="data-table">
                         <thead>
@@ -242,11 +242,11 @@
             </div>
 
             <div id="transactions" class="content-section">
-                <!--<div class="toolbar">
+                <div class="toolbar">
                     <input type="date" value="2025-10-22">
                     <select><option>All Cashiers</option><option>Fyra Nika Dudas</option></select>
                     <button class="action-btn"><i class="fas fa-filter"></i> Filter</button>
-                </div>-->
+                </div>
                 <div class="table-container">
                     <table class="data-table">
                         <thead>
@@ -272,6 +272,64 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <div id="reports" class="content-section">
+                <h2>Reporting & Analytics</h2>
+                <div class="toolbar">
+                    <select><option>Sales Summary (Monthly)</option><option>Inventory Movement</option><option>Cashier Performance</option><option>Top Selling Products</option></select>
+                    <input type="date" value="2025-10-01">
+                    <input type="date" value="2025-10-31">
+                    <button class="action-btn primary-btn"><i class="fas fa-chart-bar"></i> Generate Report</button>
+                    <button class="action-btn"><i class="fas fa-download"></i> Export Data</button>
+                </div>
+        
+                <div class="report-box-grid">
+                    <div class="report-box">
+                        <h3><i class="fas fa-coins"></i> Sales Summary: October 2025</h3>
+                        <p>Total Revenue: ₱ 1,850,200.00</p>
+                        <p>Net Profit: ₱ 750,200.00</p>
+                        <p>Total Transactions: 1,250</p>
+                        <p class="trend up"><i class="fas fa-arrow-up"></i> 15% increase vs Sept</p>
+                    </div>
+                    <div class="report-box">
+                        <h3><i class="fas fa-truck-loading"></i> Inventory Value & Status</h3>
+                        <p>Total Stock Value: ₱ 5,450,000.00</p>
+                        <p>Items in Stock: 1,250 SKUs</p>
+                        <p>Stock Turn: 3.5x/year</p>
+                        <p class="trend alert"><i class="fas fa-exclamation-triangle"></i> 12 Low Stock Alerts</p>
+                    </div>
+                    <div class="report-box">
+                        <h3><i class="fas fa-user-tie"></i> Top Cashier (Oct)</h3>
+                        <p>Cashier: Fyra Nika Dudas</p>
+                        <p>Total Transactions: 152</p>
+                        <p>Total Sales Handled: ₱ 450,000.00</p>
+                        <p class="trend up"><i class="fas fa-trophy"></i> Best Performer</p>
+                    </div>
+                </div>
+
+                <div class="placeholder-chart">
+                    <h3 style="font-family: 'Playfair Display', serif; margin-top: 3px; text-align: center;">Top 5 Selling Products (Units Sold)</h3>
+                    <div class="table-container">
+                        <table class="data-table top-products-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Product Name</th>
+                                    <th>Units Sold</th>
+                                    <th>Revenue (₱)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>Smartwatch X30</td><td>150</td><td>1,349,850.00</td></tr>
+                                <tr><td>2</td><td>Fast-Charging Cable (USB-C)</td><td>450</td><td>135,000.00</td></tr>
+                                <tr><td>3</td><td>Gaming Mouse G9</td><td>80</td><td>120,000.00</td></tr>
+                                <tr><td>4</td><td>Power Adapter 65W</td><td>65</td><td>97,175.00</td></tr>
+                                <tr><td>5</td><td>Bluetooth Earbuds</td><td>120</td><td>47,880.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

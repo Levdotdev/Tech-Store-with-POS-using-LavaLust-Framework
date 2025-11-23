@@ -420,3 +420,39 @@ h2 {
     .stats-grid, .report-box-grid { grid-template-columns: 1fr; }
     .modal-body .form-grid { grid-template-columns: 1fr; gap: 0; }
 }
+
+/* Make select fields match input styles */
+.input-group select {
+    width: 100%;
+    padding: 11px 10px; /* match input padding */
+    border: none; /* remove default border inside input-group */
+    background: transparent; /* inherit background from input-group */
+    color: var(--clr-text-main);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    appearance: none; /* remove default dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.input-group select:focus {
+    outline: none;
+}
+
+.input-group {
+    position: relative;
+}
+
+/* Add custom arrow */
+.input-group::after {
+    content: '\f0d7'; /* FontAwesome chevron-down */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--clr-text-secondary);
+}
