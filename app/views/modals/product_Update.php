@@ -53,12 +53,12 @@
                     </div>
                 </div>
 
-            </form>
         </div>
 
         <div class="modal-footer">
             <button type="button" class="action-btn modal-cancel-btn" onclick="closeModal('modal-edit-product')">Cancel</button>
             <button type="submit" class="action-btn primary-btn">Update</button>
         </div>
+        </form>
     </div>
 </div>
