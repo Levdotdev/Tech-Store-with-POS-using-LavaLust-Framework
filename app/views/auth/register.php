@@ -20,14 +20,14 @@
             <strong>Note: Password must be at least 8 characters and contains one of this special characters (!@£$%^&*-_+=?), number, uppercase and lowercase letters.</strong>
         </span>   
         <?php flash_alert() ;?>
-        <<form id="regForm" method="POST" action="<?=site_url('auth/register');?>">
+        <form id="regForm" method="POST" action="<?=site_url('auth/register');?>" autocomplete="off">
             <?php csrf_field(); ?>
             <h1>Register</h1>
             <p class="instructions">Enter your personal details and start your journey with TechStore.</p>
-            <input id="username" type="text" class="form-control " name="username" required placeholder="Username"><br>
-            <input id="email" type="email" class="form-control" name="email" required placeholder="Email"><br>
-            <input id="password" type="password" class="form-control " name="password" required placeholder="New Password"><br>
-            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password">
+            <input id="username" type="text" class="form-control " name="username" required placeholder="Username" autocomplete="off"><br>
+            <input id="email" type="email" class="form-control" name="email" required placeholder="Email" autocomplete="off"><br>
+            <input id="password" type="password" class="form-control " name="password" required placeholder="New Password" autocomplete="off"><br>
+            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password" autocomplete="off">
 
             <p class="message hidden" id="message"></p>
             

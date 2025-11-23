@@ -65,17 +65,17 @@
 
             <div class="form-container sign-in-container">
                 <?php flash_alert() ;?>
-                <form id="logForm" method="POST" action="<?=site_url('auth/login');?>">
+                <form id="logForm" method="POST" action="<?=site_url('auth/login');?>" autocomplete="off">
                     <?php csrf_field(); ?>
                     <h1>Login</h1>
                     <div class="input-group">
                         <i class="fas fa-user-shield"></i>
                         <?php $LAVA =& lava_instance(); ?>
-                        <input type="text" name="email" placeholder="Email" required autofocus/>
+                        <input type="text" name="email" placeholder="Email" required autofocus autocomplete="off"/>
                     </div>
                     <div class="input-group">
                         <i class="fas fa-lock"></i>
-                        <input type="password" name="password" placeholder="Password" required/>
+                        <input type="password" name="password" placeholder="Password" required autocomplete="off"/>
                     </div>
                     <a href="<?=site_url('auth/password-reset');?>">Forgot your password?</a>
                     <button class="btn">Login</button>

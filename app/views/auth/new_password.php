@@ -20,13 +20,13 @@
             <strong>Note: Password must be at least 8 characters and contains one of this special characters (!@£$%^&*-_+=?), number, uppercase and lowercase letters.</strong>
         </span>   
         <?php flash_alert() ;?>
-        <form id="forgot-form" action="<?=site_url('auth/set-new-password');?>" method="post">
+        <form id="forgot-form" action="<?=site_url('auth/set-new-password');?>" method="post" autocomplete="off">
             <?php csrf_field(); ?>
             <h1>Change Password</h1>
             <p class="instructions">Please fill and match the following to reset your password.</p>
             <input type="hidden" name="token" value="<?php !empty($_GET['token']) && print $_GET['token'];?>"> 
-                <input id="password" type="password" class="form-control " name="password" required placeholder="New Password"><br>
-                <input id="re_password" type="password" class="form-control " name="re_password" required placeholder="Confirm Password">
+                <input id="password" type="password" class="form-control " name="password" required placeholder="New Password" autocomplete="off"><br>
+                <input id="re_password" type="password" class="form-control " name="re_password" required placeholder="Confirm Password" autocomplete="off">
 
             <p class="message hidden" id="message"></p>
             

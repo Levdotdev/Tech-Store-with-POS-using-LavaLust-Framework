@@ -16,13 +16,13 @@
 </head>
 <body style="background-image: url('<?= base_url();?>public/resources/bg.jpg');">
     <div class="forgot-container">
-        <form id="forgot-form" method="POST" action="<?=site_url('auth/password-reset');?>">
+        <form id="forgot-form" method="POST" action="<?=site_url('auth/password-reset');?>" autocomplete="off">
             <?php csrf_field(); ?>
             <h1>Forgot Password</h1>
             <p class="instructions">Enter your email address and we'll send you a link to reset your password.</p>
             
                 <?php $LAVA =& lava_instance(); ?>
-                <input id="email" type="email" class="form-control <?=$LAVA->session->flashdata('alert');?>" name="email" placeholder="Email Address" required />
+                <input id="email" type="email" class="form-control <?=$LAVA->session->flashdata('alert');?>" name="email" placeholder="Email Address" required autocomplete="off"/>
                 <span class="invalid-feedback" role="alert">
                     <strong>We can&#039;t find a user with that email address.</strong>
                 </span>
