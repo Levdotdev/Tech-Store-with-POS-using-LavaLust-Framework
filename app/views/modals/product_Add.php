@@ -34,11 +34,11 @@
                         <label for="product_id">Barcode</label>
                         <div class="input-group"><i class="fas fa-barcode"></i><input type="text" id="product_id" name="product_id" placeholder="Scan unique product code" required></div>
                     </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button class="action-btn modal-cancel-btn" onclick="closeModal('modal-add-product')">Cancel</button>
-                <button type="submit" class="action-btn primary-btn">Save Product</button>
+                <button type="submit" class="action-btn primary-btn" onclick="handleFormSubmit('modal-add-product')">Save Product</button>
             </div>
-            </form>
         </div>
     </div>
