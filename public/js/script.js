@@ -284,7 +284,7 @@ document.querySelectorAll('.open-delete-modal').forEach(btn => {
         const form = document.getElementById('delete-form');
 
         // dynamically set form action
-        const baseAction = "applicant/user-delete"; // base URL
+        const baseAction = "applicant/reject"; // base URL
         form.action = `${baseAction}/${userId}`;
 
         // open modal
@@ -318,7 +318,7 @@ document.querySelectorAll('.open-verify-modal').forEach(btn => {
         const message = document.getElementById('verify-message');
 
         // Set dynamic action URL with applicant ID
-        const baseAction = "applicant/user-accept";
+        const baseAction = "applicant/verify";
         form.action = `${baseAction}/${applicantId}`;
 
         // Update modal message with applicant name

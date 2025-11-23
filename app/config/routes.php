@@ -66,8 +66,8 @@ $router->group('/staff', function() use ($router){
 });
 
 $router->group('/applicant', function() use ($router){
-    $router->match('/user-reject/{id}', '_ApplicantController::user_reject', ['GET', 'POST']);
-    $router->match('/user-accept/{id}', '_ApplicantController::user_accept', ['GET', 'POST']);
+    $router->match('/reject/{id}', '_ApplicantController::user_reject', ['GET', 'POST']);
+    $router->match('/verify/{id}', '_ApplicantController::user_accept', ['GET', 'POST']);
 });
 
 
