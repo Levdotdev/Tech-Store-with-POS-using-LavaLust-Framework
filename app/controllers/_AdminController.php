@@ -114,8 +114,8 @@ class _AdminController extends Controller {
         $data['page'] = $this->pagination->paginate();
 
         $data['sales'] = $this->db->table('transactions')->select_sum('total', 'total')->get();
-        $data['sold'] = $this->db->table('products')->select_sum('sold', 'sold')->get();
-        $res = $this->db->raw('SELECT COUNT(stock) AS total FROM products WHERE stock < 5');
+        $data['sold'] = $this->db->table('products')->select_sum('sold', 'sold')->where_null('deleted_at')->get();
+        $res = $this->db->raw('SELECT COUNT(stock) AS total FROM products WHERE stock < 5 AND deleted_at IS NULL');
         $data['low_stock'] = $res->fetch();
 
         $this->call->view('home', $data);

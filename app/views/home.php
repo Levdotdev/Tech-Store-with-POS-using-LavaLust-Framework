@@ -237,6 +237,7 @@
                                     <td><?= $user['updated_at']; ?></td>
                                     <td>
                                         <button class="action-icon view-btn" title="Print User ID" onclick="openModal('modal-user-barcode')"><i class="fas fa-id-card"></i></button>
+                                        <button class="action-icon delete-btn open-deactivate-staff-modal" title="Reject/Delete" data-id="<?= $applicant['id']; ?>"><i class="fas fa-trash"></i></button>
                                         <a href="<?= site_url('user-delete/'.$user['id']); ?>" title="Delete User" class="action-icon delete-btn"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>

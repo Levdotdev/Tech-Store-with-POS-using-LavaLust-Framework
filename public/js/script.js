@@ -284,6 +284,16 @@ document.querySelectorAll('.open-applicant-reject-modal').forEach(btn => {
     });
 });
 
+document.querySelectorAll('.open-deactivate-staff-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const userId = btn.dataset.id;
+        const form = document.getElementById('staff-deactivate-form'); // or another form if you want separate
+
+        form.action = `staff/deactivate/${userId}`;
+        openModal('modal-deactivate-staff-confirm');
+    });
+});
+
 document.querySelectorAll('.open-product-edit-modal').forEach(btn => {
     btn.addEventListener('click', () => {
 

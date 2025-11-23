@@ -62,7 +62,7 @@ $router->group('/inventory', function() use ($router){
 
 
 $router->group('/staff', function() use ($router){
-    $router->match('/user-delete/{id}', '_StaffController::soft_delete', ['GET', 'POST']);
+    $router->match('/deactivate/{id}', '_StaffController::user_deactivate', ['GET', 'POST']);
 });
 
 $router->group('/applicant', function() use ($router){
