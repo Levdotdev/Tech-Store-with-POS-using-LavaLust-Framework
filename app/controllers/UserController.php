@@ -39,6 +39,7 @@ class UserController extends Controller {
         if($this->io->method() == 'post'){
             $total = $this->io->post('total');
             $name = $this->io->post('cashier');
+            $time = $this->io->post('transaction_time');
             $itemsJson = $this->io->post('items');
 
             // Decode the JSON items array
@@ -46,7 +47,8 @@ class UserController extends Controller {
             
                 $data = [
                 'total' => $total,
-                'cashier' => $name
+                'cashier' => $name,
+                'timestamp' => $time
                 ];
 
                 $this->TransactionModel->insert($data);
@@ -70,11 +72,8 @@ class UserController extends Controller {
                 $this->ProductModel->update($id, $product);
             }
 
-                /*if ($this->ProductModel->insert($data)) {
-                    $this->session->set_flashdata('message', 'Product inserted successfully!');
-                } else {
-                    $this->session->set_flashdata('error', 'Something went wrong.');
-                }*/
+                $this->session->set_flashdata('alert', 'success');
+                    $this->session->set_flashdata('message', 'Transaction completed!');
             redirect('pos');
         }
     }
