@@ -40,19 +40,25 @@
             <span class="close-btn" id="close-btn">&times;</span>
 
             <div class="form-container sign-up-container">
+                <?php flash_alert(); ?>
                 <form id="regForm" method="POST" action="<?=site_url('auth/register');?>">
+                    <?php csrf_field(); ?>
                     <h1>Create Account</h1>
                     <div class="input-group">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" />
+                        <input id="username" type="text" class="form-control " name="username" required placeholder="Username" />
                     </div>
                     <div class="input-group">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" />
+                        <input id="email" type="email" class="form-control" name="email" placeholder="Email" required/>
                     </div>
                     <div class="input-group">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" />
+                        <input id="password" type="password" class="form-control" name="password" placeholder="Enter password" required/>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Confirm password" required/>
                     </div>
                     <button class="btn" style="margin-top: 20px;">Register</button>
                 </form>
@@ -99,5 +105,50 @@
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d970.2816607672548!2d121.17750456951032!3d13.40448420375496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bce8c94a906141%3A0xb64b77e93c40b707!2sFAB&#39;S%20DIGIHUB%20COMPUTER%20TRADING!5e0!3m2!1sen!2sph!4v1763007960036!5m2!1sen!2sph" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
     <script src="<?= base_url();?>public/js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <script>
+        $(function() {
+            var regForm = $("#regForm")
+                if(regForm.length) {
+                    regForm.validate({
+                        rules: {
+                            email: {
+                                required: true,
+                            },
+                            password: {
+                                required: true,
+                                minlength: 8
+                            },
+                            password_confirmation: {
+                                required: true,
+                                minlength: 8
+                            },
+                            username: {
+                                required: true,
+                                minlength: 5
+                            }
+                        },
+                        messages: {
+                            email: {
+                                required: "Please input your email address.",                            
+                            },
+                            password: {
+                                required: "Please input your password",
+                                minlength: jQuery.validator.format("Password must be atleast {0} characters.")
+                            },
+                            password_confirmation: {
+                                required: "Please input your password",
+                                minlength: jQuery.validator.format("Password must be atleast {0} characters.")
+                            },
+                            username: {
+                                required: "Please input your username.",                            
+                            }
+                        },
+                    })
+                }
+        })
+    </script>
 </body>
 </html>

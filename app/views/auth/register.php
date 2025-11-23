@@ -88,8 +88,7 @@
                             },
                             username: {
                                 required: true,
-                                minlength: 5,
-                                maxlength: 20
+                                minlength: 5
                             }
                         },
                         messages: {
