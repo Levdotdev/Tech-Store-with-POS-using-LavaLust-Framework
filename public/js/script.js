@@ -418,4 +418,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('csv-file-input');
+    const fileNameDisplay = document.getElementById('file-name-display');
+
+    // Click to open file selector
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    // Display selected file name
+    fileInput.addEventListener('change', () => {
+        if(fileInput.files.length > 0) {
+            fileNameDisplay.textContent = fileInput.files[0].name;
+        }
+    });
+
+    // Drag over
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.style.backgroundColor = '#f0f0f0';
+    });
+
+    // Drag leave
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.style.backgroundColor = 'transparent';
+    });
+
+    // Drop
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.backgroundColor = 'transparent';
+        const files = e.dataTransfer.files;
+        if(files.length > 0 && files[0].type === 'text/csv') {
+            fileInput.files = files; // assign dropped file
+            fileNameDisplay.textContent = files[0].name;
+        } else {
+            alert('Please upload a valid CSV file.');
+        }
+    });
+});
+
+
 document.body.classList.add("ready");
