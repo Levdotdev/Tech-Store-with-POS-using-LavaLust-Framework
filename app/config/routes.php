@@ -58,6 +58,7 @@ $router->group('/product', function() use ($router){
 
 $router->group('/inventory', function() use ($router){
     $router->match('/update-stock', '_InventoryController::update', ['GET', 'POST']);
+    $router->match('/update-csv', '_InventoryController::import_csv', ['GET', 'POST']);
 });
 
 
