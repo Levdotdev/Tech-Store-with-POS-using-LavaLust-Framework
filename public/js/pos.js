@@ -243,48 +243,53 @@ document.addEventListener("DOMContentLoaded", () => {
         setCash(parseFloat((subtotal * 1.12).toFixed(2)));
     }
 
-    window.processTransaction = function() {
-        closeModal('modal-payment');
+    window.processTransaction = function(cashierName) {
+    closeModal('modal-payment');
 
-        // Receipt
-        const recDate = new Date().toLocaleString();
-        document.getElementById('rec-date').innerText = recDate;
+    // --- Receipt timestamp ---
+    const recDate = new Date().toLocaleString(); // You can format this later if needed
+    document.getElementById('rec-date').innerText = recDate;
 
-        let itemsHtml = '';
-        let subtotal = 0;
-        cart.forEach(item => {
-            const totalItem = item.price * item.qty;
-            subtotal += totalItem;
-            itemsHtml += `<div class="flex-between"><span>${item.name} x${item.qty}</span><span>${totalItem.toLocaleString()}</span></div>`;
-        });
+    // --- Cart items for receipt ---
+    let itemsHtml = '';
+    let subtotal = 0;
+    cart.forEach(item => {
+        const totalItem = item.price * item.qty;
+        subtotal += totalItem;
+        itemsHtml += `<div class="flex-between"><span>${item.name} x${item.qty}</span><span>₱${totalItem.toLocaleString()}</span></div>`;
+    });
 
-        const total = parseFloat((subtotal * 1.12).toFixed(2));
-        const cash = parseFloat(document.getElementById('cash-received').value) || 0;
-        const change = parseFloat((cash - total).toFixed(2));
+    const total = parseFloat((subtotal * 1.12).toFixed(2));
+    const cash = parseFloat(document.getElementById('cash-received').value) || 0;
+    const change = parseFloat((cash - total).toFixed(2));
 
-        document.getElementById('receipt-items').innerHTML = itemsHtml;
-        document.getElementById('rec-total').innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2});
-        document.getElementById('rec-cash').innerText = cash.toLocaleString(undefined, {minimumFractionDigits: 2});
-        document.getElementById('rec-change').innerText = change.toLocaleString(undefined, {minimumFractionDigits: 2});
+    // --- Update receipt UI ---
+    document.getElementById('receipt-items').innerHTML = itemsHtml;
+    document.getElementById('rec-total').innerText = `₱${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+    document.getElementById('rec-cash').innerText = `₱${cash.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+    document.getElementById('rec-change').innerText = `₱${change.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
 
-        document.getElementById('modal-receipt').classList.remove('hidden');
+    document.getElementById('modal-receipt').classList.remove('hidden');
 
-        // Submit hidden form
-        document.getElementById('total').value = total.toFixed(2);
-        document.getElementById('cashier').value = 'cindy';
-        document.getElementById('items').value = JSON.stringify(cart.map(item => ({
-            product_id: item.id,
-            qty: item.qty,
-        })));
+    // --- Fill hidden form fields ---
+    document.getElementById('total').value = total.toFixed(2);
+    document.getElementById('cashier').value = cashierName || 'Unknown';
+    document.getElementById('transaction-time').value = recDate; // use same as receipt
+    document.getElementById('items').value = JSON.stringify(cart.map(item => ({
+        product_id: item.id,
+        qty: item.qty,
+    })));
 
-        setTimeout(() => {
-            document.getElementById('transaction-form').submit();
-        }, 3000);
+    // --- Submit after short delay ---
+    setTimeout(() => {
+        document.getElementById('transaction-form').submit();
+    }, 3000);
 
-        // Clear cart
-        cart = [];
-        updateCartUI();
-    }
+    // --- Clear cart ---
+    cart = [];
+    updateCartUI();
+}
+
 
     // --- UTILITIES ---
     window.showToast = function(msg, type) {

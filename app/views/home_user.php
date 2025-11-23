@@ -136,7 +136,7 @@
             </div>
             <div class="modal-footer">
                 <button class="action-btn modal-cancel-btn" onclick="closeModal('modal-payment')">Cancel</button>
-                <button class="action-btn primary-btn" id="btn-confirm-pay" onclick="processTransaction()" disabled>
+                <button class="action-btn primary-btn" id="btn-confirm-pay" onclick="processTransaction(CASHIER_NAME)" disabled>
                     <i class="fas fa-receipt"></i> Print & Complete
                 </button>
             </div>
@@ -150,7 +150,7 @@
                     <h3>TechStore</h3>
                     <p>Camilmil, Calapan City</p>
                     <p>Date: <span id="rec-date"></span></p>
-                    <p>Cashier: cindy</p>
+                    <p>Cashier: <?= get_username(get_user_id()); ?></p>
                 </div>
                 <hr class="dashed-line">
                 <div id="receipt-items"></div>
@@ -202,11 +202,13 @@
     <form id="transaction-form" action="<?= site_url('pos/transaction'); ?>" method="POST" style="display:none;">
         <input type="hidden" name="total" id="total">
         <input type="hidden" name="cashier" id="cashier">
+        <input type="hidden" id="transaction-time" name="transaction_time">
         <input type="hidden" name="items" id="items"> <!-- JSON string of items -->
     </form>
 
     <script>
         let products = <?= json_encode($products); ?>;
+        const CASHIER_NAME = "<?= get_username(get_user_id()); ?>";
     </script>
 
     <script src="<?= base_url();?>public/js/pos.js"></script>

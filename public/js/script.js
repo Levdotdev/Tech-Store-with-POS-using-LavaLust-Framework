@@ -270,7 +270,7 @@ document.querySelectorAll('.open-product-delete-modal').forEach(btn => {
         const form = document.getElementById('product-delete-form');
 
         form.action = `product/soft-delete/${productId}`;
-        openModal('modal-delete-confirm');
+        openModal('modal-product-delete-confirm');
     });
 });
 
@@ -280,7 +280,7 @@ document.querySelectorAll('.open-applicant-reject-modal').forEach(btn => {
         const form = document.getElementById('applicant-reject-form'); // or another form if you want separate
 
         form.action = `applicant/reject/${userId}`;
-        openModal('modal-delete-confirm');
+        openModal('modal-applicant-reject-confirm');
     });
 });
 
