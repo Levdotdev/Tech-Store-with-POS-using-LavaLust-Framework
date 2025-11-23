@@ -204,6 +204,7 @@
         <input type="hidden" name="cashier" id="cashier">
         <input type="hidden" id="transaction-time" name="transaction_time">
         <input type="hidden" name="items" id="items"> <!-- JSON string of items -->
+        <input type="hidden" name="receipt_image" id="receipt_image">
     </form>
 
     <script>
@@ -212,5 +213,7 @@
     </script>
 
     <script src="<?= base_url();?>public/js/pos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
 </body>
 </html>

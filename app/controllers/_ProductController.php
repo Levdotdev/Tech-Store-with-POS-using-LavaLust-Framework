@@ -92,6 +92,8 @@ class _ProductController extends Controller {
     function soft_delete($id){
         if($this->lauth->get_role(get_user_id()) == "admin") {
             $this->ProductModel->soft_delete($id);
+            $this->session->set_flashdata('alert', 'info');
+            $this->session->set_flashdata('message', 'Product deleted successfully!');
             redirect();
         }
     }

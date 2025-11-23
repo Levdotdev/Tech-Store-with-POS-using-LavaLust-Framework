@@ -35,44 +35,67 @@ class UserController extends Controller {
     }
 
     public function transaction()
-    {
-        if($this->io->method() == 'post'){
-            $total = $this->io->post('total');
-            $name = $this->io->post('cashier');
-            $time = $this->io->post('transaction_time');
-            $itemsJson = $this->io->post('items');
+{
+    if ($this->io->method() == 'post') {
 
-            // Decode the JSON items array
-            $items = json_decode($itemsJson, true);
-            
-                $data = [
-                'total' => $total,
-                'cashier' => $name,
-                'date' => $time
-                ];
+        // Get POST data
+        $total = $this->io->post('total');
+        $cashier = $this->io->post('cashier');
+        $time = $this->io->post('transaction_time');
+        $itemsJson = $this->io->post('items'); // cart items
+        $base64Image = $this->io->post('receipt_image'); // receipt screenshot (base64)
 
-                $this->TransactionModel->insert($data);
+        // --- SAVE RECEIPT IMAGE ---
+        $filename = null;
 
-                foreach ($items as $item) {
+        if (!empty($base64Image)) {
+            // remove base64 prefix
+            $cleaned = preg_replace('#^data:image/\w+;base64,#i', '', $base64Image);
 
-                $id = $item['product_id']; // product ID
-                $qty = $item['qty'];       // quantity bought
+            // decode image
+            $imageData = base64_decode($cleaned);
 
-                $product = $this->ProductModel->find($id);
+            // generate file name
+            $filename = 'receipt_' . time() . '.png';
+            $filepath = BASE_DIR . 'uploads/' . $filename;
 
-
-                $newStock = $product['stock'] - $qty;
-                $newSold = $product['stock'] + $qty;
-
-                $product = [
-                'stock' => $newStock,
-                'sold' => $newSold
-                ];
-
-                $this->ProductModel->update($id, $product);
-            }
-
-            redirect('pos');
+            // save file
+            file_put_contents($filepath, $imageData);
         }
+
+        // --- INSERT TRANSACTION ---
+        $data = [
+            'total'   => $total,
+            'cashier' => $cashier,
+            'date'    => $time,
+            'pic'     => $filename  // saved screenshot file
+        ];
+
+        $this->TransactionModel->insert($data);
+
+        // --- UPDATE PRODUCT STOCKS ---
+        $items = json_decode($itemsJson, true);
+
+        foreach ($items as $item) {
+
+            $id = $item['product_id'];
+            $qty = $item['qty'];
+
+            $product = $this->ProductModel->find($id);
+
+            $newStock = $product['stock'] - $qty;
+            $newSold = $product['sold'] + $qty;
+
+            $updateProduct = [
+                'stock' => $newStock,
+                'sold'  => $newSold
+            ];
+
+            $this->ProductModel->update($id, $updateProduct);
+        }
+
+        // return to POS
+        redirect('pos');
     }
+}
 }

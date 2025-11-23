@@ -243,14 +243,14 @@ document.addEventListener("DOMContentLoaded", () => {
         setCash(parseFloat((subtotal * 1.12).toFixed(2)));
     }
 
-    window.processTransaction = function(cashierName) {
+window.processTransaction = function(cashierName) {
     closeModal('modal-payment');
 
     // --- Receipt timestamp ---
-    const recDate = new Date().toLocaleString(); // You can format this later if needed
+    const recDate = new Date().toLocaleString();
     document.getElementById('rec-date').innerText = recDate;
 
-    // --- Cart items for receipt ---
+    // --- Cart items ---
     let itemsHtml = '';
     let subtotal = 0;
     cart.forEach(item => {
@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cash = parseFloat(document.getElementById('cash-received').value) || 0;
     const change = parseFloat((cash - total).toFixed(2));
 
-    // --- Update receipt UI ---
+    // --- Update the receipt UI ---
     document.getElementById('receipt-items').innerHTML = itemsHtml;
     document.getElementById('rec-total').innerText = `₱${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
     document.getElementById('rec-cash').innerText = `₱${cash.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
@@ -271,29 +271,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById('modal-receipt').classList.remove('hidden');
 
+    // --- Generate the real timestamp for DB ---
     const now = new Date();
-    const timestamp = now.getFullYear() + '-' +
-                      String(now.getMonth() + 1).padStart(2, '0') + '-' +
-                      String(now.getDate()).padStart(2, '0') + ' ' +
-                      String(now.getHours()).padStart(2, '0') + ':' +
-                      String(now.getMinutes()).padStart(2, '0') + ':' +
-                      String(now.getSeconds()).padStart(2, '0');
+    const timestamp =
+        now.getFullYear() + '-' +
+        String(now.getMonth() + 1).padStart(2, '0') + '-' +
+        String(now.getDate()).padStart(2, '0') + ' ' +
+        String(now.getHours()).padStart(2, '0') + ':' +
+        String(now.getMinutes()).padStart(2, '0') + ':' +
+        String(now.getSeconds()).padStart(2, '0');
 
-    // --- Fill hidden form fields ---
+    // --- Fill hidden form fields BEFORE screenshot ---
     document.getElementById('total').value = total.toFixed(2);
     document.getElementById('cashier').value = cashierName || 'Unknown';
-    document.getElementById('transaction-time').value = timestamp; // use same as receipt
-    document.getElementById('items').value = JSON.stringify(cart.map(item => ({
-        product_id: item.id,
-        qty: item.qty,
-    })));
+    document.getElementById('transaction-time').value = timestamp;
+    document.getElementById('items').value = JSON.stringify(
+        cart.map(item => ({
+            product_id: item.id,
+            qty: item.qty
+        }))
+    );
 
-    // --- Submit after short delay ---
-    setTimeout(() => {
-        document.getElementById('transaction-form').submit();
-    }, 3000);
+    // --- Generate receipt PNG via html2canvas ---
+    html2canvas(document.querySelector(".receipt-paper"), { scale: 3 })
+        .then(canvas => {
 
-    // --- Clear cart ---
+            // Convert to base64 string
+            const imageData = canvas.toDataURL("image/png");
+
+            // Put into hidden input for PHP
+            document.getElementById('receipt_image').value = imageData;
+
+            // --- Submit AFTER screenshot is ready ---
+            setTimeout(() => {
+                document.getElementById('transaction-form').submit();
+            }, 5000); // shorter delay; image is already ready
+        });
+
+    // --- Clear cart after sending ---
     cart = [];
     updateCartUI();
 }
