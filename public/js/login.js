@@ -1,11 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const showLoginBtn = document.getElementById('show-login-btn');
-    const showRegisterBtn = document.getElementById('show-register-btn');
     const modalWrapper = document.getElementById('modal-wrapper');
     const closeBtn = document.getElementById('close-btn');
-    
-    const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');
 

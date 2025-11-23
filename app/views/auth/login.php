@@ -12,13 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <link rel="stylesheet" href="<?= base_url();?>public/css/login.css">
-    <link rel="stylesheet" href="<?= base_url();?>public/css/toast.css">
 </head>
 <body style="background-image: url('<?= base_url();?>public/resources/bg.jpg');">
 
-    <div id="toast-container"></div>
-
-    <audio id="notifSound" src="<?= base_url();?>public/resources/notif.mp3" preload="auto"></audio>
     <div class="welcome-container" id="welcome-container">
         <div class="welcome-content">
             
@@ -153,9 +149,12 @@
                 }
         })
     </script>
-    
+    <link rel="stylesheet" href="<?= base_url('public/css/toast.css'); ?>">
+    <div id="toast-container"></div>
 
-    <script src="<?= base_url();?>public/js/toast.js"></script>
+    <audio id="notifSound" src="<?= base_url('public/resources/notif.mp3'); ?>" preload="auto"></audio>
+
+    <script src="<?= base_url('public/js/toast.js'); ?>"></script>
     <?php toast_alert(); ?>
 
 </body>

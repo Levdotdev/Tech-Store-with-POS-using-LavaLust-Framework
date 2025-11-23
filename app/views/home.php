@@ -10,7 +10,6 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url();?>public/css/home.css">
-    <link rel="stylesheet" href="<?= base_url();?>public/css/toast.css">
 </head>
 <body class="light-mode">
     <div id="toast-container"></div>
@@ -390,7 +389,6 @@
     ?>
 
     <script src="<?= base_url();?>public/js/script.js"></script>
-    <script src="<?= base_url();?>public/js/toast.js"></script>
     <?php toast_alert(); ?>
 </body>
 </html>
