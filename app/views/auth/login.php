@@ -17,8 +17,8 @@
 <body style="background-image: url('<?= base_url();?>public/resources/bg.jpg');">
 
     <div id="toast-container"></div>
-    <audio id="notifSound" src="<?= base_url();?>public/resources/notif.mp3" preload="auto"></audio>
 
+    <audio id="notifSound" src="<?= base_url();?>public/resources/notif.mp3" preload="auto"></audio>
     <div class="welcome-container" id="welcome-container">
         <div class="welcome-content">
             
@@ -154,7 +154,8 @@
         })
     </script>
     
-    <script src="<?= base_url();?>public/js/script.js"></script>
+
+    <script src="<?= base_url();?>public/js/toast.js"></script>
     <?php toast_alert(); ?>
 
 </body>
