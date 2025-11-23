@@ -343,33 +343,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function downloadReceiptAsPDF() {
-    const imgEl = document.getElementById('receipt-img');
-    if (!imgEl.src) return alert("No receipt loaded.");
+function downloadReceiptAsPDF(button) {
+    const { jsPDF } = window.jspdf;
+    const img = document.getElementById('receipt-img');
+    if (!img.src) return alert("Receipt image not loaded!");
 
-    // Extract filename from src
-    const srcParts = imgEl.src.split('/');
-    const imgFilename = srcParts[srcParts.length - 1]; // e.g., "receipt_1763935421.png"
-    const pdfFilename = imgFilename.replace(/\.[^/.]+$/, "") + ".pdf"; // remove extension + add .pdf
+    // --- Show processing feedback ---
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    button.disabled = true;
 
-    const pdf = new jspdf.jsPDF("p", "mm", "a4");
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
+    setTimeout(() => {
+        const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "px",
+            format: [img.width, img.height]
+        });
 
-    const img = new Image();
-    img.src = imgEl.src;
+        pdf.addImage(img, 'PNG', 0, 0, img.width, img.height);
 
-    img.onload = function() {
-        const ratio = Math.min(pageWidth / img.width, pageHeight / img.height);
-        const imgWidth = img.width * ratio;
-        const imgHeight = img.height * ratio;
-        const x = (pageWidth - imgWidth) / 2;
-        const y = (pageHeight - imgHeight) / 2;
+        // Filename same as image
+        const filename = img.src.split('/').pop().replace(/\.[^/.]+$/, ".pdf");
+        pdf.save(filename);
 
-        pdf.addImage(img, "PNG", x, y, imgWidth, imgHeight);
-        pdf.save(pdfFilename);
-    };
+        // Restore button
+        button.innerHTML = originalText;
+        button.disabled = false;
+    }, 100); // slight delay to show spinner
 }
+
 
 
 document.body.classList.add("ready");
