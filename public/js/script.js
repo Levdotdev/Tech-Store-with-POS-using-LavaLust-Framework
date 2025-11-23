@@ -152,45 +152,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- 6. SIMULATED FORM SUBMISSIONS ---
-    window.handleFormSubmit = function(modalId, successMessage = "Action completed!") {
-    const btn = document.querySelector(`#${modalId} .primary-btn`) || document.querySelector(`#${modalId} .delete-btn`);
-    const originalText = btn.innerHTML;
-    const form = document.querySelector(`#${modalId} form`);
-    
-    if (!form) return;
+    window.handleFormSubmit = function(modalId) {
+        const btn = document.querySelector(`#${modalId} .primary-btn`) || document.querySelector(`#${modalId} .delete-btn`);
+        const originalText = btn.innerHTML;
+        const form = document.querySelector(`#${modalId} form`);
+        
+        // Loading State
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        btn.disabled = true;
 
-    // Loading State
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-    btn.disabled = true;
+        // Simulate Delay
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            form.submit();
+            closeModal(modalId);
+            document.body.classList.add("loading");
+            
+            // Optional: Reset form inputs if exists
+            if(form) form.reset();
 
-    const formData = new FormData(form);
-    const actionUrl = form.action;
-    const method = form.method.toUpperCase() || "POST";
-
-    fetch(actionUrl, {
-        method: method,
-        body: formData,
-    })
-    .then(res => res.json()) // Or text() depending on your backend response
-    .then(data => {
-        // Success feedback
-        showToast(successMessage, "success");
-
-        // Close modal
-        closeModal(modalId);
-
-        // Reset form
-        form.reset();
-    })
-    .catch(err => {
-        console.error(err);
-        showToast("Something went wrong!", "error");
-    })
-    .finally(() => {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-    });
-};
+        }, 1000); // 1 second delay
+    }
 
     // --- 7. CSV UPLOAD LOGIC (New) ---
     const dropZone = document.getElementById('drop-zone');
