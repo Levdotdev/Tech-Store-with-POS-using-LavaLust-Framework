@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', function() {
             const receiptFile = this.dataset.receipt;
             const imgEl = document.getElementById('receipt-img');
-            imgEl.src = "<?= base_url(); ?>public/uploads/" + receiptFile;
+            imgEl.src = "/public/uploads/" + receiptFile;
             imgEl.alt = "Receipt " + receiptFile;
             document.getElementById('modal-print-receipt').classList.remove('hidden');
         });
