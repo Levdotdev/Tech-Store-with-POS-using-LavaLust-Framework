@@ -179,10 +179,13 @@ class CrudController extends Controller {
                 $this->ProductModel->insert($data);
 
                 if ($this->ProductModel->insert($data)) {
-                    $this->session->set_flashdata('success', 'Product inserted successfully!');
+                    $this->session->set_flashdata('alert', 'success');
+                    $this->session->set_flashdata('message', 'Product added successfully!');
                 } else {
-                    $this->session->set_flashdata('error', 'Something went wrong.');
+                    $this->session->set_flashdata('alert', 'error');
+                    $this->session->set_flashdata('message', 'Something went wrong.');
                 }
+
 
                 redirect();
         }
