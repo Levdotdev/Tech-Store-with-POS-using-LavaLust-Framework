@@ -68,7 +68,7 @@ class UserController extends Controller {
             'total'   => $total,
             'cashier' => $cashier,
             'date'    => $time,
-            'pic'     => $filename  // saved screenshot file
+            'receipt'     => $filename  // saved screenshot file
         ];
 
         $this->TransactionModel->insert($data);
