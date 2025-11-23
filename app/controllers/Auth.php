@@ -75,7 +75,8 @@ class Auth extends Controller {
                 if($this->form_validation->run()) {
                     if($this->lauth->register($username, $email, $this->io->post('password'), $email_token)) {
                         $this->send_token_to_email($email, $email_token);
-                        set_flash_alert('success', 'Account created! Please check your email to verify your account.');
+                        $this->session->set_flashdata('alert', 'info');
+                        $this->session->set_flashdata('message', 'Account created! Please check your email to verify your account.');
                         redirect('auth/login');
                     } else {
                         set_flash_alert('danger', config_item('SQLError'));
