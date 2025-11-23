@@ -477,3 +477,11 @@ h2 {
 .input-group {
     position: relative;
 }
+
+#modal-print-receipt .modal-body img {
+    max-width: 100%;   /* Image won’t exceed modal width */
+    max-height: 70vh;  /* Image height won’t exceed 70% of viewport height */
+    object-fit: contain; /* Keep aspect ratio */
+    display: block;
+    margin: 0 auto;    /* Center horizontally */
+}
