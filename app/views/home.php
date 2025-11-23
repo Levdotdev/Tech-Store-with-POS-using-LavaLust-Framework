@@ -147,7 +147,7 @@
                                     <td>
                                         <button 
                                             type="button"
-                                            class="action-icon edit-btn open-edit-modal"
+                                            class="action-icon edit-btn open-product-edit-modal"
                                             title="Edit Product"
                                             data-id="<?= $product['id']; ?>"
                                             data-name="<?= $product['name']; ?>"

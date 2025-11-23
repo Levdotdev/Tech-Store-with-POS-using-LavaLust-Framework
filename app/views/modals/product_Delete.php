@@ -1,6 +1,6 @@
 
     <div id="modal-delete-confirm" class="modal-overlay hidden">
-        <form id="delete-form" method="post" action="<?=site_url('product/soft-delete'); ?>">
+        <form id="product-delete-form" method="post" action="<?=site_url('product/soft-delete'); ?>">
         <div class="modal-content">
             <div class="modal-header"><h2>Delete Product</h2><button type="button" class="modal-close-btn" onclick="closeModal('modal-delete-confirm')">&times;</button></div>
             <div class="modal-body"><p style="color:var(--clr-danger)"><strong>Warning:</strong> Are you sure you want to delete this product?</p></div>

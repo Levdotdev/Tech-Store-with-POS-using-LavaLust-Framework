@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.querySelectorAll('.open-product-delete-modal').forEach(btn => {
     btn.addEventListener('click', () => {
         const productId = btn.dataset.id;
-        const form = document.getElementById('delete-form');
+        const form = document.getElementById('product-delete-form');
 
         form.action = `product/soft-delete/${productId}`;
         openModal('modal-delete-confirm');
@@ -277,14 +277,14 @@ document.querySelectorAll('.open-product-delete-modal').forEach(btn => {
 document.querySelectorAll('.open-applicant-reject-modal').forEach(btn => {
     btn.addEventListener('click', () => {
         const userId = btn.dataset.id;
-        const form = document.getElementById('delete-form'); // or another form if you want separate
+        const form = document.getElementById('applicant-reject-form'); // or another form if you want separate
 
         form.action = `applicant/reject/${userId}`;
         openModal('modal-delete-confirm');
     });
 });
 
-document.querySelectorAll('.open-edit-modal').forEach(btn => {
+document.querySelectorAll('.open-product-edit-modal').forEach(btn => {
     btn.addEventListener('click', () => {
 
         const productId = btn.dataset.id;
@@ -302,11 +302,11 @@ document.querySelectorAll('.open-edit-modal').forEach(btn => {
     });
 });
 
-document.querySelectorAll('.open-verify-modal').forEach(btn => {
+document.querySelectorAll('.open-applicant-verify-modal').forEach(btn => {
     btn.addEventListener('click', () => {
         const applicantId = btn.dataset.id;
         const applicantName = btn.dataset.name;
-        const form = document.getElementById('verify-form');
+        const form = document.getElementById('applicant-verify-form');
         const message = document.getElementById('verify-message');
 
         // Set dynamic action URL with applicant ID

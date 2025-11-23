@@ -1,5 +1,5 @@
 <div id="modal-verify-applicant" class="modal-overlay hidden">
-    <form id="verify-form" method="post" action="<?=site_url('applicant/verify'); ?>">
+    <form id="applicant-verify-form" method="post" action="<?=site_url('applicant/verify'); ?>">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Verify Applicant</h2>
