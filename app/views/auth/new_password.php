@@ -25,18 +25,8 @@
             <h1>Change Password</h1>
             <p class="instructions">Please fill and match the following to reset your password.</p>
             <input type="hidden" name="token" value="<?php !empty($_GET['token']) && print $_GET['token'];?>"> 
-            <div class="row mb-3">
-                <label for="password" class="col-md-4 col-form-label text-md-end">New Password</label>
-                <div class="col-md-6">
-                    <input id="password" type="password" class="form-control " name="password" required>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label for="password" class="col-md-4 col-form-label text-md-end">Confirm New Password</label>
-                <div class="col-md-6">
-                    <input id="re_password" type="password" class="form-control " name="re_password" required>
-                </div>
-            </div>
+                <input id="password" type="password" class="form-control " name="password" required placeholder="New Password"><br>
+                <input id="re_password" type="password" class="form-control " name="re_password" required placeholder="Confirm Password">
 
             <p class="message hidden" id="message"></p>
             
