@@ -58,7 +58,7 @@
 
         <div class="modal-footer">
             <button type="button" class="action-btn modal-cancel-btn" onclick="closeModal('modal-edit-product')">Cancel</button>
-            <button class="action-btn primary-btn" onclick="handleFormSubmit('modal-edit-product')">Update Product</button>
+            <button class="action-btn primary-btn">Update</button>
         </div>
     </div>
 </div>
