@@ -278,6 +278,20 @@ document.querySelectorAll('.open-delete-modal').forEach(btn => {
     });
 });
 
+document.querySelectorAll('.open-delete-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const userId = btn.dataset.id; // get the ID from button
+        const form = document.getElementById('delete-form');
+
+        // dynamically set form action
+        const baseAction = "applicant/user-delete"; // base URL
+        form.action = `${baseAction}/${userId}`;
+
+        // open modal
+        openModal('modal-delete-confirm');
+    });
+});
+
 document.querySelectorAll('.open-edit-modal').forEach(btn => {
     btn.addEventListener('click', () => {
 

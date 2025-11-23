@@ -145,7 +145,6 @@
                                     <td><?= $product['category']; ?></td>
                                     <td>₱<?= $product['price']; ?></td>
                                     <td>
-                                        <a href="<?= site_url('update/'.$product['id']); ?>" class="action-icon edit-btn" title="Update Stock" id="update-inventory-btn"><i class="fas fa-pen"></i></a>
                                         <button 
                                             type="button"
                                             class="action-icon edit-btn open-edit-modal"
@@ -366,10 +365,8 @@
                                     <td><?= $applicant['email']; ?></td>
                                     <td><?= $applicant['updated_at']; ?></td>
                                     <td>
-                                        <button class="action-icon view-btn" title="Print User ID" onclick="openModal('modal-user-barcode')"><i class="fas fa-id-card"></i></button>
-                                        <a href="<?= site_url('user-delete/'.$applicant['id']); ?>" title="Delete User" class="action-icon delete-btn"><i class="fas fa-trash"></i></a>
                                         <button class="action-icon success-btn" title="Verify/Approve" onclick="openModal('modal-verify-applicant')"><i class="fas fa-check"></i></button>
-                                    <button class="action-icon delete-btn" title="Reject/Delete" onclick="openModal('modal-delete-confirm')"><i class="fas fa-trash"></i></button>
+                                        <button class="action-icon delete-btn open-delete-modal" title="Reject/Delete" data-id="<?= $applicant['id']; ?>"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

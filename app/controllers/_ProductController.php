@@ -76,6 +76,8 @@ class _ProductController extends Controller {
                 ];
 
                 $this->ProductModel->update($key, $data);
+                $this->session->set_flashdata('alert', 'info');
+                $this->session->set_flashdata('message', 'Product updated successfully!');
                 redirect();
         }
     }

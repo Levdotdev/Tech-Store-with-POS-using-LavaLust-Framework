@@ -7,6 +7,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  * Automatically generated via CLI.
  */
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 if ( ! function_exists('xss_clean'))
 {
 	function xss_clean($string)
@@ -131,4 +134,38 @@ if ( ! function_exists('email_exist'))
 		$LAVA->db->table('users')->where('email', $email)->get();
 		return ($LAVA->db->row_count() > 0) ? true : false;
 	}
+}
+
+function SendMail($name, $email, $subject, $message, $attachment){
+		//required files
+        require ROOT_DIR.'vendor/phpmailer/phpmailer/src/Exception.php';
+        require ROOT_DIR.'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+        require ROOT_DIR.'vendor/phpmailer/phpmailer/src/SMTP.php';
+
+        //Create an instance; passing true enables exceptions
+
+        $mail = new PHPMailer(true);
+
+        //Server settings
+        $mail->isSMTP();                              //Send using SMTP
+        $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;             //Enable SMTP authentication
+        $mail->Username   = 'genshinpromise@gmail.com';   //SMTP write your email
+        $mail->Password   = 'dvvigwjodyetiijm';      //SMTP password
+        $mail->SMTPSecure = 'ssl';            //Enable implicit SSL encryption
+        $mail->Port       = 465;                                    
+
+        //Recipients
+        $mail->setFrom($email, $name); // Sender Email and name
+        $mail->addAddress('genshinpromise@gmail.com');     //Add a recipient email  
+        $mail->addReplyTo($email, $name); // reply to sender email
+
+        //Content
+        $mail->isHTML(true);               //Set email format to HTML
+        $mail->Subject = $subject;   // email subject headings
+        $mail->Body    = $message; //email message
+        $mail->addAttachment(ROOT_DIR.'uploads/'.$attachment);
+
+        // Success sent message alert
+        $mail->send();
 }
