@@ -365,7 +365,7 @@
                                     <td><?= $applicant['email']; ?></td>
                                     <td><?= $applicant['updated_at']; ?></td>
                                     <td>
-                                        <button class="action-icon success-btn" title="Verify/Approve" onclick="openModal('modal-verify-applicant')"><i class="fas fa-check"></i></button>
+                                        <button class="action-icon success-btn open-verify-modal" title="Verify/Approve" data-id="<?= $applicant['id']; ?>" data-name="<?= htmlspecialchars($applicant['name']); ?>"><i class="fas fa-check"></i></button>
                                         <button class="action-icon delete-btn open-delete-modal" title="Reject/Delete" data-id="<?= $applicant['id']; ?>"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>

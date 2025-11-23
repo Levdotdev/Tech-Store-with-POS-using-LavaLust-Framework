@@ -89,10 +89,37 @@ class _ApplicantController extends Controller {
         }
     }
 
-    function soft_delete($id){
+    function user_reject($id){
         if($this->lauth->get_role(get_user_id()) == "admin") {
-            $this->StaffModel->soft_delete($id);
-            redirect();
+            if($this->io->method() == 'post'){
+                    $char = $this->StaffModel->find($id);
+                    $data = [
+                    'role' => "declined"
+                    ];
+                    $template = file_get_contents(ROOT_DIR.PUBLIC_DIR.'/templates/account_rejected.html');
+                    $this->StaffModel->update($id, $data);
+                    SendMail("TechStore", get_email(get_user_id()), "Application Rejection", $template, $char['email']);
+                    $this->session->set_flashdata('alert', 'info');
+                    $this->session->set_flashdata('message', 'Applicant rejected! Email sent.');
+                    redirect();
+            }
+        }
+    }
+
+    function user_accept($id){
+        if($this->lauth->get_role(get_user_id()) == "admin") {
+            if($this->io->method() == 'post'){
+                    $char = $this->StaffModel->find($id);
+                    $data = [
+                    'role' => "user"
+                    ];
+                    $template = file_get_contents(ROOT_DIR.PUBLIC_DIR.'/templates/account_accepted.html');
+                    $this->StaffModel->update($id, $data);
+                    SendMail("TechStore", get_email(get_user_id()), "Application Approval", $template, $char['email']);
+                    $this->session->set_flashdata('alert', 'success');
+                    $this->session->set_flashdata('message', 'Applicant accepted! Email sent.');
+                    redirect();
+            }
         }
     }
 

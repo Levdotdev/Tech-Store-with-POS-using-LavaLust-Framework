@@ -310,5 +310,24 @@ document.querySelectorAll('.open-edit-modal').forEach(btn => {
     });
 });
 
+document.querySelectorAll('.open-verify-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const applicantId = btn.dataset.id;
+        const applicantName = btn.dataset.name;
+        const form = document.getElementById('verify-form');
+        const message = document.getElementById('verify-message');
+
+        // Set dynamic action URL with applicant ID
+        const baseAction = "applicant/user-accept";
+        form.action = `${baseAction}/${applicantId}`;
+
+        // Update modal message with applicant name
+        message.innerHTML = `Approve <strong>${applicantName}</strong> as a new employee? This will move them to the Users list.`;
+
+        // Open modal
+        openModal('modal-verify-applicant');
+    });
+});
+
 
 document.body.classList.add("ready");

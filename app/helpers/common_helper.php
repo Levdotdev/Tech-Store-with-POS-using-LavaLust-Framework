@@ -136,7 +136,7 @@ if ( ! function_exists('email_exist'))
 	}
 }
 
-function SendMail($name, $email, $subject, $message, $attachment){
+function SendMail($name, $email, $subject, $message, $receiver){
 		//required files
         require ROOT_DIR.'vendor/phpmailer/phpmailer/src/Exception.php';
         require ROOT_DIR.'vendor/phpmailer/phpmailer/src/PHPMailer.php';
@@ -157,14 +157,14 @@ function SendMail($name, $email, $subject, $message, $attachment){
 
         //Recipients
         $mail->setFrom($email, $name); // Sender Email and name
-        $mail->addAddress('genshinpromise@gmail.com');     //Add a recipient email  
+        $mail->addAddress($receiver);     //Add a recipient email  
         $mail->addReplyTo($email, $name); // reply to sender email
 
         //Content
         $mail->isHTML(true);               //Set email format to HTML
         $mail->Subject = $subject;   // email subject headings
         $mail->Body    = $message; //email message
-        $mail->addAttachment(ROOT_DIR.'uploads/'.$attachment);
+        //$mail->addAttachment(ROOT_DIR.'uploads/'.$attachment);
 
         // Success sent message alert
         $mail->send();
