@@ -39,7 +39,7 @@ class Auth extends Controller {
 				$this->session->set_flashdata('alert', 'error');
                 $this->session->set_flashdata('message', 'These credentials do not match our records. ');
 			} else {
-                $row = $this->LAVA->db
+                $row = $this->db
 						->table('users')				
     					->where('id', $user_id)
     					->limit(1)
