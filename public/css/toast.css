@@ -1,25 +1,48 @@
 /* --- TOAST NOTIFICATIONS --- */
 #toast-container {
-    position: fixed; top: 1.5rem; right: 1.5rem; display: flex;
-    flex-direction: column; gap: 0.75rem; z-index: 9999;
+    position: fixed; 
+    top: 1.5rem; 
+    right: 1.5rem; 
+    display: flex;
+    flex-direction: column; 
+    gap: 1rem; /* spacing between toasts */
+    z-index: 9999;
 }
-.toast {
-    position: relative; display: flex; align-items: center;
-    justify-content: space-between; gap: 0.75rem; padding: 1rem 1.25rem;
-    border-radius: 0.75rem; min-width: 280px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); animation: fadeIn 0.3s ease;
-    overflow: hidden; font-family: var(--font-body); font-size: 0.9rem;
-}
-.toast::after {
-    content: ""; position: absolute; bottom: 0; left: 0; height: 4px;
-    background-color: currentColor; width: 100%; transform-origin: left;
-    animation: toastFuse 4s linear forwards; opacity: 0.25;
-}
-.toast .close-toast { background: transparent; border: none; color: #fff; font-size: 1.1rem; cursor: pointer; }
-.toast.bg-green-600 { background-color: var(--clr-success); color: white; }
-.toast.bg-red-600 { background-color: var(--clr-danger); color: white; }
-.toast.bg-blue-600 { background-color: var(--clr-info); color: white; }
 
-@keyframes toastFuse { from { transform: scaleX(1); } to { transform: scaleX(0); } }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeOut { to { opacity: 0; transform: translateY(-10px); } }
+.toast {
+    position: relative; 
+    display: flex; 
+    align-items: center;
+    justify-content: space-between; 
+    gap: 1rem; /* spacing between icon/text and close button */
+    padding: 1rem 1.5rem; /* more horizontal padding */
+    border-radius: 0.75rem; 
+    min-width: 300px; /* match old height/width */
+    height: 60px; /* explicit height like old one */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    animation: fadeIn 0.3s ease;
+    overflow: hidden; 
+    font-family: var(--font-body); 
+    font-size: 0.9rem;
+}
+
+.toast::after {
+    content: ""; 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    height: 5px; /* make fuse taller like old one */
+    background-color: currentColor; 
+    width: 100%; 
+    transform-origin: left;
+    animation: toastFuse 4s linear forwards; 
+    opacity: 0.25;
+}
+
+.toast .close-toast { 
+    background: transparent; 
+    border: none; 
+    color: #fff; 
+    font-size: 1.25rem; /* slightly bigger so spacing feels better */
+    cursor: pointer; 
+}
