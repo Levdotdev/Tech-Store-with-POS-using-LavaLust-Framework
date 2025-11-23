@@ -146,8 +146,6 @@ class _ProductController extends Controller {
                 'price' => $price
                 ];
 
-                $this->ProductModel->insert($data);
-
                 if ($this->ProductModel->insert($data)) {
                     $this->session->set_flashdata('alert', 'success');
                     $this->session->set_flashdata('message', 'Product added successfully!');
