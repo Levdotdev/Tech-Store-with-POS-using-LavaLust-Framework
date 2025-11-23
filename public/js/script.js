@@ -268,7 +268,7 @@ document.querySelectorAll('.open-delete-modal').forEach(btn => {
         const form = document.getElementById('delete-form');
 
         // Replace {id} in the action URL dynamically
-        const baseAction = "<?= site_url('product/soft-delete'); ?>"; // without ID
+        const baseAction = "product/soft-delete"; // without ID
         form.action = `${baseAction}/${productId}`;
 
         // Open modal
