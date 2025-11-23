@@ -45,17 +45,17 @@ class Auth extends Controller {
                 if(empty($mail)){
                     $this->session->set_flashdata('alert', 'error');
                     $this->session->set_flashdata('message', 'Please verify your email first. ');
-                    set_logged_out();
+                    $this->lauth->set_logged_out();
                 }
                 else if($role['role'] == "unverified"){
                     $this->session->set_flashdata('alert', 'info');
                     $this->session->set_flashdata('message', 'Account under review. Please wait for approval in your email. ');
-                    set_logged_out();
+                    $this->lauth->set_logged_out();
                 }
                 else if($role['role'] == "declined"){
                     $this->session->set_flashdata('alert', 'info');
                     $this->session->set_flashdata('message', 'Your request is declined by the admin. ');
-                    set_logged_out();
+                    $this->lauth->set_logged_out();
                 }
 			}
             redirect('auth/login');
