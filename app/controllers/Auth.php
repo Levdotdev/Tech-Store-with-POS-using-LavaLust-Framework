@@ -42,7 +42,7 @@ class Auth extends Controller {
                 $this->lauth->set_logged_in($data);
                 $mail = get_email_verified(get_user_id());
                 $role = get_role(get_user_id());
-                if($mail['email_verified_at'] === NULL){
+                if(empty($mail)){
                     $this->session->set_flashdata('alert', 'error');
                     $this->session->set_flashdata('message', 'Please verify your email first. ');
                     set_logged_out();
