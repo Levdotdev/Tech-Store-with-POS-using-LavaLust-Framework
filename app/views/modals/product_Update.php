@@ -52,11 +52,12 @@
                         <input type="text" id="edit_product_id" name="product_id" required>
                     </div>
                 </div>
+
         </div>
 
         <div class="modal-footer">
             <button type="button" class="action-btn modal-cancel-btn" onclick="closeModal('modal-edit-product')">Cancel</button>
-            <button type="submit" class="action-btn primary-btn" onclick="handleFormSubmit('modal-edit-product')">Update Product</button>
+            <button type="submit" class="action-btn primary-btn">Update</button>
         </div>
         </form>
     </div>
