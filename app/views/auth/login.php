@@ -30,7 +30,6 @@
             </p>
             <div class="welcome-buttons anim-slide-up" style="animation-delay: 0.6s;">
                 <button class="btn primary" id="show-login-btn">Login</button>
-                <button class="btn secondary" id="show-register-btn">Register</button>
             </div>
 
         </div>
@@ -93,9 +92,9 @@
                     </div>
                     <div class="overlay-panel overlay-right">
                         <h1>Welcome Back!</h1>
-                        <p>To keep connected with us please login with your personal info</p><hr>
+                        <p>To keep connected with us, please login with your personal info</p><hr>
                         <h5>OR</h5><br>
-                        <a href="<?= site_url('auth/register'); ?>" class="btn ghost" id="signUp">Register</a>
+                        <a href="<?= site_url('auth/register'); ?>" class="btn ghost">Register</a>
                     </div>
                 </div>
             </div>
