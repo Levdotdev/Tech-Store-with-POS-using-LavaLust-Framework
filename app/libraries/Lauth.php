@@ -230,6 +230,23 @@ class Lauth {
     	}
 	}
 
+	/**
+	 * Get Email Verified
+	 * @return string Role from Session
+	 */
+	public function get_email_verified($user_id)
+	{
+		$row = $this->LAVA->db
+						->table('users')
+						->select('email_verified_at')					
+    					->where('id', $user_id)
+    					->limit(1)
+    					->get();
+    	if($row) {
+    		return html_escape($row['email_verified_at']);
+    	}
+	}
+
 	public function set_logged_out() {
 		$data = array(
 			'user_id' => $this->get_user_id(),

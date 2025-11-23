@@ -115,6 +115,15 @@ if ( ! function_exists('get_email'))
 	}
 }
 
+if ( ! function_exists('get_email_verified'))
+{
+	function get_email_verified($user_id) {
+		$LAVA =& lava_instance();
+		$LAVA->call->library('lauth');
+		return $LAVA->lauth->get_email_verified($user_id);
+	}
+}
+
 if ( ! function_exists('email_exist'))
 {
 	function email_exist($email) {

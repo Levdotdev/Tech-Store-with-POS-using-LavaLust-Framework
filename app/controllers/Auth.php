@@ -39,20 +39,23 @@ class Auth extends Controller {
 				$this->session->set_flashdata('alert', 'error');
                 $this->session->set_flashdata('message', 'These credentials do not match our records. ');
 			} else {
-                if($data['email_verified_at'] == NULL){
+                $this->lauth->set_logged_in($data);
+                $mail = get_email_verified(get_user_id());
+                $role = get_role(get_user_id());
+                if($mail['email_verified_at'] === NULL){
                     $this->session->set_flashdata('alert', 'error');
                     $this->session->set_flashdata('message', 'Please verify your email first. ');
+                    set_logged_out();
                 }
-                else if($data['role'] == "unverified"){
+                else if($role['role'] == "unverified"){
                     $this->session->set_flashdata('alert', 'info');
                     $this->session->set_flashdata('message', 'Account under review. Please wait for approval in your email. ');
+                    set_logged_out();
                 }
-                else if($data['role'] == "declined"){
+                else if($role['role'] == "declined"){
                     $this->session->set_flashdata('alert', 'info');
-                    $this->session->set_flashdata('message', 'Your request is rejected by the admin. ');
-                }
-                else{
-                    $this->lauth->set_logged_in($data);
+                    $this->session->set_flashdata('message', 'Your request is declined by the admin. ');
+                    set_logged_out();
                 }
 			}
             redirect('auth/login');
