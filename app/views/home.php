@@ -147,7 +147,7 @@
                                     <td>
                                         <a href="<?= site_url('update/'.$product['id']); ?>" class="action-icon edit-btn" title="Update Stock" id="update-inventory-btn"><i class="fas fa-pen"></i></a>
                                         <a href="<?= site_url('soft-delete/'.$product['id']); ?>" title="Delete Product" class="action-icon delete-btn"><i class="fas fa-trash"></i></a>
-                                        <button title="Delete Product" data-id="<?= $product['id']; ?>" class="action-icon delete-btn" onclick="openModal('modal-delete-product')"><i class="fas fa-trash"></i></button>
+                                        <button title="Delete Product" data-id="<?= $product['id']; ?>" class="action-icon delete-btn open-delete-modal"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -6,7 +6,7 @@
             <div class="modal-body"><p style="color:var(--clr-danger)"><strong>Warning:</strong> Are you sure you want to delete this product?</p></div>
             <div class="modal-footer">
                 <button class="action-btn modal-cancel-btn" onclick="closeModal('modal-delete-confirm')">Cancel</button>
-                <button class="action-btn delete-btn open-delete-modal">Delete</button>
+                <button class="action-btn delete-btn" onclick="handleFormSubmit('modal-delete-confirm', 'Product deleted.', 'error')">Delete</button>
             </div>
         </div>
         </form>
