@@ -303,7 +303,7 @@
 
             <div id="reports" class="content-section">
                 <div class="toolbar">
-                    <button class="action-btn primary-btn"><i class="fas fa-chart-bar"></i> Generate Report</button>
+                    <button class="action-btn primary-btn" onclick="openModal('modal-generate-report')"><i class="fas fa-chart-bar"></i> Generate Report</button>
                 </div>
         
                 <div class="report-box-grid">
@@ -387,6 +387,7 @@
     <?php
       include APP_DIR.'views/modals/_account.php';
       include APP_DIR.'views/modals/_logout.php';
+      include APP_DIR.'views/modals/_report.php';
       include APP_DIR.'views/modals/applicant_Delete.php';
       include APP_DIR.'views/modals/applicant_Verify.php';
       include APP_DIR.'views/modals/inventory_Export.php';
@@ -400,7 +401,20 @@
       include APP_DIR.'views/modals/transaction_Receipt.php';
     ?>
 
+    <script>
+        const salesSummary = <?= json_encode($data['sales']); ?>;
+        const totalTransactions = <?= json_encode($data['transacts']); ?>;
+        const productsSold = <?= json_encode($data['sold']); ?>;
+
+        const topCashier = <?= json_encode($data['top_cashier']); ?>;
+
+        const topProducts = <?= json_encode($data['top_products']); ?>;
+
+        const transactionsByCashier = <?= json_encode($data['transactions_by_cashier']); ?>;
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <script src="<?= base_url();?>public/js/script.js"></script>
     <?php toast_alert(); ?>
 </body>

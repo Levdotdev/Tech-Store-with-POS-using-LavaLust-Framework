@@ -150,6 +150,25 @@ class _AdminController extends Controller {
         $res = $this->db->raw($sql);
         $data['top_products'] = $res->fetchAll();
 
+        $month = date('m');
+        $year = date('Y');
+
+        $trans = $this->db->table('transactions')
+            ->where("MONTH(date)", $month)
+            ->where("YEAR(date)", $year)
+            ->where("deleted_at", NULL)
+            ->orderBy('cashier', 'ASC')
+            ->orderBy('created_at', 'DESC')
+            ->get()
+            ->getResultArray();
+
+        $transactions_by_cashier = [];
+        foreach($trans as $t) {
+            $transactions_by_cashier[$t['cashier']][] = $t;
+        }
+
+        $data['transactions_by_cashier'] = $transactions_by_cashier;
+
 
         $this->call->view('home', $data);
     }

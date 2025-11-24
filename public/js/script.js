@@ -463,5 +463,101 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+async function generatePDFReport() {
+    closeModal('modal-generate-report');
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    let y = 10;
+
+    // Title
+    doc.setFontSize(18);
+    doc.text("TechStore Monthly Report", 14, y);
+    y += 10;
+
+    const dateStr = new Date().toLocaleString();
+    doc.setFontSize(11);
+    doc.text(`Generated on: ${dateStr}`, 14, y);
+    y += 10;
+
+    // -------------------------
+    // SALES SUMMARY
+    // -------------------------
+    doc.setFontSize(14);
+    doc.text("Sales Summary", 14, y);
+    y += 6;
+
+    doc.setFontSize(11);
+    doc.text(`Total Sales: ₱ ${salesSummary.total}`, 14, y);
+    y += 6;
+    doc.text(`Total Transactions: ${totalTransactions.total}`, 14, y);
+    y += 6;
+    doc.text(`Products Sold: ${productsSold.sold}`, 14, y);
+    y += 10;
+
+    // -------------------------
+    // TOP CASHIER
+    // -------------------------
+    doc.setFontSize(14);
+    doc.text("Top Cashier", 14, y);
+    y += 6;
+
+    doc.setFontSize(11);
+    doc.text(`Cashier: ${topCashier.cashier}`, 14, y);
+    y += 6;
+    doc.text(`Total Transactions: ${topCashier.total_transactions}`, 14, y);
+    y += 6;
+    doc.text(`Total Sales Handled: ₱ ${Number(topCashier.total_sales).toLocaleString(undefined, {minimumFractionDigits:2})}`, 14, y);
+    y += 10;
+
+    // -------------------------
+    // TOP 5 PRODUCTS
+    // -------------------------
+    doc.setFontSize(14);
+    doc.text("Top 5 Selling Products", 14, y);
+    y += 6;
+
+    const topProductsBody = topProducts.map(p => [p.name, p.units_sold, Number(p.revenue).toLocaleString(undefined, {minimumFractionDigits:2})]);
+
+    doc.autoTable({
+        startY: y,
+        head: [["Product Name", "Units Sold", "Revenue (₱)"]],
+        body: topProductsBody
+    });
+
+    y = doc.lastAutoTable.finalY + 10;
+
+    // -------------------------
+    // TRANSACTIONS GROUPED BY CASHIER
+    // -------------------------
+    doc.setFontSize(14);
+    doc.text("Transactions of the Month (Grouped by Cashier)", 14, y);
+    y += 6;
+
+    for (const [cashier, transactions] of Object.entries(transactionsByCashier)) {
+        y += 6;
+        doc.setFontSize(12);
+        doc.text(`Cashier: ${cashier}`, 14, y);
+        y += 6;
+
+        const txBody = transactions.map(t => [t.id, t.created_at, Number(t.total).toLocaleString(undefined, {minimumFractionDigits:2})]);
+
+        doc.autoTable({
+            startY: y,
+            head: [["Transaction ID", "Date", "Total (₱)"]],
+            body: txBody,
+            theme: 'grid'
+        });
+
+        y = doc.lastAutoTable.finalY + 10;
+    }
+
+    // Save PDF
+    const monthYear = new Date().toLocaleString('default', { month: 'long', year: 'numeric' }).replace(' ', '_');
+    doc.save(`TechStore_Report_${monthYear}.pdf`);
+
+    // Optional toast
+    showToast("PDF Report Generated");
+}
 
 document.body.classList.add("ready");
