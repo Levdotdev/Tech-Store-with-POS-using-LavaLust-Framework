@@ -303,33 +303,22 @@
 
             <div id="reports" class="content-section">
                 <div class="toolbar">
-                    <select><option>Sales Summary (Monthly)</option><option>Inventory Movement</option><option>Cashier Performance</option><option>Top Selling Products</option></select>
-                    <input type="date" value="2025-10-01">
-                    <input type="date" value="2025-10-31">
                     <button class="action-btn primary-btn"><i class="fas fa-chart-bar"></i> Generate Report</button>
-                    <button class="action-btn"><i class="fas fa-download"></i> Export Data</button>
                 </div>
         
                 <div class="report-box-grid">
                     <div class="report-box">
-                        <h3><i class="fas fa-coins"></i> Sales Summary: October 2025</h3>
-                        <p>Total Revenue: ₱ 1,850,200.00</p>
-                        <p>Net Profit: ₱ 750,200.00</p>
-                        <p>Total Transactions: 1,250</p>
-                        <p class="trend up"><i class="fas fa-arrow-up"></i> 15% increase vs Sept</p>
+                        <h3><i class="fas fa-coins"></i> Sales Summary: <?= date('F Y'); ?></h3>
+                        <p>Total Sales: ₱ <?= $data['sales']['total']; ?></p>
+                        <p>Total Transactions: <?= $data['transacts']['total']; ?></p>
+                        <p>Products Sold: <?= $data['sold']['sold']; ?></p>
+                        <p class="trend up"><i class="fas fa-arrow-up"></i></p>
                     </div>
                     <div class="report-box">
-                        <h3><i class="fas fa-truck-loading"></i> Inventory Value & Status</h3>
-                        <p>Total Stock Value: ₱ 5,450,000.00</p>
-                        <p>Items in Stock: 1,250 SKUs</p>
-                        <p>Stock Turn: 3.5x/year</p>
-                        <p class="trend alert"><i class="fas fa-exclamation-triangle"></i> 12 Low Stock Alerts</p>
-                    </div>
-                    <div class="report-box">
-                        <h3><i class="fas fa-user-tie"></i> Top Cashier (Oct)</h3>
-                        <p>Cashier: Fyra Nika Dudas</p>
-                        <p>Total Transactions: 152</p>
-                        <p>Total Sales Handled: ₱ 450,000.00</p>
+                        <h3><i class="fas fa-user-tie"></i> Top Cashier (<?= date('M'); ?>)</h3>
+                        <p>Cashier: <?= $data['top_cashier']['cashier']; ?></p>
+                        <p>Total Transactions: <?= $data['top_cashier']['total_transactions']; ?></p>
+                        <p>Total Sales Handled: ₱ <?= number_format($data['top_cashier']['total_sales'], 2); ?></p>
                         <p class="trend up"><i class="fas fa-trophy"></i> Best Performer</p>
                     </div>
                 </div>

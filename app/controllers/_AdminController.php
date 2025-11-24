@@ -117,6 +117,25 @@ class _AdminController extends Controller {
         $data['sold'] = $this->db->table('products')->select_sum('sold', 'sold')->where_null('deleted_at')->get();
         $res = $this->db->raw('SELECT COUNT(stock) AS total FROM products WHERE stock < 5 AND deleted_at IS NULL');
         $data['low_stock'] = $res->fetch();
+        $res = $this->db->raw('SELECT COUNT(id) AS total FROM transactions WHERE deleted_at IS NULL');
+        $data['transacts'] = $res->fetch();
+
+        $sql = "
+            SELECT cashier,
+                COUNT(*) AS total_transactions,
+                SUM(total) AS total_sales
+            FROM transactions
+            WHERE MONTH(date) = MONTH(CURRENT_DATE())
+            AND YEAR(date) = YEAR(CURRENT_DATE())
+            AND deleted_at IS NULL
+            GROUP BY cashier
+            ORDER BY total_sales DESC
+            LIMIT 1
+        ";
+
+        $res = $this->db->raw($sql);
+        $data['top_cashier'] = $res->fetch();
+
 
         $this->call->view('home', $data);
     }
