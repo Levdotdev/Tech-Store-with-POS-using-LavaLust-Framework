@@ -92,7 +92,7 @@ class _TransactionController extends Controller {
     // --- Generate PDF ---
     $dompdf = new Dompdf();
     ob_start();
-    include APPPATH.'Views/pdf_templates/monthly_report.php';
+    include APP_DIR.'views/report.php';
     $html = ob_get_clean();
 
     $dompdf->loadHtml($html);
