@@ -157,10 +157,9 @@ class _AdminController extends Controller {
             ->where("MONTH(date)", $month)
             ->where("YEAR(date)", $year)
             ->where("deleted_at", NULL)
-            ->orderBy('cashier', 'ASC')
-            ->orderBy('created_at', 'DESC')
-            ->get()
-            ->getResultArray();
+            ->order_by('cashier', 'ASC')
+            ->order_by('created_at', 'DESC')
+            ->fetch();
 
         $transactions_by_cashier = [];
         foreach($trans as $t) {
