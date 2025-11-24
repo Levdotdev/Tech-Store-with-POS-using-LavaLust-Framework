@@ -41,7 +41,7 @@ class _TransactionController extends Controller {
 
     // --- Total transactions ---
     $res = $this->db->raw('SELECT COUNT(id) AS total FROM transactions WHERE deleted_at IS NULL');
-    $row = $res->fetch(PDO::FETCH_ASSOC); // raw() returns PDOStatement
+    $row = $res->fetch(PDO::FETCH_ASSOC);
     $data['transacts'] = (int)($row['total'] ?? 0);
 
     // --- Top cashier ---
@@ -72,22 +72,15 @@ class _TransactionController extends Controller {
     ");
     $data['top_products'] = $res->fetchAll(PDO::FETCH_ASSOC);
 
-    // --- Transactions grouped by cashier ---
+    // --- All transactions for the month (unsorted by cashier) ---
     $month = date('m');
     $year = date('Y');
-    $trans = $this->db->table('transactions')
-                      ->where("MONTH(date)", $month)
-                      ->where("YEAR(date)", $year)
-                      ->where("deleted_at", NULL)
-                      ->order_by('cashier','ASC')
-                      ->order_by('date','DESC')
-                      ->get_all(); // returns array of arrays
-
-    $transactions_by_cashier = [];
-    foreach($trans as $t){
-        $transactions_by_cashier[$t['cashier']][] = $t;
-    }
-    $data['transactions_by_cashier'] = $transactions_by_cashier;
+    $data['transactions'] = $this->db->table('transactions')
+                                     ->where("MONTH(date)", $month)
+                                     ->where("YEAR(date)", $year)
+                                     ->where("deleted_at", NULL)
+                                     ->order_by('date','DESC')
+                                     ->get_all(); // returns array
 
     // --- Generate PDF ---
     $dompdf = new Dompdf();
@@ -100,4 +93,5 @@ class _TransactionController extends Controller {
     $dompdf->render();
     $dompdf->stream("TechStore_Report_".date('F_Y').".pdf", ["Attachment" => true]);
 }
+
 }
