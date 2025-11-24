@@ -149,7 +149,11 @@ class _AdminController extends Controller {
 
         $transactions_by_cashier = [];
         foreach($trans as $t) {
-            $transactions_by_cashier[$t['cashier']][] = $t;
+            $transactions_by_cashier[$t['cashier']][] = [
+                'id' => $t['id'],
+                'date' => $t['date'], // or 'created_at' if that’s your column
+                'total' => $t['total']
+            ];
         }
 
         $data['transactions_by_cashier'] = $transactions_by_cashier;

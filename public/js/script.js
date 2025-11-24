@@ -470,7 +470,9 @@ async function generatePDFReport() {
     const doc = new jsPDF();
     let y = 10;
 
+    // -------------------------
     // Title
+    // -------------------------
     doc.setFontSize(18);
     doc.text("TechStore Monthly Report", 14, y);
     y += 10;
@@ -533,7 +535,7 @@ async function generatePDFReport() {
     y = doc.lastAutoTable.finalY + 10;
 
     // -------------------------
-    // TRANSACTIONS BY CASHIER
+    // TRANSACTIONS GROUPED BY CASHIER
     // -------------------------
     doc.setFontSize(14);
     doc.text("Transactions of the Month (Grouped by Cashier)", 14, y);
@@ -549,7 +551,7 @@ async function generatePDFReport() {
 
         const txBody = txs.map(t => [
             t.id.toString(),
-            t.created_at,
+            t.date,
             Number(t.total).toLocaleString(undefined, {minimumFractionDigits:2})
         ]);
 
@@ -564,7 +566,9 @@ async function generatePDFReport() {
         y = doc.lastAutoTable.finalY + 10;
     }
 
-    // Save PDF
+    // -------------------------
+    // SAVE PDF
+    // -------------------------
     const monthYear = new Date().toLocaleString('default', { month: 'long', year: 'numeric' }).replace(' ', '_');
     doc.save(`TechStore_Report_${monthYear}.pdf`);
 
