@@ -106,12 +106,9 @@
                         <span class="trend alert">Action Needed</span>
                     </div>
                 </div>
-                <div class="chart-container">
-                    <div class="placeholder-chart">
-                        <h3>Weekly Sales Chart (₱'000)</h3>
-                        <div class="bar-chart-visual">
-                            <div style="height: 50%;" data-label="₱35k">Mon</div> <div style="height: 80%;" data-label="₱56k">Tue</div> <div style="height: 30%;" data-label="₱21k">Wed</div> <div style="height: 95%;" data-label="₱66k">Thu</div> <div style="height: 70%;" data-label="₱49k">Fri</div> <div style="height: 60%;" data-label="₱42k">Sat</div> <div style="height: 45%;" data-label="₱31k">Sun</div> </div>
-                    </div>
+                <div class="chart-container max-w-md mx-auto mt-8 p-4 bg-white rounded-lg shadow-md">
+                    <h3 class="text-lg font-semibold mb-4">Sales by Cashier (Php)</h3>
+                    <canvas id="salesPieChart"></canvas>
                 </div>
             </div>
 
@@ -401,8 +398,12 @@
       include APP_DIR.'views/modals/transaction_Receipt.php';
     ?>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="<?= base_url();?>public/js/script.js"></script>
+    <script>
+        window.cashierSalesData = <?php echo json_encode($data['cashier_sales']); ?>;
+    </script>
     <?php toast_alert(); ?>
 </body>
 </html>

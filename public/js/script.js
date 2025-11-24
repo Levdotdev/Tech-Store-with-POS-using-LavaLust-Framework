@@ -470,4 +470,38 @@ function generatePDFReport() {
     closeModal('modal-generate-report');
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    const rawData = window.cashierSalesData || [];
+    const labels = rawData.map(item => item.cashier);
+    const data = rawData.map(item => parseFloat(item.total_sales));
+
+    const ctx = document.getElementById('salesPieChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: labels.map((_, i) => `hsl(${i * 60 % 360}, 70%, 60%)`),
+                borderColor: '#fff',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return 'Php ' + context.raw.toLocaleString();
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+
+
 document.body.classList.add("ready");
