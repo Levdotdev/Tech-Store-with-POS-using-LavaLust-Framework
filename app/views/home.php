@@ -312,7 +312,7 @@
                         <p>Total Sales: ₱ <?= $data['sales']['total']; ?></p>
                         <p>Total Transactions: <?= $data['transacts']['total']; ?></p>
                         <p>Products Sold: <?= $data['sold']['sold']; ?></p>
-                        <p class="trend up"><i class="fas fa-arrow-up"></i></p>
+                        <p class="trend up"><i class="fas fa-arrow-up"></i>Monthly Totals</p>
                     </div>
                     <div class="report-box">
                         <h3><i class="fas fa-user-tie"></i> Top Cashier (<?= date('M'); ?>)</h3>
@@ -332,15 +332,19 @@
                                     <th>Rank</th>
                                     <th>Product Name</th>
                                     <th>Units Sold</th>
-                                    <th>Revenue (₱)</th>
+                                    <th>Sales (₱)</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>1</td><td>Smartwatch X30</td><td>150</td><td>1,349,850.00</td></tr>
-                                <tr><td>2</td><td>Fast-Charging Cable (USB-C)</td><td>450</td><td>135,000.00</td></tr>
-                                <tr><td>3</td><td>Gaming Mouse G9</td><td>80</td><td>120,000.00</td></tr>
-                                <tr><td>4</td><td>Power Adapter 65W</td><td>65</td><td>97,175.00</td></tr>
-                                <tr><td>5</td><td>Bluetooth Earbuds</td><td>120</td><td>47,880.00</td></tr>
+                                <?php $rank = 1;
+                                foreach ($data['top_products'] as $product): ?>
+                                    <tr>
+                                        <td><?= $rank++; ?></td>
+                                        <td><?= $product['name']; ?></td>
+                                        <td><?= $product['units_sold']; ?></td>
+                                        <td><?= number_format($product['revenue'], 2); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

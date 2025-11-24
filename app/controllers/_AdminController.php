@@ -136,6 +136,20 @@ class _AdminController extends Controller {
         $res = $this->db->raw($sql);
         $data['top_cashier'] = $res->fetch();
 
+        $sql = "
+            SELECT 
+                name,
+                sold AS units_sold,
+                (sold * price) AS revenue
+            FROM products
+            WHERE deleted_at IS NULL
+            ORDER BY sold DESC
+            LIMIT 5
+        ";
+
+        $res = $this->db->raw($sql);
+        $data['top_products'] = $res->fetchAll();
+
 
         $this->call->view('home', $data);
     }
