@@ -55,13 +55,6 @@ class ProductModel extends Model {
                 
             // Build LIKE conditions
 
-	    $query->grouped(function($x) use ($q) {
-		    $x->like('name', '%'.$q.'%')
-                ->or_like('category', '%'.$q.'%');
-	    })
-	    ->where_null('deleted_at')
-        ->order_by('category', 'DESC');
-
         if($q == ""){
             $query->where_null('deleted_at')
             ->order_by('category', 'ASC')
