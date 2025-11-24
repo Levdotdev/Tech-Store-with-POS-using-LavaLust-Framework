@@ -31,112 +31,103 @@ class _AdminController extends Controller {
     }
 
     public function index(){
-        $page = 1;
-        if(isset($_GET['page']) && ! empty($_GET['page'])) {
-            $page = $this->io->get('page');
-        }
+        $this->pagination->set_options([
+            'first_link'     => 'First',
+            'last_link'      => 'Last',
+            'next_link'      => '→',
+            'prev_link'      => '←',
+            'page_delimiter' => '&page='
+        ]);
 
-        $q = '';
-        if(isset($_GET['q']) && ! empty($_GET['q'])) {
-            $q = trim($this->io->get('q'));
-        }
+        $q = trim($this->io->get('q') ?? '');
+        $r = trim($this->io->get('r') ?? '');
+        $s = trim($this->io->get('s') ?? '');
+        $t = trim($this->io->get('t') ?? '');
+        $u = trim($this->io->get('u') ?? '');
 
-        $r = '';
-        if(isset($_GET['r']) && ! empty($_GET['r'])) {
-            $r = trim($this->io->get('r'));
-        }
-
-        $s = '';
-        if(isset($_GET['s']) && ! empty($_GET['s'])) {
-            $s = trim($this->io->get('s'));
-        }
-
-        $t = '';
-        if(isset($_GET['t']) && ! empty($_GET['t'])) {
-            $t = trim($this->io->get('t'));
-        }
-
-        $u = '';
-        if(isset($_GET['u']) && ! empty($_GET['u'])) {
-            $u = trim($this->io->get('u'));
-        }
+        $page_products     = (int) ($this->io->get('page_products') ?? 1);
+        $page_inventory    = (int) ($this->io->get('page_inventory') ?? 1);
+        $page_users        = (int) ($this->io->get('page_users') ?? 1);
+        $page_transactions = (int) ($this->io->get('page_transactions') ?? 1);
+        $page_applicants   = (int) ($this->io->get('page_applicants') ?? 1);
 
         $records_per_page = 5;
 
-        $all = $this->ProductModel->products($q, $records_per_page, $page);
+        $all = $this->ProductModel->products($q, $records_per_page, $page_products);
         $data['all'] = $all['records'];
-        $total_rows = $all['total_rows'];
-        $this->pagination->set_options([
-            'first_link'     => 'First',
-            'last_link'      => 'Last',
-            'next_link'      => '→',
-            'prev_link'      => '←',
-            'page_delimiter' => '&page='
-        ]);
-        $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
+
+        $this->pagination->set_theme('custom');
+        $this->pagination->initialize(
+            $all['total_rows'], 
+            $records_per_page, 
+            $page_products,
+            '?q=' . $q . '&page_products='
+        );
         $data['page_products'] = $this->pagination->paginate();
 
-        $all = $this->ProductModel->inventory($r, $records_per_page, $page);
+
+        $all = $this->ProductModel->inventory($r, $records_per_page, $page_inventory);
         $data['inventory'] = $all['records'];
-        $total_rows = $all['total_rows'];
-        $this->pagination->set_options([
-            'first_link'     => 'First',
-            'last_link'      => 'Last',
-            'next_link'      => '→',
-            'prev_link'      => '←',
-            'page_delimiter' => '&page='
-        ]);
-        $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?r='.$r);
+
+        $this->pagination->initialize(
+            $all['total_rows'], 
+            $records_per_page, 
+            $page_inventory,
+            '?r=' . $r . '&page_inventory='
+        );
         $data['page_inventory'] = $this->pagination->paginate();
 
-        $all = $this->StaffModel->users($s, $records_per_page, $page);
+
+        $all = $this->StaffModel->users($s, $records_per_page, $page_users);
         $data['users'] = $all['records'];
-        $total_rows = $all['total_rows'];
-        $this->pagination->set_options([
-            'first_link'     => 'First',
-            'last_link'      => 'Last',
-            'next_link'      => '→',
-            'prev_link'      => '←',
-            'page_delimiter' => '&page='
-        ]);
-        $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?s='.$s);
+
+        $this->pagination->initialize(
+            $all['total_rows'], 
+            $records_per_page, 
+            $page_users,
+            '?s=' . $s . '&page_users='
+        );
         $data['page_users'] = $this->pagination->paginate();
 
-        $all = $this->TransactionModel->transactions($t, $records_per_page, $page);
+
+        $all = $this->TransactionModel->transactions($t, $records_per_page, $page_transactions);
         $data['transactions'] = $all['records'];
-        $total_rows = $all['total_rows'];
-        $this->pagination->set_options([
-            'first_link'     => 'First',
-            'last_link'      => 'Last',
-            'next_link'      => '→',
-            'prev_link'      => '←',
-            'page_delimiter' => '&page='
-        ]);
-        $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?t='.$t);
+
+        $this->pagination->initialize(
+            $all['total_rows'], 
+            $records_per_page, 
+            $page_transactions,
+            '?t=' . $t . '&page_transactions='
+        );
         $data['page_transactions'] = $this->pagination->paginate();
 
-        $all = $this->StaffModel->applicants($u, $records_per_page, $page);
+
+        $all = $this->StaffModel->applicants($u, $records_per_page, $page_applicants);
         $data['applicants'] = $all['records'];
-        $total_rows = $all['total_rows'];
-        $this->pagination->set_options([
-            'first_link'     => 'First',
-            'last_link'      => 'Last',
-            'next_link'      => '→',
-            'prev_link'      => '←',
-            'page_delimiter' => '&page='
-        ]);
-        $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?u='.$u);
+
+        $this->pagination->initialize(
+            $all['total_rows'], 
+            $records_per_page, 
+            $page_applicants,
+            '?u=' . $u . '&page_applicants='
+        );
         $data['page_applicants'] = $this->pagination->paginate();
 
-        $data['sales'] = $this->db->table('transactions')->select_sum('total', 'total')->get();
-        $data['sold'] = $this->db->table('products')->select_sum('sold', 'sold')->where_null('deleted_at')->get();
-        $res = $this->db->raw('SELECT COUNT(stock) AS total FROM products WHERE stock < 5 AND deleted_at IS NULL');
+
+        $data['sales'] = $this->db
+            ->table('transactions')
+            ->select_sum('total', 'total')
+            ->get();
+
+        $data['sold'] = $this->db
+            ->table('products')
+            ->select_sum('sold', 'sold')
+            ->whereNull('deleted_at')
+            ->get();
+
+        $res = $this->db->raw("SELECT COUNT(stock) AS total FROM products WHERE stock < 5 AND deleted_at IS NULL");
         $data['low_stock'] = $res->fetch();
+
 
         $this->call->view('home', $data);
     }
