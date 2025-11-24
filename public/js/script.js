@@ -488,7 +488,7 @@ async function generatePDFReport() {
     y += 6;
 
     doc.setFontSize(11);
-    doc.text(`Total Sales: ₱ ${salesSummary.total}`, 14, y);
+    doc.text(`Total Sales: ₱ ${Number(salesSummary.total).toLocaleString(undefined, {minimumFractionDigits:2})}`, 14, y);
     y += 6;
     doc.text(`Total Transactions: ${totalTransactions.total}`, 14, y);
     y += 6;
@@ -517,12 +517,17 @@ async function generatePDFReport() {
     doc.text("Top 5 Selling Products", 14, y);
     y += 6;
 
-    const topProductsBody = topProducts.map(p => [p.name, p.units_sold, Number(p.revenue).toLocaleString(undefined, {minimumFractionDigits:2})]);
+    const topProductsBody = topProducts.map(p => [
+        p.name,
+        p.units_sold.toString(),
+        Number(p.revenue).toLocaleString(undefined, {minimumFractionDigits:2})
+    ]);
 
     doc.autoTable({
         startY: y,
         head: [["Product Name", "Units Sold", "Revenue (₱)"]],
-        body: topProductsBody
+        body: topProductsBody,
+        styles: { fontSize: 10 }
     });
 
     y = doc.lastAutoTable.finalY + 10;
@@ -540,13 +545,18 @@ async function generatePDFReport() {
         doc.text(`Cashier: ${cashier}`, 14, y);
         y += 6;
 
-        const txBody = transactions.map(t => [t.id, t.created_at, Number(t.total).toLocaleString(undefined, {minimumFractionDigits:2})]);
+        const txBody = transactions.map(t => [
+            t.id.toString(),
+            t.created_at,
+            Number(t.total).toLocaleString(undefined, {minimumFractionDigits:2})
+        ]);
 
         doc.autoTable({
             startY: y,
             head: [["Transaction ID", "Date", "Total (₱)"]],
             body: txBody,
-            theme: 'grid'
+            theme: 'grid',
+            styles: { fontSize: 10 }
         });
 
         y = doc.lastAutoTable.finalY + 10;
@@ -556,7 +566,6 @@ async function generatePDFReport() {
     const monthYear = new Date().toLocaleString('default', { month: 'long', year: 'numeric' }).replace(' ', '_');
     doc.save(`TechStore_Report_${monthYear}.pdf`);
 
-    // Optional toast
     showToast("PDF Report Generated");
 }
 
