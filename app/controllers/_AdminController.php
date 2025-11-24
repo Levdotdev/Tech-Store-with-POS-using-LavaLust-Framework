@@ -82,8 +82,8 @@ class _AdminController extends Controller {
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'home/?q='.$q);
-        $data['page'] = $this->pagination->paginate();
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
+        $data['page_users'] = $this->pagination->paginate();
 
         $all = $this->TransactionModel->transactions($q, $records_per_page, $page);
         $data['transactions'] = $all['records'];
@@ -96,8 +96,8 @@ class _AdminController extends Controller {
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'home/?q='.$q);
-        $data['page'] = $this->pagination->paginate();
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
+        $data['page_transactions'] = $this->pagination->paginate();
 
         $all = $this->StaffModel->applicants($q, $records_per_page, $page);
         $data['applicants'] = $all['records'];
@@ -110,8 +110,8 @@ class _AdminController extends Controller {
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'home/?q='.$q);
-        $data['page'] = $this->pagination->paginate();
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
+        $data['page_applicants'] = $this->pagination->paginate();
 
         $data['sales'] = $this->db->table('transactions')->select_sum('total', 'total')->get();
         $data['sold'] = $this->db->table('products')->select_sum('sold', 'sold')->where_null('deleted_at')->get();

@@ -26,10 +26,7 @@ class TransactionModel extends Model {
                 
             // Build LIKE conditions
 
-	    $query->grouped(function($x) use ($q) {
-		    $x->like('cashier', '%'.$q.'%')
-                ->or_like('date', '%'.$q.'%');
-	    })
+	    $query->like('cashier', '%'.$q.'%')
 	    ->where_null('deleted_at')
         ->order_by('date', 'DESC');
 

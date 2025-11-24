@@ -256,13 +256,21 @@
                         </tbody>
                     </table>
                 </div>
+                <?php echo $page_users;?>
             </div>
 
             <div id="transactions" class="content-section">
                 <div class="toolbar">
-                    <input type="date" value="2025-10-22">
-                    <select><option>All Cashiers</option><option>Fyra Nika Dudas</option></select>
-                    <button class="action-btn"><i class="fas fa-filter"></i> Filter</button>
+                    <form action="<?=site_url('');?>" method="get">
+                        <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
+                        <select id="category" name="q">
+                            <option value="" selected>All Cashiers</option>
+                            <?php foreach(html_escape($users) as $user): ?>
+                                <option value="<?= $user['username']; ?>"><?= $user['username']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <button type="submit" class="action-btn"><i class="fas fa-filter"></i> Filter</button>
+                    </form>
                 </div>
                 <div class="table-container">
                     <table class="data-table">
@@ -290,6 +298,7 @@
                         </tbody>
                     </table>
                 </div>
+                <?php echo $page_transactions;?>
             </div>
 
             <div id="reports" class="content-section">
@@ -350,13 +359,6 @@
             </div>
 
             <div id="applicants" class="content-section">
-                <div class="toolbar">
-                    <div class="search-box">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" placeholder="Search Applicants...">
-                         <button class="action-btn search-btn">Search</button>
-                    </div>
-                </div>
                 <div class="table-container">
                     <table class="data-table">
                         <thead>
@@ -384,6 +386,7 @@
                         </tbody>
                     </table>
                 </div>
+                <?php echo $page_applicants;?>
             </div>
 
         </section>

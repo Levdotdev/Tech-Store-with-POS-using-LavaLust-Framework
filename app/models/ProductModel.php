@@ -73,7 +73,7 @@ class ProductModel extends Model {
             ->order_by('last_restock', 'ASC');
         }
         else{
-            $query->between('stock', '1', '4')
+            $query->between('stock', 1, 4)
             ->where_null('deleted_at')
             ->order_by('category', 'ASC')
             ->order_by('last_restock', 'ASC');
