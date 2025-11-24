@@ -41,6 +41,26 @@ class _AdminController extends Controller {
             $q = trim($this->io->get('q'));
         }
 
+        $r = '';
+        if(isset($_GET['r']) && ! empty($_GET['r'])) {
+            $r = trim($this->io->get('r'));
+        }
+
+        $s = '';
+        if(isset($_GET['s']) && ! empty($_GET['s'])) {
+            $s = trim($this->io->get('s'));
+        }
+
+        $t = '';
+        if(isset($_GET['t']) && ! empty($_GET['t'])) {
+            $t = trim($this->io->get('t'));
+        }
+
+        $u = '';
+        if(isset($_GET['u']) && ! empty($_GET['u'])) {
+            $u = trim($this->io->get('u'));
+        }
+
         $records_per_page = 5;
 
         $all = $this->ProductModel->products($q, $records_per_page, $page);
@@ -57,7 +77,7 @@ class _AdminController extends Controller {
         $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
         $data['page_products'] = $this->pagination->paginate();
 
-        $all = $this->ProductModel->inventory($q, $records_per_page, $page);
+        $all = $this->ProductModel->inventory($r, $records_per_page, $page);
         $data['inventory'] = $all['records'];
         $total_rows = $all['total_rows'];
         $this->pagination->set_options([
@@ -68,10 +88,10 @@ class _AdminController extends Controller {
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?r='.$q);
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'?r='.$r);
         $data['page_inventory'] = $this->pagination->paginate();
 
-        $all = $this->StaffModel->users($q, $records_per_page, $page);
+        $all = $this->StaffModel->users($s, $records_per_page, $page);
         $data['users'] = $all['records'];
         $total_rows = $all['total_rows'];
         $this->pagination->set_options([
@@ -82,10 +102,10 @@ class _AdminController extends Controller {
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?s='.$q);
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'?s='.$s);
         $data['page_users'] = $this->pagination->paginate();
 
-        $all = $this->TransactionModel->transactions($q, $records_per_page, $page);
+        $all = $this->TransactionModel->transactions($t, $records_per_page, $page);
         $data['transactions'] = $all['records'];
         $total_rows = $all['total_rows'];
         $this->pagination->set_options([
@@ -96,10 +116,10 @@ class _AdminController extends Controller {
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?t='.$q);
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'?t='.$t);
         $data['page_transactions'] = $this->pagination->paginate();
 
-        $all = $this->StaffModel->applicants($q, $records_per_page, $page);
+        $all = $this->StaffModel->applicants($u, $records_per_page, $page);
         $data['applicants'] = $all['records'];
         $total_rows = $all['total_rows'];
         $this->pagination->set_options([
@@ -110,7 +130,7 @@ class _AdminController extends Controller {
             'page_delimiter' => '&page='
         ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
-        $this->pagination->initialize($total_rows, $records_per_page, $page,'?u='.$q);
+        $this->pagination->initialize($total_rows, $records_per_page, $page,'?u='.$u);
         $data['page_applicants'] = $this->pagination->paginate();
 
         $data['sales'] = $this->db->table('transactions')->select_sum('total', 'total')->get();
