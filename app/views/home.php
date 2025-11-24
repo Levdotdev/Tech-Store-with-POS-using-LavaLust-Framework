@@ -182,7 +182,7 @@
                     <button class="action-btn" onclick="openModal('modal-import-csv')"><i class="fas fa-upload"></i> CSV Entry</button>
                     <button class="action-btn" onclick="openModal('modal-export-confirm')"><i class="fas fa-download"></i> Download Data</button>
                     <form action="<?=site_url('');?>" method="get">
-                        <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
+                        <?php $q = isset($_GET['r']) ? $_GET['r'] : ''; ?>
                         <select id="category" name="q">
                                     <option value="" selected>All Products</option>
                                     <option value="in">In Stock</option>
@@ -262,7 +262,7 @@
             <div id="transactions" class="content-section">
                 <div class="toolbar">
                     <form action="<?=site_url('');?>" method="get">
-                        <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
+                        <?php $q = isset($_GET['t']) ? $_GET['t'] : ''; ?>
                         <select id="category" name="q">
                             <option value="" selected>All Cashiers</option>
                             <?php foreach(html_escape($users) as $user): ?>
