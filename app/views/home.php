@@ -121,7 +121,7 @@
                     </button>
                         <form action="<?=site_url('');?>" method="get">
                         <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
-                        <select id="category" name="q" class="form-select-field">
+                        <select id="category" name="q">
                                     <option value="" selected>All Products</option>
                                     <option value="Electronics">Electronics</option>
                                     <option value="Keyboard">Keyboard</option>
@@ -132,9 +132,9 @@
                                     <option value="Microphone">Microphone</option>
                                     <option value="Webcam">Webcam</option>
                                     <option value="Accessories">Accessories</option>
-                        </form>
                         </select>
                         <button type="submit" class="action-btn"><i class="fas fa-filter"></i> Filter</button>
+                        </form>
                 </div>
 
                 <div class="table-container">
@@ -222,13 +222,6 @@
             </div>
 
             <div id="users" class="content-section">
-                <div class="toolbar">
-                    <div class="search-box">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" placeholder="Search Users...">
-                         <button class="action-btn search-btn">Search</button>
-                    </div>
-                </div>
                 <div class="table-container">
                     <table class="data-table">
                         <thead>
