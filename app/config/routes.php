@@ -45,6 +45,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 $router->get('/', '_AdminController::index');
 $router->match('/settings', '_AdminController::settings', ['GET', 'POST']);
+$router->match('/report', '_TransactionController::report', ['GET', 'POST']);
 
 
 $router->group('/product', function() use ($router){

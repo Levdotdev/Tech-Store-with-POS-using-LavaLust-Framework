@@ -31,22 +31,6 @@ class _AdminController extends Controller {
     }
 
     public function index(){
-
-        $pagination_conf = [
-            'full_tag_open'   => '<div class="pagination-container">',
-            'full_tag_close'  => '</div>',
-            'first_link'      => 'First',
-            'last_link'       => 'Last',
-            'next_link'       => '→',
-            'prev_link'       => '←',
-            'page_delimiter'  => '&page=',
-            'attributes'      => ['class' => 'page-btn'], 
-            'cur_tag_open'    => '<span class="page-btn active">', 
-            'cur_tag_close'   => '</span>',
-            'num_tag_open'    => '',
-            'num_tag_close'   => '',
-        ];
-
         $page = 1;
         if(isset($_GET['page']) && ! empty($_GET['page'])) {
             $page = $this->io->get('page');
@@ -62,7 +46,13 @@ class _AdminController extends Controller {
         $all = $this->ProductModel->products($q, $records_per_page, $page);
         $data['all'] = $all['records'];
         $total_rows = $all['total_rows'];
-        $this->pagination->set_options($pagination_conf);
+        $this->pagination->set_options([
+            'first_link'     => 'First',
+            'last_link'      => 'Last',
+            'next_link'      => '→',
+            'prev_link'      => '←',
+            'page_delimiter' => '&page='
+        ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
         $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
         $data['page_products'] = $this->pagination->paginate();
@@ -70,7 +60,13 @@ class _AdminController extends Controller {
         $all = $this->ProductModel->inventory($q, $records_per_page, $page);
         $data['inventory'] = $all['records'];
         $total_rows = $all['total_rows'];
-        $this->pagination->set_options($pagination_conf);
+        $this->pagination->set_options([
+            'first_link'     => 'First',
+            'last_link'      => 'Last',
+            'next_link'      => '→',
+            'prev_link'      => '←',
+            'page_delimiter' => '&page='
+        ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
         $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
         $data['page_inventory'] = $this->pagination->paginate();
@@ -78,7 +74,13 @@ class _AdminController extends Controller {
         $all = $this->StaffModel->users($q, $records_per_page, $page);
         $data['users'] = $all['records'];
         $total_rows = $all['total_rows'];
-        $this->pagination->set_options($pagination_conf);
+        $this->pagination->set_options([
+            'first_link'     => 'First',
+            'last_link'      => 'Last',
+            'next_link'      => '→',
+            'prev_link'      => '←',
+            'page_delimiter' => '&page='
+        ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
         $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
         $data['page_users'] = $this->pagination->paginate();
@@ -86,7 +88,13 @@ class _AdminController extends Controller {
         $all = $this->TransactionModel->transactions($q, $records_per_page, $page);
         $data['transactions'] = $all['records'];
         $total_rows = $all['total_rows'];
-        $this->pagination->set_options($pagination_conf);
+        $this->pagination->set_options([
+            'first_link'     => 'First',
+            'last_link'      => 'Last',
+            'next_link'      => '→',
+            'prev_link'      => '←',
+            'page_delimiter' => '&page='
+        ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
         $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
         $data['page_transactions'] = $this->pagination->paginate();
@@ -94,7 +102,13 @@ class _AdminController extends Controller {
         $all = $this->StaffModel->applicants($q, $records_per_page, $page);
         $data['applicants'] = $all['records'];
         $total_rows = $all['total_rows'];
-        $this->pagination->set_options($pagination_conf);
+        $this->pagination->set_options([
+            'first_link'     => 'First',
+            'last_link'      => 'Last',
+            'next_link'      => '→',
+            'prev_link'      => '←',
+            'page_delimiter' => '&page='
+        ]);
         $this->pagination->set_theme('custom'); // or 'tailwind', or 'custom'
         $this->pagination->initialize($total_rows, $records_per_page, $page,'?q='.$q);
         $data['page_applicants'] = $this->pagination->paginate();
@@ -147,17 +161,13 @@ class _AdminController extends Controller {
             ->order_by('date', 'DESC')
             ->get_all();
 
+        // Group transactions by cashier
         $transactions_by_cashier = [];
-        foreach($trans as $t) {
-            $transactions_by_cashier[$t['cashier']][] = [
-                'id' => $t['id'],
-                'date' => $t['date'], // or 'created_at' if that’s your column
-                'total' => $t['total']
-            ];
+        foreach($trans as $t){
+            $transactions_by_cashier[$t['cashier']][] = $t;
         }
 
         $data['transactions_by_cashier'] = $transactions_by_cashier;
-
 
         $this->call->view('home', $data);
     }
