@@ -72,15 +72,13 @@ class _TransactionController extends Controller {
     ");
     $data['top_products'] = $res->fetchAll(PDO::FETCH_ASSOC);
 
-    // --- All transactions for the month (unsorted by cashier) ---
     $month = date('m');
     $year = date('Y');
     $data['transactions'] = $this->db->table('transactions')
-                                     ->where("MONTH(date)", $month)
-                                     ->where("YEAR(date)", $year)
-                                     ->where("deleted_at", NULL)
-                                     ->order_by('date','DESC')
-                                     ->get_all(); // returns array
+        ->where_raw("MONTH(date) = ? AND YEAR(date) = ? AND deleted_at IS NULL", [$month, $year])
+        ->order_by('date','DESC')
+        ->get_all();
+
 
     // --- Generate PDF ---
     $dompdf = new Dompdf();
