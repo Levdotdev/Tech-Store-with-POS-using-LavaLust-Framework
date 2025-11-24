@@ -485,3 +485,14 @@ h2 {
     display: block;
     margin: 0 auto;    /* Center horizontally */
 }
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* spacing between elements */
+}
+.toolbar form {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* spacing between select and button */
+}
